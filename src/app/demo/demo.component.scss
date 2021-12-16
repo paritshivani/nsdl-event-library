@@ -1,0 +1,52 @@
+@import "../../../projects/event-library/node_modules/@project-sunbird/sb-styles/assets/mixins/mixins";
+@import "../../../projects/event-library/node_modules/@project-sunbird/sb-styles/assets/variables";
+@import "../../../projects/event-library/node_modules/@project-sunbird/sb-themes/themes/themes-portal";
+
+.sbt-page-content-area {
+    background: none;
+    border-radius: calculateRem(40px) 0 0 calculateRem(40px);
+    height: 100%;
+    padding: calculateRem(16px) 0 calculateRem(24px) 0;
+
+    html[dir="rtl"] & {
+      border-radius: 0 calculateRem(40px) 0 0px;
+      padding: calculateRem(16px) 0 calculateRem(24px) calculateRem(8px);
+    }
+
+    @include respond-above(sm) {
+      background: var(--sbt-body-bg2);
+    }
+
+
+    &__div {
+      position: relative;
+      z-index: 99;
+    }
+  }
+
+//   html[layout='joy'] {
+//     .sbt-sticky-topbar.sb-fontresizecontainer {
+//       position: sticky;
+
+//       @include respond-below(sm) {
+//         position: initial;
+//       }
+//     }
+
+    .relative9 {
+      @include respond-above(md) {
+        position: relative;
+        z-index: 2;
+      }
+    }
+
+//     .sbt-dropdown-profile-area,
+//     app-language-dropdown,
+//     .sbt-dropdown-language {
+//       @include respond-below(sm) {
+//         width: 100%;
+//         margin-bottom: calculateRem(8px);
+//       }
+//     }
+//   }
+

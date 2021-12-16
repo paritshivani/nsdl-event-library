@@ -62,6 +62,7 @@ export class DemoComponent implements OnInit {
   dates:any;
   min:any;
   max:any;
+  eventListCount: any;
   today = new Date();
   todayDate = this.today.getFullYear() + '-' + ('0' + (this.today.getMonth() + 1)).slice(-2) + '-' + ('0' + (this.today.getDate())).slice(-2);
   yesterdayDate = this.today.getFullYear() + '-' + ('0' + (this.today.getMonth() + 1)).slice(-2) + '-' + ('0' + (this.today.getDate()-1)).slice(-2);
@@ -99,6 +100,7 @@ export class DemoComponent implements OnInit {
 
         this.eventListService.getEventList(this.Filterdata).subscribe((data:any)=>{
         this.eventList = data.result.Event;
+        this.eventListCount = data.result.count;
         this.isLoading = false;
       })
   }
@@ -112,6 +114,7 @@ export class DemoComponent implements OnInit {
       this.eventListService.getMyEventList(this.userId).subscribe((data:any)=>{
 
         let  eventsList=  data.result.courses;
+        // console.log('eventsList - ', eventsList);
         Array.prototype.forEach.call(data.result.courses, child => {
           eventIds.push(child.courseId);
         });

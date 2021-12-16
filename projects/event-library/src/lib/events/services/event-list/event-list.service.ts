@@ -60,12 +60,12 @@ export class EventListService {
       };
 
       const req = {
-        url: this.userConfigService.getConfigUrl().eventFilterConfigApiSbForm,
+        url: this.userConfigService.getConfigUrl().eventFilterConfigApi,
         data: requestBody,
         header: { 'Content-Type' : 'application/json'}
       };
 
-      return this.dataService.get(req);
+      return this.dataService.post(req);
     }
 
     getMyEventsFilterFormConfig() {

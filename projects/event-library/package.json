@@ -17,6 +17,7 @@
         "@ngx-translate/core": "^12.1.2",
         "@ngx-translate/http-loader": "^4.0.0",
         "@project-sunbird/common-consumption": "^3.6.9",
+        "@project-sunbird/common-consumption-v9": "^4.5.3",
         "@project-sunbird/sb-styles": "0.0.9",
         "@project-sunbird/sb-themes": "0.0.30",
         "angular-calendar": "^0.28.26",
