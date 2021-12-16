@@ -134,5 +134,15 @@ export class CoverEventDetailComponent implements OnInit {
   {
     this.openRecordingModal = true;
     this.RecordingUrls = this.eventDetailItem.onlineProviderData.recordings;
+    this.RecordingUrls.forEach(item => {
+      if(item.duration)
+      {
+        const sec = parseInt(item.duration, 10);
+        let hours   = Math.floor(sec / 3600);
+        let minutes = Math.floor((sec - (hours * 3600)) / 60);
+        let seconds = sec - (hours * 3600) - (minutes * 60)
+        item.duration = hours+':'+ minutes +':'+seconds;
+      }
+    });
   }
 }
