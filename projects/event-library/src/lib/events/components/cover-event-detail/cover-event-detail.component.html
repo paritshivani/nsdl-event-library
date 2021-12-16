@@ -127,32 +127,24 @@
             {{this.eventDetailItem.name}}
         </div>
         <div class="sb-modal-content container">
-            <!-- <ul>
-                
-                <li *ngFor="let data of RecordingUrls; index as i">
-                    
-                    <a href="{{data.recordingUrl}}" target="_blank">{{'Recording'}}{{i+1}}</a>
-                    <span>{{data.startTime}}</span>
-                    <span>{{data.endTime}}</span>
-                </li>     
-        </ul>  -->
-        
         <table class="sb-table sb-table-striped sb-table-sortable sb-table-fixed sb-table-course-dashboard">
             <thead>
               <tr>
                 <th>Recordings</th>
                 <th>Start Date Time</th>
                 <th>End Date Time</th>
+                <th>Duration</th>
               </tr>
             </thead>
             <tbody *ngFor="let data of RecordingUrls;index as i">
               <tr>
-                <td><a href="{{data.recordingUrl}}" target="_blank">{{'Recording'}}{{i+1}}</a></td>
-                <td>{{data.startTime}}</td>
-                <td>{{data.endTime}}</td>
+                <td><a href="{{data.recordingUrl}}" target="_blank" suiPopup popupText="{{this.eventDetailItem.name}}" popupPlacement="top">{{this.eventDetailItem.name}}</a></td>
+                <td>{{data.startTime | date:'medium'}}</td>
+                <td>{{data.endTime | date:'medium'}}</td>
+                <td>{{data.duration}}</td>
               </tr>
             </tbody>
           </table>
         </div>
-        </sui-modal>
+    </sui-modal>
     
