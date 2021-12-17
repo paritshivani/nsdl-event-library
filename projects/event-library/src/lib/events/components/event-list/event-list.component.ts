@@ -63,6 +63,8 @@ export class EventListComponent implements OnInit {
     }
   }
 
+  playContent(content){}
+
 
   /*onEventWrapper(identifier) {
     this.router.navigate([this.redirection], {
