@@ -120,7 +120,7 @@
             </div>
         </div>
     </div>
-    <sui-modal *ngIf="openRecordingModal && this.eventDetailItem.onlineProviderData['recordings'].length > 1" [mustScroll]="true" [isClosable]="true" [transitionDuration]="0" [size]="'small'"
+    <sui-modal *ngIf="openRecordingModal && this.eventDetailItem.onlineProviderData['recordings'].length > 1" [mustScroll]="true" [isClosable]="true" [transitionDuration]="0" [size]="'large'"
         class="sb-modal container" appBodyScroll infiniteScroll [infiniteScrollDistance]="2"
         [infiniteScrollThrottle]="500" [scrollWindow]="false" (dismissed)="openRecordingModal = !openRecordingModal" #modal>
         <div class="sb-modal-header">
