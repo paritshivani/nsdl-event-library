@@ -110,12 +110,12 @@
 </div>
 
 <div *ngIf="tab == 'form'">
-    <sb-event-create
-        *ngIf="!isDetail"
-        [formFieldProperties]="formFieldProperties"
-        (closeSaveForm)="cancel($event)"
-        (navAfterSave)="navAfterSave($event);">
-    </sb-event-create>
+<sb-event-create
+*ngIf="!isDetail"
+[formFieldProperties]="formFieldProperties"
+(closeSaveForm)="cancel($event)"
+(navAfterSave)="navAfterSave($event);">
+</sb-event-create>
 </div>
 
 <div *ngIf="tab == 'enrollUsersList'">

@@ -27,26 +27,30 @@
             <span *ngIf="content?.subject && content?.gradeLevel" class="dot-divider"></span>
             <span class="data_2 ellipsis" title="{{content?.gradeLevel}}">{{content?.gradeLevel}}</span>
           </div>
-          <!-- <div class="sb--card__meta1 text-left" *ngIf="content?.subject || content?.gradeLevel">
-            <i class="fa fa-calendar"></i> &nbsp;
-            <span class="data_1 ellipsis" title="{{content?.showDate}}">{{content?.showDate}}</span>&nbsp; -->
-            <!-- <span *ngIf="content?.startDate && content?.endDate" class="fa fa-calendar"></span>&nbsp;
-            <span class="data_2 ellipsis" title="{{content?.endDate}}">{{content?.endDate}}</span> -->
-          <!-- </div> -->
-        </div>
-      </div>
-
-      <div>
-        <div class="ml-16">
-          <i class="fa fa-calendar"></i> &nbsp;
-          <span class="data_1 ellipsis" title="{{content?.showDate}}">{{content?.showDate}}</span>
         </div>
 
-        <!-- <div class="ml-16" *ngIf="type === content?.venue.name" >
-          <i class="fa fa-map-marker"></i> &nbsp;
-          <span class="data_1 ellipsis" title="{{content?.venue.name}}">{{content?.venue.name}}</span>
-        </div> -->
       </div>
+      <ng-container *ngIf="content?.showDate">
+        <div class="sb--sb--card__moreinfo sb__ellipsis"
+          title="{{content?.showDate}}: {{content?.showDate}}">
+          <span><i class="fa fa-calendar mr-5 ml-10"></i></span>
+          <span title="{{content?.showDate}}">{{content?.showDate}}</span>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="content?.venue && content?.eventType == 'Offline' || content?.eventType == 'OnlineAndOffline'">
+        <div class="sb--sb--card__moreinfo sb__ellipsis"
+          title="{{content?.venue}}: {{content?.venue}}">
+          <span><i class="fa fa-map-marker mr-5 ml-10"></i></span>
+          <span title="Salt Palace Convention Center, South West Temple, Salt Lake City, UT, United States">Salt Palace Convention Center..</span>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="content?.venue && content?.eventType == 'Online' || content?.eventType == 'OnlineAndOffline'">
+        <div class="sb--sb--card__moreinfo sb__ellipsis"
+          title="{{content?.onlineProvider}}: {{content?.onlineProvider}}">
+          <span><i class="fa fa-microphone mr-5 ml-10"></i></span>
+          <span title="{{content?.onlineProvider}}">{{content?.onlineProvider}}</span>
+        </div>
+      </ng-container>
 
       <!-- content for only desktop -->
       <div *ngIf="type === LibraryCardTypes.DESKTOP_TEXTBOOK || type === LibraryCardTypes.PORTAL_QRCODE_FLATRESULT">
@@ -57,12 +61,14 @@
             <div class="sb--card__meta2_data" *ngIf="content?.medium">
               <span class="">{{moreInfoLabel}}: {{content?.medium}}</span>
             </div>
-            <div class="sb--card__org sb__ellipsis" *ngIf="content?.organisation"><bdi>{{content?.organisation}}</bdi></div>
+            <div class="sb--card__org sb__ellipsis" title="NSDLEGOV13 K12 Learning"><bdi>NSDLEGOV13 K12 Learning</bdi></div>
+            <!-- <div class="sb--card__org sb__ellipsis" *ngIf="content?.organisation"><bdi>{{content?.organisation}}</bdi></div> -->
           </div>
           <!-- other meta info Badge and card category Book, learn, practice -->
           <div class="sb--card__tags">
-            <span class="sb--card__badge" *ngIf="content?.badgeAssertions"><img
-                [src]="content?.badgeAssertions[0]?.badgeClassImage" alt="" title="" /></span>
+            <span class="sb--card__badge" *ngIf="content?.badgeAssertions">
+              <img [src]="content?.badgeAssertions[0]?.badgeClassImage" alt="" title="" />
+            </span>
             <!-- <span class="sb--card__type" *ngIf="content?.contentType">{{content?.contentType}}</span> -->
             <span class="sb--card__type" *ngIf="content?.eventType == 'Online'">Virtual Event</span>
             <span class="sb--card__type" *ngIf="content?.eventType == 'Offline'">Classroom Event</span>
@@ -136,44 +142,44 @@
           </div>
 
       </div>
-    </span>
-    <span *ngIf="layoutConfig">
-        <ng-container
-            *ngIf="(layoutConfig && !layoutConfig.layout) || layoutConfig.layout === 'v2'">
-          <sb-event-card-v2
-            [indexToDisplay]="indexToDisplay"
-            [isLoading]="isLoading"
-            [content]="content"
-            [isMobile]="isMobile"
-            [isOffline]="isOffline"
-            [cardImg]="cardImg"
-            [type]="type"
-            [moreInfoLabel]="moreInfoLabel"
-            [isSelected]="isSelected"
-            [section]="section"
-            [btnlabel]="btnlabel"
-            [btnicon]="btnicon"
-            [layoutConfig]="layoutConfig"
-            [isMenu]="isMenu"
-            (cardClick)="onClick($event)"
-            (menuClick)="onMenuClick($event);$event.stopPropagation()"
-            [hover-template]="gridTemplate">
-          </sb-event-card-v2>
-        </ng-container>
-        <!-- <ng-container *ngIf="layoutConfig.layout === 'v3'">
-          <sb-library-card-v3 [indexToDisplay]="indexToDisplay" [isLoading]="isLoading" [content]="content" [isMobile]="isMobile"
-          [isOffline]="isOffline" [cardImg]="cardImg" [type]="type" [moreInfoLabel]="moreInfoLabel" [isSelected]="isSelected"
-          [section]="section" [btnlabel]="btnlabel" [btnicon]="btnicon"
-          [layoutConfig]="layoutConfig" [isMenu]="isMenu" (cardClick)="onClick($event)"
-          (menuClick)="onMenuClick($event);$event.stopPropagation()" [hover-template]="gridTemplate"
-          ></sb-library-card-v3>
-        </ng-container>
-        <ng-container *ngIf="layoutConfig.layout === 'v4'">
-          <sb-library-card-v4 [indexToDisplay]="indexToDisplay" [isLoading]="isLoading" [content]="content" [isMobile]="isMobile"
-          [isOffline]="isOffline" [cardImg]="cardImg" [type]="type" [moreInfoLabel]="moreInfoLabel" [isSelected]="isSelected"
-          [section]="section" [btnlabel]="btnlabel" [btnicon]="btnicon"
-          [layoutConfig]="layoutConfig" [isMenu]="isMenu" (cardClick)="onClick($event)"
-          (menuClick)="onMenuClick($event);$event.stopPropagation()" [hover-template]="gridTemplate"
-          ></sb-library-card-v4>
-        </ng-container> -->
-    </span>
+</span>
+<span *ngIf="layoutConfig">
+    <ng-container
+        *ngIf="(layoutConfig && !layoutConfig.layout) || layoutConfig.layout === 'v2'">
+      <sb-event-card-v2
+        [indexToDisplay]="indexToDisplay"
+        [isLoading]="isLoading"
+        [content]="content"
+        [isMobile]="isMobile"
+        [isOffline]="isOffline"
+        [cardImg]="cardImg"
+        [type]="type"
+        [moreInfoLabel]="moreInfoLabel"
+        [isSelected]="isSelected"
+        [section]="section"
+        [btnlabel]="btnlabel"
+        [btnicon]="btnicon"
+        [layoutConfig]="layoutConfig"
+        [isMenu]="isMenu"
+        (cardClick)="onClick($event)"
+        (menuClick)="onMenuClick($event);$event.stopPropagation()"
+        [hover-template]="gridTemplate">
+      </sb-event-card-v2>
+    </ng-container>
+    <!-- <ng-container *ngIf="layoutConfig.layout === 'v3'">
+      <sb-library-card-v3 [indexToDisplay]="indexToDisplay" [isLoading]="isLoading" [content]="content" [isMobile]="isMobile"
+      [isOffline]="isOffline" [cardImg]="cardImg" [type]="type" [moreInfoLabel]="moreInfoLabel" [isSelected]="isSelected"
+      [section]="section" [btnlabel]="btnlabel" [btnicon]="btnicon"
+      [layoutConfig]="layoutConfig" [isMenu]="isMenu" (cardClick)="onClick($event)"
+      (menuClick)="onMenuClick($event);$event.stopPropagation()" [hover-template]="gridTemplate"
+      ></sb-library-card-v3>
+    </ng-container>
+    <ng-container *ngIf="layoutConfig.layout === 'v4'">
+      <sb-library-card-v4 [indexToDisplay]="indexToDisplay" [isLoading]="isLoading" [content]="content" [isMobile]="isMobile"
+      [isOffline]="isOffline" [cardImg]="cardImg" [type]="type" [moreInfoLabel]="moreInfoLabel" [isSelected]="isSelected"
+      [section]="section" [btnlabel]="btnlabel" [btnicon]="btnicon"
+      [layoutConfig]="layoutConfig" [isMenu]="isMenu" (cardClick)="onClick($event)"
+      (menuClick)="onMenuClick($event);$event.stopPropagation()" [hover-template]="gridTemplate"
+      ></sb-library-card-v4>
+    </ng-container> -->
+</span>

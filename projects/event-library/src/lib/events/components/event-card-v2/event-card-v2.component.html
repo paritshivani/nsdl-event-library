@@ -43,6 +43,48 @@
         <bdi>{{content?.name}}</bdi></h4>
       <a *ngIf="isMenu" role="button" aria-label="View more actions menu" class="menu" (click)="onMenuClick($event);$event.stopPropagation()"></a>
     </div>
+    <div class="sb--card__meta">
+        <ng-container *ngIf="content?.showDate">
+          <div class="sb--card__meta2_data sb__ellipsis showDate">
+            <span><i class="fa fa-calendar mr-5"></i></span>
+            <span title="{{content?.showDate}}">{{content?.showDate}}</span>
+          </div>
+        </ng-container>
+    </div>
+
+    <div class="sb--card__meta" *ngIf="content?.eventType== 'Online' || content?.eventType == 'Offline'">
+        <ng-container>
+          <div class="sb--card__meta sb__ellipsis" *ngIf="content?.venue && content?.eventType == 'Offline'"
+          title="{{content?.venue}}: {{content?.venue}}">
+            <span><i class="fa fa-map-marker mr-5"></i></span>
+            <span title="Salt Palace Convention Center, South West Temple, Salt Lake City, UT, United States">Salt Palace Convention Center..</span>
+          </div>
+          <div class="sb--card__meta sb__ellipsis" *ngIf="content?.onlineProvider && content?.eventType == 'Online'"
+          title="{{content?.onlineProvider}}: {{content?.onlineProvider}}">
+            <span><i class="fa fa-microphone mr-5"></i></span>
+            <span title="{{content?.onlineProvider}}">{{content?.onlineProvider}}</span>
+          </div>
+        </ng-container>
+    </div>
+    <div class="sb--card__meta" *ngIf="content?.eventType == 'OnlineAndOffline'">
+        <ng-container>
+          <div class="sb--card__meta sb__ellipsis" *ngIf="content?.venue && content?.eventType == 'OnlineAndOffline'"
+          title="{{content?.venue}}: {{content?.venue}}">
+            <span><i class="fa fa-map-marker mr-5"></i></span>
+            <span title="Salt Palace Convention Center, South West Temple, Salt Lake City, UT, United States">Salt Palace Convention Center..</span>
+          </div>
+        </ng-container>
+      </div>
+      <div class="sb--card__meta" *ngIf="content?.eventType == 'OnlineAndOffline'">
+        <ng-container>
+          <div class="sb--card__meta sb__ellipsis" *ngIf="content?.onlineProvider && content?.eventType == 'OnlineAndOffline'"
+          title="{{content?.onlineProvider}}: {{content?.onlineProvider}}">
+            <span><i class="fa fa-microphone mr-5"></i></span>
+            <span title="{{content?.onlineProvider}}">{{content?.onlineProvider}}</span>
+          </div>
+        </ng-container>
+    </div>
+
     <div class="sb--card__meta1 text-left">
       <ng-container *ngIf="content?.organisation && content?.organisation.length > 0">
         <span class="data_0 mr-8 organisation" title="{{content?.organisation[0]}}">{{content?.organisation[0]}}</span>
@@ -52,8 +94,8 @@
         <span class="data_1 mr-8 medium" title="{{content?.medium[0]}}">{{content?.medium[0]}}</span>
         <span class="data_1 mr-8" title="{{content?.medium}}" *ngIf="content?.medium.length > 1">+{{content?.medium.length-1}}</span>
       </ng-container> -->
-      <ng-container *ngIf="content?.medium">
-        <span class="data_1 mr-8 medium" title="{{content?.medium}}">{{content?.medium}}</span>
+      <ng-container *ngIf="content?.subject">
+        <span class="data_1 mr-8 subject" title="{{content?.subject}}">{{content?.subject}}</span>
       </ng-container>
       <!-- <ng-container *ngIf="content?.gradeLevel && content?.gradeLevel.length > 0">
         <span class="data_2" title="{{content?.gradeLevel[0]}}">{{content?.gradeLevel[0]}}</span>
@@ -67,22 +109,12 @@
   <!-- content for only desktop -->
   <div *ngIf="type === LibraryCardTypes.DESKTOP_TEXTBOOK || type === LibraryCardTypes.PORTAL_QRCODE_FLATRESULT">
     <div class="sb--card__moreinfo">
-      <div class="sb--card__meta2 text-left"  *ngIf="content?.showDate">
-        <i class="fa fa-calendar"></i> &nbsp;
-        <span class="data_1 ellipsis" title="{{content?.showDate}}">{{content?.showDate}}</span>
-      </div>
       <!-- other meta info subject, publisher/organizer etc -->
       <div class="sb--card__meta2 text-left">
-        <!-- <ng-container *ngIf="content?.subject && content?.subject.length > 0">
-          <div class="sb--card__meta2_data sb__ellipsis subject">
-            <span>Subject: </span> <span title="{{content?.subject[0]}}">{{content?.subject[0]}}</span> <span class="data_1 mr-8" title="{{content?.subject}}" *ngIf="content?.subject.length > 1"> +{{content?.subject.length-1}}
-            </span>
-          </div>
-        </ng-container> -->
-        <ng-container *ngIf="content?.subject">
-          <div class="sb--card__meta2_data sb__ellipsis subject">
-            <span>Subject: </span>
-            <span title="{{content?.subject}}">{{content?.subject}}</span>
+        <ng-container *ngIf="content?.medium">
+          <div class="sb--card__meta2_data sb__ellipsis medium">
+            <span>Medium: </span>
+            <span title="{{content?.medium}}">{{content?.medium}}</span>
           </div>
         </ng-container>
         <ng-container *ngIf="content?.organisation && content?.organisation.length > 0">
@@ -92,10 +124,9 @@
             </span>
           </div>
         </ng-container>
-        <!-- <div class="sb--card__meta2_data sb__ellipsis" title="{{moreInfoLabel}}:
-        {{content?.subject}}" *ngIf="content?.subject"><span class="">{{moreInfoLabel}}:
-            {{content?.subject}}</span></div> -->
+
         <!-- <div class="sb--card__org sb__ellipsis" title="{{content?.organisation}}" *ngIf="content?.organisation"><bdi>{{content?.organisation}}</bdi></div> -->
+        <div class="sb--card__org sb__ellipsis" title="NSDLEGOV13 K12 Learning"><bdi>NSDLEGOV13 K12 Learning</bdi></div>
       </div>
       <!-- other meta info Badge and card category Book, learn, practice -->
       <div class="sb--card__tags">

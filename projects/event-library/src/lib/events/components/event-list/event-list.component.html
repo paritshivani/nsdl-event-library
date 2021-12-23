@@ -32,13 +32,15 @@
     <span *ngIf="list && eventListCount" class="sb-pageSection-count sb-label sb-label-xs sb-label-error">{{eventListCount}}</span>
     <div class="sb-grid dynamic-section-card">
         <div *ngFor="let content of list | paginate: { itemsPerPage: paginateLimit, currentPage: p };let i = index; ">
-            <sb-event-card
-                [indexToDisplay]="i"
-                [layoutConfig]="layoutConfig"
-                (cardClick)="playContent(content)"
-                [content]="content"
-                [cardImg]="content?.appIcon || 'assets/images/eventcover.png'">
-            </sb-event-card>
+            <!-- <ng-container *ngIf="layoutConfig"> -->
+                <sb-event-card
+                    [indexToDisplay]="i"
+                    [layoutConfig]="layoutConfig"
+                    (cardClick)="playContent(content)"
+                    [content]="content"
+                    [cardImg]="content?.appIcon || 'assets/images/eventcover.png'">
+                </sb-event-card>
+            <!-- </ng-container> -->
         </div>
     </div>
     <pagination-controls (pageChange)="p = $event"  *ngIf="list" class="pull-right"></pagination-controls>

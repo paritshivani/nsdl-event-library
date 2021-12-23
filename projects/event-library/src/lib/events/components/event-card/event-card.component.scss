@@ -1,7 +1,7 @@
 @import "../../../../../node_modules/@project-sunbird/sb-styles/assets/mixins/mixins";
 @import "../../../../../node_modules/@project-sunbird/sb-styles/assets/mixins/custom-mixins";
 @import "../../../../../node_modules/@project-sunbird/sb-styles/assets/loadingshadows";
-// @import "../../../../../node_modules/@project-sunbird/sb-styles/assets/mixins/mixins";
+
 
 ::ng-deep :root {
   --cc-sbcard-bg: var(--white);
@@ -9,7 +9,7 @@
   --cc-sbcard-title: var(--primary-color);
   --cc-sbcard-meta-text: var(--gray-800);
   --cc-sbcard-dot-divider: var(--gray-200);
-  --cc-sbcard-moreinfo-bg: none; //var(--rc-FAFAFA);
+  --cc-sbcard-moreinfo-bg: var(--rc-FAFAFA);
   --cc-sbcard-moreinfo-bordertop: #cacbce;
   --cc-sbcard-meta2-text: var(--gray-800);
   --cc-sbcard-org-text: var(--gray-200);

@@ -20,8 +20,8 @@ export class EventListComponent implements OnInit {
   @Input() toSort;
   @Input() layoutConfig;
 
- @Input() eventListCount: any;
- @Input() myEventsCount: any;
+  @Input() eventListCount: any;
+  @Input() myEventsCount: any;
 
 
   @Output() eventDetailData = new EventEmitter();
@@ -63,7 +63,9 @@ export class EventListComponent implements OnInit {
     }
   }
 
-  playContent(content){}
+  playContent(content){
+    this.eventDetailData.emit(content);
+  }
 
 
   /*onEventWrapper(identifier) {

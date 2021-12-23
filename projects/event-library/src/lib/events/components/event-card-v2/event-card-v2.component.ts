@@ -4,7 +4,7 @@ import { IContent, LibraryCardTypes, ICardClick } from "./../event-card-models"
 @Component({
   selector: 'sb-event-card-v2',
   templateUrl: './event-card-v2.component.html',
-  styleUrls: ['./event-card-v2.component.scss']
+  styleUrls: ['./event-card-v2.component.scss', '../event-card/event-card.component.scss']
 })
 export class EventCardV2Component implements OnInit, AfterViewInit {
 

@@ -144,7 +144,7 @@
         font-size:calculateRem(11px);
         display: flex;
         align-items: center;
-        text-transform: uppercase;
+        // text-transform: uppercase;
 
         html[dir="rtl"] & {
           margin-right: -1rem;
@@ -177,6 +177,11 @@
 
     .sb--card__title {
       margin-right: calculateRem(88px);
+      color: var(--cc-sbcard-title);
+      font-size: calculateRem(14px);
+      margin: 0px;
+      line-height: normal;
+      line-height: calculateRem(20px);
 
       html[dir="rtl"] & {
         margin-left: calculateRem(88px);
