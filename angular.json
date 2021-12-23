@@ -42,10 +42,10 @@
                             "node_modules/slick-carousel/slick/slick.scss",
                             "node_modules/slick-carousel/slick/slick-theme.scss",
                             "node_modules/angular-calendar/css/angular-calendar.css",
-			    "node_modules/@project-sunbird/sb-styles/assets/_styles.scss",
+			     "node_modules/@project-sunbird/sb-styles/assets/_styles.scss",
                             "projects/event-library/node_modules/@project-sunbird/sb-styles/assets/_styles.scss",
                             "projects/event-library/node_modules/@project-sunbird/sb-themes/themes/themes-portal.scss",
-             		    "src/assets/lib/semantic/semantic.min.css",
+             		     "src/assets/lib/semantic/semantic.min.css",
                             "src/assets/styles/styles.scss",
                             "node_modules/katex/dist/katex.min.css"
                         ],
@@ -92,7 +92,7 @@
                     "options": {
                         "browserTarget": "EventLibrary:build",
                         "proxyConfig": "proxy.config.json",
-                        "port": 4300
+                        "port": 4200
                     },
                     "configurations": {
                         "production": {

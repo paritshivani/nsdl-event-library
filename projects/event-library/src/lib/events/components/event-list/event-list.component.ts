@@ -18,10 +18,11 @@ export class EventListComponent implements OnInit {
   @Input() myEvents: any;
   @Input() redirection: any = 'event';
   @Input() toSort;
+  @Input() layoutConfig;
 
- @Input() eventListCount: any;
- @Input() myEventsCount: any;
- 
+  @Input() eventListCount: any;
+  @Input() myEventsCount: any;
+
 
   @Output() eventDetailData = new EventEmitter();
   @Output() redirectToDetail = new EventEmitter();
@@ -48,9 +49,10 @@ export class EventListComponent implements OnInit {
   ngOnInit(){}
 
   ngOnChanges() {
+    console.log('myEvents - ', this.myEvents);
    // Get all events
     if (this.list)
-    { 
+    {
       this.getEventStatus(this.list);
     }
 
@@ -61,8 +63,12 @@ export class EventListComponent implements OnInit {
     }
   }
 
+  playContent(content){
+    this.eventDetailData.emit(content);
+  }
 
-  /*onEventWrapper(identifier) {   
+
+  /*onEventWrapper(identifier) {
     this.router.navigate([this.redirection], {
       queryParams: {
         identifier: identifier,
@@ -89,18 +95,18 @@ export class EventListComponent implements OnInit {
     this.viewAllButton     = true;
   }
 
-  /** Get event Status and show on list view  
+  /** Get event Status and show on list view
    * 1. Past
    * 2. Ongoing
    * 3. Upcoming
-   * */  
+   * */
   getEventStatus(eventList) {
      eventList.forEach(async event => {
        this.eventService.getEventStatus(event);
      });
   }
 
-  /*onEventWrapper(identifier) {   
+  /*onEventWrapper(identifier) {
     this.router.navigate([this.redirection], {
       queryParams: {
         identifier: identifier,

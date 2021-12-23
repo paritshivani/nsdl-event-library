@@ -31,6 +31,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { EnrollEventUsersComponent } from './components/enroll-event-users/enroll-event-users.component';
 import { LibEventComponent } from './components/lib-event/lib-event.component'; // <-- import the module
 import {AngularCountdownTimerModule} from 'angular8-countdown-timer';
+import { EventCardComponent } from './components/event-card/event-card.component';
+import { EventCardV2Component } from './components/event-card-v2/event-card-v2.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import {AngularCountdownTimerModule} from 'angular8-countdown-timer';
      CollectionIconComponent,
     AssetBrowserComponent,
     EnrollEventUsersComponent,
-    LibEventComponent
+    LibEventComponent,
+    EventCardComponent,
+    EventCardV2Component
   ],
   imports: [
     CommonModule,
