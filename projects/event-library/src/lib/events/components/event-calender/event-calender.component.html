@@ -78,11 +78,11 @@
         <div class="col-md-4">
             <!-- Card -->
             <div class="sb-label sb-label-table sb-label-primary-100">{{cardDateDisplys}}</div>
-            <div class="masonry-grid " style="height: 700px;overflow-y: scroll;">
+            <div class="masonry-grid " style="height: 875px;overflow-y: scroll;">
                 <div class="masonry-item ml-5"
                     *ngFor="let event of list | paginate: { itemsPerPage: paginateLimit, currentPage: p }">
                     <!-- <div class="sb-card" (click)="onEventWrapper(event?.identifier);navToEventDetail(event)" tabindex="0"> -->
-                    <div class="sb-card" (click)="navToEventDetail(event)" tabindex="0">
+                    <div class="sb-card"  tabindex="0">
                         <div class="sb-card-body">
                             <div class="sb-card-metas">
                                 <!-- <div class="sb-card-image mr-16">
