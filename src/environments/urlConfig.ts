@@ -48,7 +48,7 @@
     enrollUserEventList: "https://staging-sunbird.nsdl.co.in/api/course/v2/user/enrollment/list",
 
     // myEvents:"/v2/user/courses/list",
-    myEvents: "https://staging-sunbird.nsdl.co.in/api/course/v2/user/enrollment/list",
+    myEvents: "https://staging-sunbird.nsdl.co.in/api/course/v2/user/enrollment/list?contentType=Event",
 
     participantsList: "assets/api/participants.json",
     // participantsList: "https://staging-sunbird.nsdl.co.in/api/course/v1/batch/participants/list",

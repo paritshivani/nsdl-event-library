@@ -21,7 +21,11 @@ export class EventListService {
           "request": {
             "filters":filterValue,
             "query":query,
+            "sort_by": {
+              "startDate": "desc"
             }
+            }
+
           }
 
         const option = {

@@ -87,7 +87,7 @@ export class DemoComponent implements OnInit {
     this.showFilters();
     this.showMyEventListPage();
     this.showCalenderEvent();
-    // console.log('@TODO this.filterConfig ::', this.filterConfig);
+    // console.log('@TODO this.eventListCount ::', this.eventListCount);
   }
 
      /* For get List of events
@@ -101,14 +101,19 @@ export class DemoComponent implements OnInit {
 
         this.eventListService.getEventList(this.Filterdata).subscribe((data:any)=>{
         this.eventList = data.result.Event;
+        this.eventListCount = data.result.count;
 
         this.eventList.forEach((item, index) => {
+
             var array = JSON.parse("[" + item.venue + "]");
             this.eventList[index].venue = array[0].name;
         });
 
 
-        this.eventListCount = data.result.count;
+
+
+        // console.log('@TODO this.data ::', data);
+
         this.isLoading = false;
       })
   }
