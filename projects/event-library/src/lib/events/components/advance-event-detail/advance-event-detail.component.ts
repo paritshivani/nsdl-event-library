@@ -18,6 +18,7 @@ import * as _ from 'lodash-es';
 })
 export class AdvanceEventDetailComponent implements OnInit {
   @Input() eventDetailItem: any;
+  @Input() layoutConfig;
   @Output() eventDetailData = new EventEmitter();
 
   labelMessages= labelMessages;
@@ -40,7 +41,7 @@ export class AdvanceEventDetailComponent implements OnInit {
     private libEventService: LibEventService,
     private usersService: UsersService,
     private router: Router,
-    private timezoneCal: TimezoneCal) { 
+    private timezoneCal: TimezoneCal) {
       this.timezoneshort = this.timezoneCal.timeZoneAbbreviated();
 
     }
@@ -62,7 +63,7 @@ export class AdvanceEventDetailComponent implements OnInit {
   }
 
 
-  slideConfig = { "slidesToShow": 2, "slidesToScroll":3 };
+  slideConfig = { "slidesToShow": 3, "slidesToScroll":2 };
 
   truncateData(truncate)
   {
@@ -75,7 +76,7 @@ export class AdvanceEventDetailComponent implements OnInit {
 
   similarEvents(eventDetailItem)
   {
-    console.log("Ad",eventDetailItem);
+
     this.Filterdata ={
       "status":["live"],
       "objectType": "Event",
@@ -86,12 +87,17 @@ export class AdvanceEventDetailComponent implements OnInit {
     };
 
     this.eventListService.getEventList(this.Filterdata,this.query).subscribe((data) => {
-      if (data.responseCode == "OK") 
+      if (data.responseCode == "OK")
         {
           this.similarEventList = data.result.Event;
 
+          this.similarEventList.forEach((item, index) => {
+              var array = JSON.parse("[" + item.venue + "]");
+              this.similarEventList[index].venue = array[0].name;
+          });
+
           this.similarEventList.forEach(async event => {
-            console.log("eventList------",event);
+
              this.eventService.getEventStatus(event);
            });
         }
@@ -102,7 +108,7 @@ export class AdvanceEventDetailComponent implements OnInit {
   }
 
   navToEventDetail(res){
-    console.log("res",res.identifier);
+    // console.log("res",res.identifier);
     this.eventDetailData.emit(res);
 
     // this.router.navigate(['/play/event-detail'], {
@@ -113,7 +119,7 @@ export class AdvanceEventDetailComponent implements OnInit {
 
   //   this.router.navigateByUrl('/play/event-detail', { skipLocationChange: true }).then(() => {
   //     this.router.navigate(['EventDetailComponent']);
-  // });   
+  // });
 }
 
   slickInit(event) { }
@@ -139,7 +145,7 @@ export class AdvanceEventDetailComponent implements OnInit {
    };
 
     this.eventService.getBatches(filters).subscribe((res) => {
-      if (res.responseCode == "OK") 
+      if (res.responseCode == "OK")
       {
         this.eventService.getAttendanceList(eventId,res.result.response.content[0]['batchId']).subscribe((data) => {
          this.attendanceList = data.result.content;

@@ -1,47 +1,119 @@
-<!-- <div *ngIf="showCarousalLists">
-    <span  *ngIf="myEvents !== undefined" class="mr-8">My Events</span>
-    <span *ngIf="myEvents !== undefined && myEventsCount" class="sb-pageSection-count sb-label sb-label-xs sb-label-error">{{myEventsCount}}</span>
-    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)">
-        <div ngxSlickItem class="slide" *ngFor="let event of myEvents" >
-            <sb-event-card
-                [indexToDisplay]="i"
-                [layoutConfig]="layoutConfig"
-                (cardClick)="playContent(event)"
-                [content]="event"
-                [cardImg]="event?.appIcon || 'assets/images/eventcover.png'">
-            </sb-event-card>
-        </div>
-    </ngx-slick-carousel>
-</div> -->
-<div>
-    <!-- <div class="layout-library">
-        <div class="header">
-            <div class="title">
-                <i class="icon-svg icon-svg--sm">
-                    <svg class="icon">
-                        <use xlink:href="assets/common-consumption/images/sprite.svg#book">
+<div class="card-container">
+    <!-- My Event Carousal Lists-->
+    <div class="sb-pageSection" *ngIf="showCarousalLists">
+        <div class="sb-pageSection-header" *ngIf="showCarousalLists">
+            <!--Section Title-->
+            <h4 *ngIf="myEvents !== undefined" class="sb-pageSection-title sb-pageSection-sentenceCase m-0 mr-16"><span class="mr-8">My Events</span>
+                <!--Count-->
+                <span *ngIf="myEvents !== undefined && myEventsCount" class="sb-pageSection-count sb-label sb-label-xs sb-label-error">
+                    {{myEventsCount}}
+                </span>
+                <!--/Count-->
+            </h4>
+            <!--/Section Title-->
+             <!--View all button-->
+            <button
+                class="sb-btn sb-btn-xs sb-btn-secondary ml-auto"
+                type="button"
+                *ngIf="viewAllButton && myEvents"
+                (click)="openMyEventList()"
+                tabindex="0">
+                View all
+            </button>
 
-                        </use>
-                    </svg>
-                </i>
-                All Events
-            </div>
+            <button
+                class="sb-btn sb-btn-normal sb-btn-error ml-auto sb-cls-btn"
+                type="button"
+                *ngIf="myEventsLists"
+                (click)="CloseList()"
+                tabindex="0">
+                    Close <i class="close icon"></i>
+            </button>
+
+            <!--/View all button-->
         </div>
-    </div> -->
-    <span *ngIf="list" class="mr-8">All Events</span>
-    <span *ngIf="list && eventListCount" class="sb-pageSection-count sb-label sb-label-xs sb-label-error">{{eventListCount}}</span>
-    <div class="sb-grid dynamic-section-card">
-        <div *ngFor="let content of list | paginate: { itemsPerPage: paginateLimit, currentPage: p };let i = index; ">
-            <!-- <ng-container *ngIf="layoutConfig"> -->
-                <sb-event-card
-                    [indexToDisplay]="i"
-                    [layoutConfig]="layoutConfig"
-                    (cardClick)="playContent(content)"
-                    [content]="content"
-                    [cardImg]="content?.appIcon || 'assets/images/eventcover.png'">
-                </sb-event-card>
-            <!-- </ng-container> -->
+        <div *ngIf="showCarousalLists">
+            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)">
+                <div ngxSlickItem class="slide mr-16" *ngFor="let event of myEvents; let i = index;" >
+                    <sb-event-card
+                        [indexToDisplay]="i"
+                        [layoutConfig]="layoutConfig"
+                        (cardClick)="playContent(event)"
+                        [content]="event"
+                        [cardImg]="event?.appIcon || 'assets/images/eventcover.png'">
+                    </sb-event-card>
+                </div>
+            </ngx-slick-carousel>
         </div>
     </div>
-    <pagination-controls (pageChange)="p = $event"  *ngIf="list" class="pull-right"></pagination-controls>
+    <!-- All My Event -->
+    <div class="sb-pageSection" *ngIf="showMyEvents">
+        <div class="sb-pageSection-header" *ngIf="showMyEvents">
+            <!--Section Title-->
+            <h4 *ngIf="myEvents && myEventsCount" class="sb-pageSection-title sb-pageSection-sentenceCase m-0 mr-16"><span class="mr-8">My Events</span>
+                <!--Count-->
+                <span class="sb-pageSection-count sb-label sb-label-xs sb-label-error">
+                    {{myEventsCount}}
+                </span>
+                <!--/Count-->
+            </h4>
+            <button
+                class="sb-btn sb-btn-normal sb-btn-error ml-auto sb-cls-btn"
+                type="button"
+                *ngIf="myEventsLists"
+                (click)="CloseList()"
+                tabindex="0">
+                    Close <i class="close icon"></i>
+            </button>
+        </div>
+        <div class="sb-grid dynamic-section-card">
+            <div *ngFor="let event of myEvents | paginate: { itemsPerPage: paginateLimit, currentPage: p };let i = index; ">
+                <!-- <ng-container *ngIf="layoutConfig"> -->
+                    <sb-event-card
+                        [indexToDisplay]="i"
+                        [layoutConfig]="layoutConfig"
+                        (cardClick)="playContent(event)"
+                        [content]="event"
+                        [cardImg]="event?.appIcon || 'assets/images/eventcover.png'">
+                    </sb-event-card>
+                <!-- </ng-container> -->
+            </div>
+        </div>
+        <pagination-controls (pageChange)="p = $event"  *ngIf="list" class="pull-right"></pagination-controls>
+    </div>
+    <!-- All Event -->
+    <div class="sb-pageSection" *ngIf="showCarousalLists">
+        <div class="sb-pageSection-header" *ngIf="list">
+            <!--Section Title-->
+            <h4 *ngIf="list && eventListCount" class="sb-pageSection-title sb-pageSection-sentenceCase m-0 mr-16"><span class="mr-8">All Events</span>
+                <!--Count-->
+                <span class="sb-pageSection-count sb-label sb-label-xs sb-label-error">
+                    {{eventListCount}}
+                </span>
+                <!--/Count-->
+            </h4>
+            <button
+                class="sb-btn sb-btn-normal sb-btn-error ml-auto sb-cls-btn"
+                type="button"
+                *ngIf="myEventsLists"
+                (click)="CloseList()"
+                tabindex="0">
+                    Close <i class="close icon"></i>
+            </button>
+        </div>
+        <div class="sb-grid dynamic-section-card">
+            <div *ngFor="let content of list | paginate: { itemsPerPage: paginateLimit, currentPage: p };let i = index; ">
+                <!-- <ng-container *ngIf="layoutConfig"> -->
+                    <sb-event-card
+                        [indexToDisplay]="i"
+                        [layoutConfig]="layoutConfig"
+                        (cardClick)="playContent(content)"
+                        [content]="content"
+                        [cardImg]="content?.appIcon || 'assets/images/eventcover.png'">
+                    </sb-event-card>
+                <!-- </ng-container> -->
+            </div>
+        </div>
+        <pagination-controls (pageChange)="p = $event"  *ngIf="list" class="pull-right"></pagination-controls>
+    </div>
 </div>

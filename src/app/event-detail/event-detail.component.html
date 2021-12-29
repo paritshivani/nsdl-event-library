@@ -14,7 +14,8 @@
 </sb-join-event-button> -->
 <sb-advance-event-detail  *ngIf="eventItem"
  (eventDetailData)="navToEventDetail($event)"
-      [eventDetailItem]="eventItem">
+ [layoutConfig]="true"
+ [eventDetailItem]="eventItem">
 </sb-advance-event-detail>
 
 

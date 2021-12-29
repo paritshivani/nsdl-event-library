@@ -49,6 +49,7 @@ export class DemoComponent implements OnInit {
   filterConfig: any;
   isLoading: boolean =  true;
   myEvents: any[];
+  myEventsCount : any;
   p: number = 1;
   collection: any[];
   //event-calender parameter
@@ -100,6 +101,13 @@ export class DemoComponent implements OnInit {
 
         this.eventListService.getEventList(this.Filterdata).subscribe((data:any)=>{
         this.eventList = data.result.Event;
+
+        this.eventList.forEach((item, index) => {
+            var array = JSON.parse("[" + item.venue + "]");
+            this.eventList[index].venue = array[0].name;
+        });
+
+
         this.eventListCount = data.result.count;
         this.isLoading = false;
       })
@@ -132,7 +140,13 @@ export class DemoComponent implements OnInit {
             if (data.responseCode == "OK")
               {
                 this.myEvents = data.result.Event;
-                console.log('My Events this.myEvents : ', this.myEvents);
+                this.myEvents.forEach((item, index) => {
+                   var array = JSON.parse("[" + item.venue + "]");
+                   this.myEvents[index].venue = array[0].name;
+                });
+
+                this.myEventsCount = data.result.count;
+                // console.log('My Events this.myEvents : ', data.result);
               }
             }, (err) => {
               this.isLoading=false;
@@ -142,8 +156,8 @@ export class DemoComponent implements OnInit {
         else
         {
             this.myEvents = [];
-            console.log('My Events typeof : ', typeof this.myEvents);
-            console.log('My Events length : ', this.myEvents.length);
+            // console.log('My Events typeof : ', typeof this.myEvents);
+            // console.log('My Events length : ', this.myEvents.length);
         }
       });
   }
@@ -355,6 +369,15 @@ export class DemoComponent implements OnInit {
           this.isLoading=false;
          delete this.eventList;
           this.eventList = data.result.Event;
+
+          this.eventList.forEach((item, index) => {
+            // if (item.eventType != 'Offline')
+            {
+              var array = JSON.parse("[" + item.venue + "]");
+              // console.log('array- ', array, 'Index = ', index);
+              this.eventList[index].venue = array[0].name;
+            }
+          });
 
           // For calendar events
           this.events = this.eventList.map(obj => ({

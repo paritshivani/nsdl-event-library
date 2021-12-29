@@ -5,6 +5,7 @@ import { TimezoneCal } from '../../services/timezone/timezone.service';
 import{ labelMessages } from './../labels';
 
 import { EventService } from '../../services/event/event.service';
+
 @Component({
   selector: 'sb-event-list',
   templateUrl: './event-list.component.html',
@@ -49,7 +50,7 @@ export class EventListComponent implements OnInit {
   ngOnInit(){}
 
   ngOnChanges() {
-    console.log('myEvents - ', this.myEvents);
+    // console.log('list - ', this.list);
    // Get all events
     if (this.list)
     {

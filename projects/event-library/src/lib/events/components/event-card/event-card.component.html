@@ -41,7 +41,7 @@
         <div class="sb--sb--card__moreinfo sb__ellipsis"
           title="{{content?.venue}}: {{content?.venue}}">
           <span><i class="fa fa-map-marker mr-5 ml-10"></i></span>
-          <span title="Salt Palace Convention Center, South West Temple, Salt Lake City, UT, United States">Salt Palace Convention Center..</span>
+          <span title="{{content?.venue}}">{{content?.venue}}</span>
         </div>
       </ng-container>
       <ng-container *ngIf="content?.venue && content?.eventType == 'Online' || content?.eventType == 'OnlineAndOffline'">

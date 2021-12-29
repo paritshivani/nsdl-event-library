@@ -176,7 +176,7 @@
     }
 
     .sb--card__title {
-      margin-right: calculateRem(88px);
+      margin-right: calculateRem(88px) !important;
       color: var(--cc-sbcard-title);
       font-size: calculateRem(14px);
       margin: 0px;

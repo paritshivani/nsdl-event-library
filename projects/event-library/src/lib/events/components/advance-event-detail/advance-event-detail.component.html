@@ -1,19 +1,19 @@
 <!-- <div class="">
     <div>
         <span *ngIf="eventDetailItem?.description">
-            <p *ngIf="!isTruncate"> {{eventDetailItem?.description | slice:0:300}} 
-                <a *ngIf="eventDetailItem?.description.length > 300" 
+            <p *ngIf="!isTruncate"> {{eventDetailItem?.description | slice:0:300}}
+                <a *ngIf="eventDetailItem?.description.length > 300"
                     (click)="truncateData(true)">
                         {{'See More'}}
-                </a> 
+                </a>
             </p>
-            <p *ngIf="isTruncate">{{eventDetailItem?.description}} 
+            <p *ngIf="isTruncate">{{eventDetailItem?.description}}
                 <a (click)="truncateData(false)">
                     {{'See Less'}}
-                </a> 
+                </a>
             </p>
         </span>
-        
+
         <div>
             <table class="w-100 fs-0-92" *ngIf="eventDetailItem?.eventType != 'Online'">
                 <tr *ngIf="eventDetailItem?.venue">
@@ -104,7 +104,7 @@
 
 
 <!-- <div class="ml-30"> -->
-    <div class="">    
+    <div class="">
         <!-- <div class="d-flex sb-bg-color-gray-0 w-100 mt-20"> -->
         <div class="sb-g sb-g--gap24 py-16">
             <!-- <div class="detail w-60 pl-10 ml-30 b-bl mt-20"> -->
@@ -112,23 +112,23 @@
                 <div class="description">
                     <span *ngIf="eventDetailItem?.description">
                         <h3><b>Description</b></h3>
-                        <p *ngIf="!isTruncate"> {{eventDetailItem?.description | slice:0:800}} 
-                            <a class="SeeMore sb-btn-link-primary" *ngIf="eventDetailItem?.description.length > 800" 
+                        <p *ngIf="!isTruncate"> {{eventDetailItem?.description | slice:0:800}}
+                            <a class="SeeMore sb-btn-link-primary" *ngIf="eventDetailItem?.description.length > 800"
                                 (click)="truncateData(true)" style="color: blue">
                                     {{'... See More'}}
-                            </a> 
+                            </a>
                         </p>
-                        <p *ngIf="isTruncate">{{eventDetailItem?.description}} 
+                        <p *ngIf="isTruncate">{{eventDetailItem?.description}}
                             <a class="SeeMore sb-btn-link-primary" (click)="truncateData(false)" style="color: blue">
                                 {{'See Less'}}
-                            </a> 
+                            </a>
                         </p>
                     </span>
                 </div>
-                
+
             </div>
             <!-- <div class="detail w-40 pl-10 ml-30 b-bl mt-20 ml-20"> -->
-            <div class="sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-4 sb-g-col-xxxl-4 sb-bg-color-gray-0 pl-20 pr-20">    
+            <div class="sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-4 sb-g-col-xxxl-4 sb-bg-color-gray-0 pl-20 pr-20">
                 <div *ngIf="this.eventConfig.id">
                     <div>
                         <h3><b>Speakers</b></h3>
@@ -144,7 +144,7 @@
                             <p class="mb-2 fs-6">{{this.eventConfig.role}}</p>
                         </div>
                     </div> -->
-    
+
                     <div class="d-flex flex-w-wrap flex-ai-center speaker mr-20 relative9">
                         <div class="pl-20 mt-10" >
                             <!-- <img src="./assets/images/guest.svg" height="70" width="70"> -->
@@ -157,25 +157,32 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
-    
+
         <!-- <div class="d-flex sb-bg-color-gray-0 w-100 mt-20"> -->
-        <div class="sb-g sb-g--gap24 py-16">    
+        <div class="sb-g sb-g--gap24 py-16">
             <!-- <div class="detail w-60 pl-10 ml-30 b-bl mt-20"> -->
-            <div class="sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-8 sb-g-col-xxxl-12 relative9 sb-bg-color-gray-0 pr-20">    
+            <div class="sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-8 sb-g-col-xxxl-12 relative9 sb-bg-color-gray-0 pr-20">
                 <div class="mt-30" *ngIf="similarEventList">
                     <span><h3><b>Similar Events</b></h3></span>
                     <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)">
-                        <div ngxSlickItem class="slide masonry-item" *ngFor="let event of similarEventList" >
-                            <div class="sb-card" (click)="navToEventDetail(event)" tabindex="0">
+                        <div ngxSlickItem class="slide masonry-item mr-16" *ngFor="let event of similarEventList;let i = index;" >
+                            <sb-event-card
+                                [indexToDisplay]="i"
+                                [layoutConfig]="layoutConfig"
+                                (cardClick)="playContent(event)"
+                                [content]="event"
+                                [cardImg]="event?.appIcon || 'assets/images/eventcover.png'">
+                            </sb-event-card>
+                            <!-- <div class="sb-card" (click)="navToEventDetail(event)" tabindex="0">
                                 <div class="sb-card-body">
-                                    <div class="sb-card-metas">
+                                    <div class="sb-card-metas"> -->
                                         <!-- <div class="sb-card-image mr-16">
                                             <img src="./assets/images/eventcover.jpg">
                                         </div> -->
-                                        <div *ngIf="event?.appIcon" class="sb-card-image mr-16">
+                                        <!-- <div *ngIf="event?.appIcon" class="sb-card-image mr-16">
                                             <img src="{{event?.appIcon}}">
                                         </div>
                                         <div *ngIf="!event?.appIcon" class="sb-card-image mr-16">
@@ -203,14 +210,14 @@
                                         <span class="sb-label-status-indicator sb-label-status-indicator-success"></span> {{event?.eventType}}
                                     </div>
                                 </div>
-                            </div>
-                            
+                            </div> -->
+
                         </div>
                     </ngx-slick-carousel>
-                </div>            
+                </div>
             </div>
             <!-- <div class="detail w-40 pl-10 ml-30 b-bl mt-20 ml-20"> -->
-            <div class="sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-4 sb-g-col-xxxl-4">    
+            <div class="sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-4 sb-g-col-xxxl-4">
                 <div class="" *ngIf="this.attendanceList">
                     <sui-accordion class="fluid sb-accordion sb-new-theme-accordion sb-bg-color-gray-0 pr-20 pl-20">
                         <sui-accordion-panel [isOpen]="false" [attr.aria-expanded]="isOpen" (click)="isOpen = !isOpen">
@@ -237,9 +244,9 @@
                                 </div>
                             </div>
                         </sui-accordion-panel>
-                    </sui-accordion>                
-                </div>            
+                    </sui-accordion>
+                </div>
             </div>
         </div>
     </div>
-           
+
