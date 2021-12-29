@@ -107,6 +107,10 @@ export class AdvanceEventDetailComponent implements OnInit {
       });
   }
 
+  playContent(content){
+    this.eventDetailData.emit(content);
+  }
+
   navToEventDetail(res){
     // console.log("res",res.identifier);
     this.eventDetailData.emit(res);
