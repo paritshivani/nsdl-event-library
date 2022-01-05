@@ -31,9 +31,9 @@
                 <td class="white-space-inherit">{{user?.userId}}</td>
                 <td class="white-space-inherit">{{user?.fullName}}</td>
                 <td class="white-space-inherit">{{user?.email}}</td>
-                <td class="white-space-inherit">{{user?.firstJoined}}</td>
-                <td class="white-space-inherit">{{user?.lastLeft}}</td>
-                <td class="white-space-inherit">{{user?.duration}}</td>
+                <td class="white-space-inherit">{{user?.joinedDateTime}}</td>
+                <td class="white-space-inherit">{{user?.leftDateTime}}</td>
+                <td class="white-space-inherit" (click)="navToUserAttendanceDetail(eventId, userId)">{{user?.duration}}</td>
                 <td class="white-space-inherit">{{user.enrolledDate | date: 'dd-MM-yyyy'}}</td>
                 <td class="white-space-inherit ml-auto mr-15 p-10 mt-8">
                     <span class="sb-label-status sb-label-status-success" *ngIf="user?.status == '2'">

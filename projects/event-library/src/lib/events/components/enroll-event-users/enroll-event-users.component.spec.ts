@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EnrollEventUsersComponent } from './enroll-event-users.component';
 
 describe('EnrollEventUsersComponent', () => {

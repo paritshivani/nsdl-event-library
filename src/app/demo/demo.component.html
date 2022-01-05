@@ -3,6 +3,8 @@
         view</a>
     <a type="button" class=" ripple ml-16" (click)="Openview('form')">Create
         Event</a>
+    <a type="button" class=" ripple ml-16" (click)="Openview('user-detail')">user report
+        </a>
     <a type="button" class=" ripple ml-16" (click)="Openview('enrollUsersList')">Enrolled users list</a>
         <a type="button" class=" ripple w-20 ml-16" (click)="Openview('calender')">Calender</a>
         <hr />
@@ -134,6 +136,17 @@
         [events]='events'>
     </lib-event-calender>
     <br /><br /><br />
+</div>
+<div *ngIf="tab == 'user-detail'">
+<lib-user-detailed-attendance *ngIf ="userEnrollEventDetails"
+ [userEnrollEventDetails] ="userEnrollEventDetails"
+ [paginateLimit]= "paginateLimit"
+[redirection]="event"
+ [eventDetailItem]="eventItem"
+ (detailedReport)= "navToUserAttendanceDetail($event);" 
+>
+   
+</lib-user-detailed-attendance>
 </div>
 
 

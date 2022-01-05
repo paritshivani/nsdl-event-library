@@ -6,7 +6,7 @@ import { EventDetailService } from './../../../projects/event-library/src/lib/ev
 import { SbToastService } from '../../../projects/event-library/src/lib/events/services/iziToast/izitoast.service';
 import { LibEventService } from './../../../projects/event-library/src/lib/events/services/lib-event/lib-event.service';
 import * as _ from 'lodash-es';
-
+import * as userEnrollEventDetailsMock from '../../assets/api/userEnrollEventDetails'
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -14,7 +14,7 @@ import {
   CalendarView,
   CalendarEventTitleFormatter
 } from 'angular-calendar';
-import { typeOf } from 'projects/event-library/test-node_modules/uri-js/dist/esnext/util';
+import { typeOf } from 'projects/event-library/node_modules/uri-js/dist/esnext/util';
 
 const colors: any = {
   red: {
@@ -41,7 +41,10 @@ export class DemoComponent implements OnInit {
   eventList : any;
   eventItem: any;
   enrollUsers: any;
-  tab :string= "list";
+  tab :string= "user-detail";
+  userEnrollEventDetails: any = userEnrollEventDetailsMock.userEnrollEventDetailsMock.result.content;
+  paginateLimit: number = 12;
+  eventDetailItem: any;
   // userId: any = "1001";
   userId: any;
   eventConfig: any;
@@ -187,6 +190,8 @@ export class DemoComponent implements OnInit {
       this.tab = 'list';
     } else if (view == 'detail') {
       this.tab = 'detail';
+    }  else if (view == 'user-detail') {
+      this.tab = 'user-detail';
     }
     else if (view == 'enrollUsersList')
     {
@@ -407,5 +412,9 @@ export class DemoComponent implements OnInit {
         this.isLoading=false;
         this.sbToastService.showIziToastMsg(err.error.result.messages[0], 'error');
       });
+  }
+  navToUserAttendanceDetail(event){
+    console.log('event ===== ', event);
+    
   }
 }

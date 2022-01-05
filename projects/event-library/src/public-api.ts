@@ -36,4 +36,3 @@ export * from './lib/events/services/timezone/timezone.service';
 export * from './lib/events/services//userConfig/user-config.service';
 export * from './lib/events/services/event/event.service';
 
-

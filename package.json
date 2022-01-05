@@ -45,6 +45,7 @@
         "jquery": "^3.6.0",
         "katex": "^0.12.0",
         "lodash-es": "^4.17.20",
+        "ng2-material-dropdown": "^0.11.0",
         "ng2-semantic-ui-v9": "0.0.3",
         "ngx-chips": "^2.2.2",
         "ngx-infinite-scroll": "^6.0.0",

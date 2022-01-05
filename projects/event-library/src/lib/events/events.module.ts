@@ -7,6 +7,8 @@ import { JoinEventComponent } from './components/join-event-button/join-event-bu
 import { AdvanceEventDetailComponent } from './components/advance-event-detail/advance-event-detail.component';
 import { CoverEventDetailComponent } from './components/cover-event-detail/cover-event-detail.component';
 import { EventFilterComponent} from '../events/components/event-filter/event-filter.component';
+import { UserDetailedAttendanceComponent} from '../events/components/user-detailed-attendance/user-detailed-attendance.component';
+
 import { EventRoutingModule } from './event-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventCommonFormElementsModule } from 'common-form-elements-event';
@@ -51,7 +53,7 @@ import { CommonConsumptionModule } from 'common-consumption-v9-event-cards';
     LibEventComponent,
     // EventCardComponent,
     // EventCardV2Component,
-
+    UserDetailedAttendanceComponent
   ],
   imports: [
     CommonModule,
@@ -94,7 +96,8 @@ import { CommonConsumptionModule } from 'common-consumption-v9-event-cards';
     EventFilterComponent,
     EventCalenderComponent,
     EnrollEventUsersComponent,
-    LibEventComponent
+    LibEventComponent,
+    UserDetailedAttendanceComponent
   ],
   providers: [
   //  TranslateService

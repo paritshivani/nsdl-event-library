@@ -1,0 +1,37 @@
+<div class="d-flex flex-jc-flex-end">
+    <!-- <button (click)="goBack()" class="sb-btn sb-btn-normal sb-btn-gray ripple my-16" style="margin-right: 13px;">
+        Back
+    </button> -->
+    <span *ngIf="showDownloadCodeBtn && enrollEventDetails?.length > 0" >
+        <button class="sb-btn sb-btn-normal sb-btn-secondary sb-btn-download my-16" (click)=getEnrollDataCsv();>
+            Download CSV
+        </button>
+    </span>
+</div>
+<h2 class="fs-1.3">{{eventDetailItem?.name}}</h2>
+
+<div class="table-responsive" *ngIf="finalUserEnrollEventDetails?.length > 0">
+     <table class="sb-table sb-table-sortable sb-table-blue-strip">
+        <thead>
+            <tr class="sb-table-head">
+                
+                <th class="w-10">Join Time</th>
+                <th class="w-10">Leave Time</th>
+                <th class="w-10" >Duration</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of finalUserEnrollEventDetails | paginate: { itemsPerPage: paginateLimit, currentPage: p } let i = index ">
+                <!-- <td>{{i + 1}}</td> --> 
+                <td class="white-space-inherit">{{user?.joinedDateTime}}</td>
+                <td class="white-space-inherit">{{user?.leftDateTime}}</td>
+                <td class="white-space-inherit" (click)="navToUserAttendanceDetail(eventId, userId)">{{user?.duration}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex my-24 flex-jc-flex-end">
+        <pagination-controls (pageChange)="p = $event" *ngIf="finalUserEnrollEventDetails">
+        </pagination-controls>
+    </div>
+</div>

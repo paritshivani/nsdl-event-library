@@ -45,7 +45,7 @@
     eventFilterConfigApi : "https://staging-sunbird.nsdl.co.in/api/data/v1/form/read",
 
     // enrollUserEventList:"/v2/user/courses/list",
-    enrollUserEventList: "https://staging-sunbird.nsdl.co.in/api/course/v2/user/enrollment/list",
+    enrollUserEventList: "https://staging-sunbird.nsdl.co.in/api/course/v2/user/enrollment/list?contentType=Event",
 
     // myEvents:"/v2/user/courses/list",
     myEvents: "https://staging-sunbird.nsdl.co.in/api/course/v2/user/enrollment/list?contentType=Event",
