@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../data-request/data-request.service';
 import { UserConfigService } from '../userConfig/user-config.service';
+import { DatePipe } from '@angular/common';
 
 import { TimezoneCal } from '../../services/timezone/timezone.service';
 
@@ -18,7 +19,8 @@ export class EventService {
   constructor(
     private userConfigService: UserConfigService,
     private dataService: DataService,
-    private timezoneCal: TimezoneCal) {
+    private timezoneCal: TimezoneCal,
+    public datepipe: DatePipe) {
   }
 
   /**
@@ -323,20 +325,26 @@ export class EventService {
   var endDifference = this.todayDateTime.getTime() - endEventTime.getTime();
   var endInMinutes = Math.round(endDifference / 60000);
 
+  var timezoneshort = this.timezoneCal.timeZoneAbbreviated();
+
   if (startInMinutes >= 10 && endInMinutes < 0)
   {
     event.eventStatus = 'Upcoming';
-    event.showDate = 'Starting On ' + event.startDate;
+    // event.showDate = 'Starting On ' + event.startDate;
+    event.showDate = 'Starting On ' +  this.datepipe.transform(event.startDate, 'longDate') + ', ' + this.datepipe.transform(startEventTime, 'HH:mm') + ' (' + timezoneshort + ')';
+
   }
   else if (startInMinutes <= 10 && endInMinutes < 0)
   {
     event.eventStatus = 'Ongoing';
-    event.showDate = 'Ending On ' + event.endDate;
+    // event.showDate = 'Ending On ' + event.endDate;
+    event.showDate = 'Ending On ' +  this.datepipe.transform(event.endDate, 'longDate') + ', ' + this.datepipe.transform(endEventTime, 'HH:mm') + ' (' + timezoneshort + ')';
+
   }
   else if (startInMinutes <= 10 && endInMinutes > 0)
   {
     event.eventStatus = 'Past';
-    event.showDate = 'Ended On ' + event.endDate;
+    event.showDate = 'Ended On ' +  this.datepipe.transform(event.endDate, 'longDate') + ', ' + this.datepipe.transform(endEventTime, 'HH:mm') + ' (' + timezoneshort + ')';
   }
   return event;
 

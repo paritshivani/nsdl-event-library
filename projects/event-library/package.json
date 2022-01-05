@@ -23,7 +23,7 @@
         "angular-calendar": "^0.28.26",
         "angularx-flatpickr": "^6.6.0",
         "bootstrap-css-only": "^4.4.1",
-        "common-consumption-v9-event-cards": "^1.0.1",
+        "common-consumption-v9-event-cards": "^1.0.2",
         "common-form-elements": "^4.0.17",
         "common-form-elements-event": "^4.1.6",
         "flatpickr": "^4.6.9",
@@ -36,6 +36,7 @@
         "ngx-pagination": "^5.0.0",
         "ngx-slick": "^0.2.1",
         "ngx-slick-carousel": "^0.5.1",
+        "ngx-chips": "^2.2.2",
         "slick-carousel": "^1.8.1"
     }
 }
