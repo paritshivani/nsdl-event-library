@@ -38,6 +38,9 @@ export class UserDetailedAttendanceComponent implements OnInit {
       newArray.UserId = this.userEnrollEventDetails.userId;
       newArray.UserName = this.userEnrollEventDetails.fullName;
       newArray.Email = this.userEnrollEventDetails.email;
+      newArray.ContentId = this.userEnrollEventDetails.contentId;
+      newArray.BatchId = this.userEnrollEventDetails.batchId;
+      newArray.Provider = this.userEnrollEventDetails.provider;
       newArray.JoinTime = item.joinedDateTime;
       newArray.LeaveTime = item.leftDateTime;
       newArray.Duration = item.duration;
