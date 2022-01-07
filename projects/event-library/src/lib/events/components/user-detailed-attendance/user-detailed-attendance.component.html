@@ -2,7 +2,7 @@
     <!-- <button (click)="goBack()" class="sb-btn sb-btn-normal sb-btn-gray ripple my-16" style="margin-right: 13px;">
         Back
     </button> -->
-    <span *ngIf="showDownloadCodeBtn && enrollEventDetails?.length > 0" >
+    <span *ngIf="showDownloadCodeBtn && finalUserEnrollEventDetails?.length > 0" >
         <button class="sb-btn sb-btn-normal sb-btn-secondary sb-btn-download my-16" (click)=getEnrollDataCsv();>
             Download CSV
         </button>
@@ -14,16 +14,16 @@
      <table class="sb-table sb-table-sortable sb-table-blue-strip">
         <thead>
             <tr class="sb-table-head">
-                
+
                 <th class="w-10">Join Time</th>
                 <th class="w-10">Leave Time</th>
                 <th class="w-10" >Duration</th>
-               
+
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let user of finalUserEnrollEventDetails | paginate: { itemsPerPage: paginateLimit, currentPage: p } let i = index ">
-                <!-- <td>{{i + 1}}</td> --> 
+                <!-- <td>{{i + 1}}</td> -->
                 <td class="white-space-inherit">{{user?.joinedDateTime}}</td>
                 <td class="white-space-inherit">{{user?.leftDateTime}}</td>
                 <td class="white-space-inherit" (click)="navToUserAttendanceDetail(eventId, userId)">{{user?.duration}}</td>
