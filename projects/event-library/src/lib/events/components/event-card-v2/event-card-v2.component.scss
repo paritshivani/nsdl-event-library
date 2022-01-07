@@ -175,6 +175,29 @@
       padding: 0rem calculateRem(16px);
     }
 
+    .sb--card__details {
+      margin-right: calculateRem(88px);
+      // color: var(--cc-sbcard-title);
+      font-size: calculateRem(11px);
+      margin: 0px;
+      line-height: normal;
+      line-height: calculateRem(20px);
+
+      html[dir="rtl"] & {
+        margin-left: calculateRem(88px);
+        margin-right: 0px;
+      }
+    }
+
+  .sb--card__metadetails{
+    height: 4.5rem;
+    align-items: center;
+    min-height: 3.5rem;
+    margin-bottom: 3px !important;
+    margin-top: 2px !important;
+  }
+
+
     .sb--card__title {
       margin-right: calculateRem(88px) !important;
       color: var(--cc-sbcard-title);

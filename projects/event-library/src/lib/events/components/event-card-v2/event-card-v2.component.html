@@ -43,47 +43,49 @@
         <bdi>{{content?.name}}</bdi></h4>
       <a *ngIf="isMenu" role="button" aria-label="View more actions menu" class="menu" (click)="onMenuClick($event);$event.stopPropagation()"></a>
     </div>
-    <div class="sb--card__meta">
-        <ng-container *ngIf="content?.showDate">
-          <div class="sb--card__meta2_data sb__ellipsis showDate">
-            <span><i class="fa fa-calendar mr-5"></i></span>
-            <span title="{{content?.showDate}}">{{content?.showDate}}</span>
-          </div>
-        </ng-container>
-    </div>
 
-    <div class="sb--card__meta" *ngIf="content?.eventType== 'Online' || content?.eventType == 'Offline'">
-        <ng-container>
-          <div class="sb--card__meta sb__ellipsis" *ngIf="content?.venue && content?.eventType == 'Offline'"
-          title="{{content?.venue}}: {{content?.venue}}">
-            <span><i class="fa fa-map-marker mr-5"></i></span>
-            <span title="{{content?.venue}}">{{content?.venue}}</span>
-          </div>
-          <div class="sb--card__meta sb__ellipsis" *ngIf="content?.onlineProvider && content?.eventType == 'Online'"
-          title="{{content?.onlineProvider}}: {{content?.onlineProvider}}">
-            <span><i class="fa fa-microphone mr-5"></i></span>
-            <span title="{{content?.onlineProvider}}">{{content?.onlineProvider}}</span>
-          </div>
-        </ng-container>
-    </div>
-    <div class="sb--card__meta" *ngIf="content?.eventType == 'OnlineAndOffline'">
-        <ng-container>
-          <div class="sb--card__meta sb__ellipsis" *ngIf="content?.venue && content?.eventType == 'OnlineAndOffline'"
-          title="{{content?.venue}}: {{content?.venue}}">
-            <span><i class="fa fa-map-marker mr-5"></i></span>
-            <span title="Salt Palace Convention Center, South West Temple, Salt Lake City, UT, United States">Salt Palace Convention Center..</span>
-          </div>
-        </ng-container>
+    <!-- <div class="sb--card__moredetails"> -->
+      <div class="sb--card__metadetails">
+          <ng-container *ngIf="content?.showDate">
+            <div class="sb--card__details showDate">
+              <span><i class="fa fa-calendar mr-5"></i></span>
+              <span title="{{content?.showDate}}">{{content?.showDate}}</span>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="content?.eventType== 'Online' || content?.eventType == 'Offline'">
+            <div class="sb--card__details sb__ellipsis" *ngIf="content?.venue && content?.eventType == 'Offline'"
+            title="{{content?.venue}}: {{content?.venue}}">
+              <span><i class="fa fa-map-marker mr-5"></i></span>
+              <span title="{{content?.venue}}">{{content?.venue}}</span>
+            </div>
+            <div class="sb--card__details sb__ellipsis" *ngIf="content?.onlineProvider && content?.eventType == 'Online'"
+            title="{{content?.onlineProvider}}: {{content?.onlineProvider}}">
+              <span><i class="fa fa-microphone mr-5"></i></span>
+              <span title="{{content?.onlineProvider}}">{{content?.onlineProvider}}</span>
+            </div>
+          </ng-container>
+          <ng-container  *ngIf="content?.eventType == 'OnlineAndOffline'">
+            <div class="sb--card__details sb__ellipsis"
+            title="{{content?.venue}}: {{content?.venue}}">
+              <span><i class="fa fa-map-marker mr-5"></i></span>
+              <span title="{{content?.venue}}">{{content?.venue}}</span>
+            </div>
+          </ng-container>
+          <ng-container  *ngIf="content?.eventType == 'OnlineAndOffline'">
+            <div class="sb--card__details sb__ellipsis" *ngIf="content?.onlineProvider && content?.eventType == 'OnlineAndOffline'"
+            title="{{content?.onlineProvider}}: {{content?.onlineProvider}}">
+              <span><i class="fa fa-microphone mr-5"></i></span>
+              <span title="{{content?.onlineProvider}}">{{content?.onlineProvider}}</span>
+            </div>
+          </ng-container>
+          <ng-container  *ngIf="content?.eventType != 'OnlineAndOffline'">
+            <div class="sb--card__details sb__ellipsis"
+            title="{{content?.venue}}: {{content?.venue}}">
+              <!-- <span><i class="fa fa-map-marker mr-5"></i></span>
+              <span title="{{content?.venue}}">{{content?.venue}}</span> -->
+            </div>
+          </ng-container>
       </div>
-      <div class="sb--card__meta" *ngIf="content?.eventType == 'OnlineAndOffline'">
-        <ng-container>
-          <div class="sb--card__meta sb__ellipsis" *ngIf="content?.onlineProvider && content?.eventType == 'OnlineAndOffline'"
-          title="{{content?.onlineProvider}}: {{content?.onlineProvider}}">
-            <span><i class="fa fa-microphone mr-5"></i></span>
-            <span title="{{content?.onlineProvider}}">{{content?.onlineProvider}}</span>
-          </div>
-        </ng-container>
-    </div>
 
     <div class="sb--card__meta1 text-left">
       <ng-container *ngIf="content?.organisation && content?.organisation.length > 0">

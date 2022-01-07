@@ -30,27 +30,30 @@
         </div>
 
       </div>
-      <ng-container *ngIf="content?.showDate">
-        <div class="sb--sb--card__moreinfo sb__ellipsis"
-          title="{{content?.showDate}}: {{content?.showDate}}">
-          <span><i class="fa fa-calendar mr-5 ml-10"></i></span>
-          <span title="{{content?.showDate}}">{{content?.showDate}}</span>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="content?.venue && content?.eventType == 'Offline' || content?.eventType == 'OnlineAndOffline'">
-        <div class="sb--sb--card__moreinfo sb__ellipsis"
-          title="{{content?.venue}}: {{content?.venue}}">
-          <span><i class="fa fa-map-marker mr-5 ml-10"></i></span>
-          <span title="{{content?.venue}}">{{content?.venue}}</span>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="content?.venue && content?.eventType == 'Online' || content?.eventType == 'OnlineAndOffline'">
-        <div class="sb--sb--card__moreinfo sb__ellipsis"
-          title="{{content?.onlineProvider}}: {{content?.onlineProvider}}">
-          <span><i class="fa fa-microphone mr-5 ml-10"></i></span>
-          <span title="{{content?.onlineProvider}}">{{content?.onlineProvider}}</span>
-        </div>
-      </ng-container>
+
+      <div class="sb--card__metadetails">
+        <ng-container *ngIf="content?.showDate">
+          <div class="sb--card__details sb__ellipsis"
+            title="{{content?.showDate}}: {{content?.showDate}}">
+            <span><i class="fa fa-calendar mr-5 ml-10"></i></span>
+            <span title="{{content?.showDate}}">{{content?.showDate}}</span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="content?.venue && content?.eventType == 'Offline' || content?.eventType == 'OnlineAndOffline'">
+          <div class="sb--card__details sb__ellipsis"
+            title="{{content?.venue}}: {{content?.venue}}">
+            <span><i class="fa fa-map-marker mr-5 ml-10"></i></span>
+            <span title="{{content?.venue}}">{{content?.venue}}</span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="content?.venue && content?.eventType == 'Online' || content?.eventType == 'OnlineAndOffline'">
+          <div class="sb--card__details sb__ellipsis"
+            title="{{content?.onlineProvider}}: {{content?.onlineProvider}}">
+            <span><i class="fa fa-microphone mr-5 ml-10"></i></span>
+            <span title="{{content?.onlineProvider}}">{{content?.onlineProvider}}</span>
+          </div>
+        </ng-container>
+      </div>
 
       <!-- content for only desktop -->
       <div *ngIf="type === LibraryCardTypes.DESKTOP_TEXTBOOK || type === LibraryCardTypes.PORTAL_QRCODE_FLATRESULT">
