@@ -1,7 +1,4 @@
 <div class="d-flex flex-jc-flex-end">
-    <!-- <button (click)="goBack()" class="sb-btn sb-btn-normal sb-btn-gray ripple my-16" style="margin-right: 13px;">
-        Back
-    </button> -->
     <span *ngIf="showDownloadCodeBtn && finalUserEnrollEventDetails?.length > 0" >
         <button class="sb-btn sb-btn-normal sb-btn-secondary sb-btn-download my-16" (click)=getEnrollDataCsv();>
             Download CSV
@@ -23,10 +20,9 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of finalUserEnrollEventDetails | paginate: { itemsPerPage: paginateLimit, currentPage: p } let i = index ">
-                <!-- <td>{{i + 1}}</td> -->
                 <td class="white-space-inherit">{{user?.joinedDateTime}}</td>
                 <td class="white-space-inherit">{{user?.leftDateTime}}</td>
-                <td class="white-space-inherit" (click)="navToUserAttendanceDetail(eventId, userId)">{{user?.duration}}</td>
+                <td class="white-space-inherit">{{user?.duration}}</td>
             </tr>
         </tbody>
     </table>

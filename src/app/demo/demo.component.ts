@@ -6,7 +6,8 @@ import { EventDetailService } from './../../../projects/event-library/src/lib/ev
 import { SbToastService } from '../../../projects/event-library/src/lib/events/services/iziToast/izitoast.service';
 import { LibEventService } from './../../../projects/event-library/src/lib/events/services/lib-event/lib-event.service';
 import * as _ from 'lodash-es';
-import * as userEnrollEventDetailsMock from '../../assets/api/userEnrollEventDetails'
+import * as userEnrollEventDetailsMock from '../../assets/api/userEnrollEventDetails';
+
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -42,7 +43,7 @@ export class DemoComponent implements OnInit {
   eventItem: any;
   enrollUsers: any;
   tab :string= "user-detail";
-  userEnrollEventDetails: any = userEnrollEventDetailsMock.userEnrollEventDetailsMock.result.content;
+  userEnrollEventDetails: any = userEnrollEventDetailsMock.userEnrollEventDetailsMock;
   paginateLimit: number = 12;
   eventDetailItem: any;
   // userId: any = "1001";

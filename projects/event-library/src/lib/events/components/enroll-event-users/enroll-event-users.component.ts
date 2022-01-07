@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatePipe, Location } from '@angular/common'
 import { CsvDownloadService } from '../../services/download/csv-download.service';
 import { EventService } from '../../services/event/event.service';
@@ -15,11 +15,13 @@ export class EnrollEventUsersComponent implements OnInit {
   @Input() paginateLimit: number = 5;
   @Input() redirection: any = 'event';
   @Input() eventDetailItem: any;
+  @Output() detailedReport = new EventEmitter<any>();
+  
   p: any;
   showDownloadCodeBtn: boolean = true;
   arrayEnrollUsers: any = [];
-  eventId: any = "eventId";
-  userId: any = "userId";
+  eventId: any;
+  userId: any;
 
   constructor(
     public datepipe: DatePipe, 
@@ -30,6 +32,10 @@ export class EnrollEventUsersComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit(): void {
+    if(this.eventDetailItem){
+      this.eventId = this.eventDetailItem.identifier;
+    }
+   
   }
 
   getEnrollDataCsv(){
@@ -64,14 +70,8 @@ export class EnrollEventUsersComponent implements OnInit {
     this.location.back();
   }
 
-  navToUserAttendanceDetail(eventId, userId) {
-    console.log("navToUserAttendanceDetail", eventId, "eventId, userId", userId);
-  
-    this.router.navigate(['/detailed-attendance'], {
-      queryParams: {
-        eventId: eventId,
-        userId:userId
-      }
-    });
+  navToUserAttendanceDetail(event) {
+    console.log("navToUserAttendanceDetail=====", event);
+    this.detailedReport.emit (event);
   }
 }

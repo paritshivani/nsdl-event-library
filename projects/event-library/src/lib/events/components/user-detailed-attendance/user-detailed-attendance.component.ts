@@ -14,45 +14,35 @@ export class UserDetailedAttendanceComponent implements OnInit {
   @Input() paginateLimit: number = 5;
   @Input() redirection: any = 'event';
   @Input() eventDetailItem: any;
-  @Output() detailedReport: EventEmitter<{ eventId: string, userId?: any }> = new EventEmitter();
   finalUserEnrollEventDetails: any;
   p: any;
   showDownloadCodeBtn: boolean = true;
   arrayEnrollUsers: any = [];
-  eventId: any = "eventId";
-  userId: any = "userId";
 
   constructor(
-    public datepipe: DatePipe, 
-    // public translate: TranslateService,
+    public datepipe: DatePipe,
     private router: Router,
     private csvDownloadService: CsvDownloadService,
     private eventService: EventService, 
     private location: Location) { }
 
   ngOnInit(): void {
-    this.userEnrollEventDetails.forEach(element => {
-      console.log("====element", element);
-
-      if (element.userId == "6f7c0d19-dbc3-42a5-883c-6d7ae4b249d7")
-      {
-        this.finalUserEnrollEventDetails = element.joinedLeftHistory;
-        console.log("finalUserEnrollEventDetails", this.finalUserEnrollEventDetails);
+    if(this.userEnrollEventDetails){
+    console.log("userEnrollEventDetails",this.userEnrollEventDetails);
+        this.finalUserEnrollEventDetails =  this.userEnrollEventDetails.joinedLeftHistory;
       }
-    });
   }
   getEnrollDataCsv(){
-   
-    this.userEnrollEventDetails.forEach(item => {
+    this.userEnrollEventDetails.joinedLeftHistory.forEach(item => {
       var newArray: any = [];
-      newArray.UserId = item.userId;
-      newArray.UserName = item.fullName;
-      newArray.Email = item.email;
-      newArray.JoinTime = item.firstJoined;
-      newArray.LeaveTime = item.lastLeft;
+      newArray.UserId = this.userEnrollEventDetails.userId;
+      newArray.UserName = this.userEnrollEventDetails.fullName;
+      newArray.Email = this.userEnrollEventDetails.email;
+      newArray.JoinTime = item.joinedDateTime;
+      newArray.LeaveTime = item.leftDateTime;
       newArray.Duration = item.duration;
-      newArray.EnrollmentDate = this.eventService.convertDate(item.enrolledDate);
-      if (item.status == 2)
+      newArray.EnrollmentDate = this.eventService.convertDate(this.userEnrollEventDetails.enrolledDate);
+      if (this.userEnrollEventDetails.status == 2)
       {
         newArray.AttendanceStatus = 'Present';
       }
@@ -72,14 +62,4 @@ export class UserDetailedAttendanceComponent implements OnInit {
     this.location.back();
   }
 
-  navToUserAttendanceDetail(eventId, userId) {
-    console.log("navToUserAttendanceDetail", eventId, "eventId, userId", userId);
-    this.detailedReport.emit ({ eventId: eventId, userId: userId });
-    // this.router.navigate(['/detailed-attendance'], {
-    //   queryParams: {
-    //     eventId: eventId,
-    //     userId:userId
-    //   }
-    // });
-  }
 }
