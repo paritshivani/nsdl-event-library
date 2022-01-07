@@ -42,7 +42,7 @@ export class DemoComponent implements OnInit {
   eventList : any;
   eventItem: any;
   enrollUsers: any;
-  tab :string= "user-detail";
+  tab :string= "list";
   userEnrollEventDetails: any = userEnrollEventDetailsMock.userEnrollEventDetailsMock;
   paginateLimit: number = 12;
   eventDetailItem: any;
@@ -416,6 +416,6 @@ export class DemoComponent implements OnInit {
   }
   navToUserAttendanceDetail(event){
     console.log('event ===== ', event);
-    
+
   }
 }
