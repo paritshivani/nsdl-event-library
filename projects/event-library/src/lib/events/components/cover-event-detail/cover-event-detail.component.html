@@ -62,13 +62,13 @@
                 </h1></b>
                 &nbsp;&nbsp;
                 <span *ngIf="eventDetailItem?.eventType == 'Online'" class="sb-label-status sb-label-status-success ml-auto mr-20 p-15 mt-10">
-                    <span class="sb-label-status-indicator sb-label-status-indicator-success"></span><span class="text-capitalize ">{{eventDetailItem?.eventType}}</span>
+                    <span class="sb-label-status-indicator sb-label-status-indicator-success"></span><span class="text-capitalize ">{{'Virtual Event'}}</span>
                 </span>
                 <div *ngIf="eventDetailItem?.eventType == 'Offline'" class="sb-label-status sb-label-status-error ml-auto mr-20 p-15 mt-10">
-                    <span class="sb-label-status-indicator sb-label-status-indicator-error"></span><span class="text-capitalize ">{{eventDetailItem?.eventType}}</span>
+                    <span class="sb-label-status-indicator sb-label-status-indicator-error"></span><span class="text-capitalize ">{{'Classroom Event'}}</span>
                 </div>
-                <div *ngIf="eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb-label-status sb-label-primary-100 ml-auto mr-20 p-12 mt-10">
-                    <span class="sb-label-status-indicator sb-label-status-indicator-primary"></span><span class="text-capitalize ">{{eventDetailItem?.eventType}}</span>
+                <div *ngIf="eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb-label-status sb-label-status-succes sb-label-primary-100 ml-auto mr-20 p-12 mt-10">
+                    <span class="sb-label-status-indicator sb-label-status-indicator-primary"></span><span class="text-capitalize ">{{'Virtual & Classroom Event'}}</span>
                 </div>
                 </div>
                 <div class="mt-12">
@@ -97,7 +97,7 @@
                 </div>
                 <div class="mt-12" *ngIf="eStart">
                     <div>
-                        <i class="fa fa-calendar fs-1"></i> <span class="fs-0-92"> &nbsp; {{eStart}} - {{eEnd}} ({{timezoneshort}})</span>
+                        <i class="fa fa-calendar fs-1"></i> <span class="fs-0-92"> &nbsp; {{eStart}} - {{eEnd}}</span>
                     </div>
                     &nbsp;
                     <!-- <div  *ngIf="eventDetailItem['venue']['name']">

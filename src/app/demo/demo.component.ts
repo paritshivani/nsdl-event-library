@@ -72,7 +72,9 @@ export class DemoComponent implements OnInit {
   todayDate = this.today.getFullYear() + '-' + ('0' + (this.today.getMonth() + 1)).slice(-2) + '-' + ('0' + (this.today.getDate())).slice(-2);
   yesterdayDate = this.today.getFullYear() + '-' + ('0' + (this.today.getMonth() + 1)).slice(-2) + '-' + ('0' + (this.today.getDate()-1)).slice(-2);
   tommorrowDate = this.today.getFullYear() + '-' + ('0' + (this.today.getMonth() + 1)).slice(-2) + '-' + ('0' + (this.today.getDate()+1)).slice(-2);
-
+  tempFilterKeyName :any;
+  sort_by:any;
+  
   constructor(
     private eventListService:EventListService,
     private eventCreateService: EventCreateService,
@@ -292,106 +294,168 @@ export class DemoComponent implements OnInit {
     });
   }
 
-  getFilteredData(event)
-  {
-    if(event.search)
-    {
-      this.Filterdata ={
-        "status":["live"],
+  getFilteredData(event) {
+    if (event.search) {
+      this.Filterdata = {
+        "status": ["live"],
         "objectType": "Event",
       };
-      this.query=event.target.value;
+      this.query = event.target.value;
     }
-    else if((event.filtersSelected.eventTime) && (event.filtersSelected.eventType))
-    {
+    else if ((event.filtersSelected.eventTime) && (event.filtersSelected.eventType)) {
       switch (event.filtersSelected.eventTime) {
         case "Past":
-          this.dates={
-            "max":this.yesterdayDate
+          this.dates = {
+            "max": this.todayDate
           }
-            break;
+          this.tempFilterKeyName = "endDate";
+          this.sort_by = {
+            "endDate": "desc"
+          };
+          break;
         case "Upcoming":
-          this.dates={
-            "min":this.tommorrowDate
+          this.dates = {
+            "min": this.todayDate
           }
-            break;
+          this.tempFilterKeyName = "startDate";
+          this.sort_by = {
+            "startDate": "desc"
+          };
+          break;
         default:
-          this.dates={
-            "min":this.todayDate,
-            "max":this.todayDate
+          this.dates = {
+            "max": this.todayDate
           }
-              break;
+          this.tempFilterKeyName = "startDate";
+          this.sort_by = {
+            "startDate": "desc"
+          };
+          break;
       }
-      this.Filterdata ={
-        "status":["live"],
-        "eventType" :event.filtersSelected.eventType,
-        "startDate":this.dates,
+      this.Filterdata = {
+        "status": ["live"],
+        "eventType": event.filtersSelected.eventType,
+        [this.tempFilterKeyName]: this.dates,
         "objectType": "Event"
       };
     }
-    else if(event.filtersSelected.eventType)
-    {
-        this.Filterdata ={
-          "status":["live"],
-          "eventType" :event.filtersSelected.eventType,
-          "objectType": "Event"
-        };
+    else if (event.filtersSelected.eventType) {
+      this.Filterdata = {
+        "status": ["live"],
+        "eventType": event.filtersSelected.eventType,
+        "objectType": "Event"
+      };
     }
-    else if(event.filtersSelected.eventTime)
-    {
-        switch (event.filtersSelected.eventTime) {
-          case "Past":
-            this.dates={
-              "max":this.yesterdayDate
-            }
-              break;
-          case "Upcoming":
-            this.dates={
-              "min":this.tommorrowDate
-            }
-              break;
-          default:
-            this.dates={
-              "min":this.todayDate,
-              "max":this.todayDate
-            }
+    else if (event.filtersSelected.eventTime) {
+      switch (event.filtersSelected.eventTime) {
+        case "Past":
+          this.dates = {
+            "max": this.todayDate
+          }
+          this.tempFilterKeyName = "endDate";
+          this.sort_by = {
+            "endDate": "desc"
+          };
           break;
-        }
-        this.Filterdata ={
-          "status":["live"],
-          "startDate" :this.dates,
-          "objectType": "Event"
-        };
+        case "Upcoming":
+          this.dates = {
+            "min": this.todayDate
+          }
+          this.tempFilterKeyName = "startDate";
+          this.sort_by = {
+            "startDate": "desc"
+          };
+          break;
+        default:
+          this.dates = {
+            "max": this.todayDate
+          }
+          this.tempFilterKeyName = "startDate";
+          this.sort_by = {
+            "startDate": "desc"
+          };
+          break;
+      }
+      this.Filterdata = {
+        "status": ["live"],
+        [this.tempFilterKeyName]: this.dates,
+        "objectType": "Event"
+      };
     }
-    else
-    {
-      this.Filterdata ={
-        "status":["live"],
+    else {
+      this.Filterdata = {
+        "status": ["live"],
         "objectType": "Event"
       };
     }
 
     // Loader code
     this.tab == "list" ? this.isLoading = true : this.isLoading = false;
+    var tempEventListData: any = [];
+    this.eventListService.getEventList(this.Filterdata, this.query, this.sort_by).subscribe((data) => {
+      if (data.responseCode == "OK") {
+        this.isLoading = false;
+        delete this.eventList;
+        let tempEventList: any = data.result.Event;
+        var temp1: any;
+        var temp2: any;
+        for (var k in tempEventList) {
+          temp1 = tempEventList[k].endDate;
+          temp2 = tempEventList[k].endTime;
+          var tempFilterData = temp1 + " " + temp2;
 
-    this.eventListService.getEventList(this.Filterdata,this.query).subscribe((data) => {
-      if (data.responseCode == "OK")
-        {
-          this.isLoading=false;
-         delete this.eventList;
-          this.eventList = data.result.Event;
+          var dTime = new Date();
+          var dateTime: any;
+          dateTime = this.todayDate + " " + dTime.toLocaleTimeString() + "+05:30";
 
-          this.eventList.forEach((item, index) => {
-            // if (item.eventType != 'Offline')
-            {
-              var array = JSON.parse("[" + item.venue + "]");
-              // console.log('array- ', array, 'Index = ', index);
-              this.eventList[index].venue = array[0].name;
+          if (event.filtersSelected == undefined) {
+            tempEventListData = tempEventList;
+          } else if (event.filtersSelected.eventTime) {
+            switch (event.filtersSelected.eventTime) {
+              case "Past":
+                if (tempFilterData < dateTime) {
+                  tempEventListData.push(tempEventList[k]);
+                }
+                break;
+
+              case "Upcoming":
+                
+                //if (tempFilterData > dateTime ) {
+                  if( tempEventList[k].startDate >= this.todayDate && tempEventList[k].startTime > timeTemp){
+                    tempEventListData.push(tempEventList[k]);
+                  }
+                  //  tempEventListData.push(tempEventList[k]);
+                //}
+                break;
+
+              default:
+                var timeTemp :any = dTime.toLocaleTimeString() + "+05:30";
+                if (tempFilterData > dateTime) {
+                //if( tempEventList[k].startDate >= this.todayDate && tempEventList[k].startTime > timeTemp && tempEventList[k].endDate <= this.todayDate && tempEventList[k].endTime < timeTemp ){
+                  tempEventListData.push(tempEventList[k]);
+                }
+                break;
             }
-          });
+          } else {
+            tempEventListData = tempEventList;
+          }
+        }
 
-          // For calendar events
-          this.events = this.eventList.map(obj => ({
+        //this.eventList = data.result.Event;
+        this.eventListCount = tempEventListData.length;
+        this.eventList = tempEventListData;
+
+        this.eventList.forEach((item, index) => {
+          // if (item.eventType != 'Offline')
+          {
+            var array = JSON.parse("[" + item.venue + "]");
+            // console.log('array- ', array, 'Index = ', index);
+            this.eventList[index].venue = array[0].name;
+          }
+        });
+
+        // For calendar events
+        this.events = this.eventList.map(obj => ({
           start: new Date(obj.startDate),
           title: obj.name,
           starttime: obj.startTime,
@@ -403,17 +467,18 @@ export class DemoComponent implements OnInit {
           onlineProviderData: obj.onlineProviderData,
           audience: obj.audience,
           owner: obj.owner,
-          identifier:obj.identifier,
-          startDate:obj.startDate,
-          endDate:obj.endDate,
-          endTime:obj.endTime
-          }));
-        }
-      }, (err) => {
-        this.isLoading=false;
-        this.sbToastService.showIziToastMsg(err.error.result.messages[0], 'error');
-      });
+          identifier: obj.identifier,
+          startDate: obj.startDate,
+          endDate: obj.endDate,
+          endTime: obj.endTime
+        }));
+      }
+    }, (err) => {
+      this.isLoading = false;
+      this.sbToastService.showIziToastMsg(err.error.result.messages[0], 'error');
+    });
   }
+
   navToUserAttendanceDetail(event){
     console.log('event ===== ', event);
 

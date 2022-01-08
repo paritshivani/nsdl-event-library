@@ -10,6 +10,8 @@ import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 // @eventCOnfig - Start
 import { LibEventService } from '../../services/lib-event/lib-event.service';
 import * as _ from 'lodash-es';
+import { DatePipe } from '@angular/common';
+
 // @eventCOnfig - End
 
 @Component({
@@ -37,6 +39,10 @@ export class CoverEventDetailComponent implements OnInit {
   openRecordingModal: boolean = false;
   RecordingUrls: any = [];
   key:boolean=false;
+  today = new Date();
+  todayDate = this.today.getFullYear() + '-' + ('0' + (this.today.getMonth() + 1)).slice(-2) + '-' + ('0' + this.today.getDate()).slice(-2);
+  todayTime = this.today.getHours() + ":" + this.today.getMinutes();
+  todayDateTime = this.timezoneCal.calcTime(this.todayDate, this.todayTime);
   // @eventCOnfig - End
 
   constructor(
@@ -44,7 +50,8 @@ export class CoverEventDetailComponent implements OnInit {
     private eventService: EventService,
     private timezoneCal: TimezoneCal,
     private dataService: DataService,
-    private libEventService: LibEventService// @eventCOnfig - Start
+    private libEventService: LibEventService,
+    public datepipe: DatePipe// @eventCOnfig - Start
     // public translate: TranslateService
     ) {
   }
@@ -93,8 +100,21 @@ export class CoverEventDetailComponent implements OnInit {
    * for show Date Time as per timezone
    */
   setDateTimeOnCover() {
-    this.eStart = (this.timezoneCal.calcTime(this.eventDetailItem.startDate, this.eventDetailItem.startTime)).toLocaleString();
-    this.eEnd = (this.timezoneCal.calcTime(this.eventDetailItem.endDate, this.eventDetailItem.endTime)).toLocaleString();
+  // Event Start date time
+  var startEventTime = this.timezoneCal.calcTime(this.eventDetailItem.startDate, this.eventDetailItem.startTime);
+  var startDifference = startEventTime.getTime() - this.todayDateTime.getTime();
+  var startInMinutes = Math.round(startDifference / 60000);
+
+  // Event end date time
+  var endEventTime = this.timezoneCal.calcTime(this.eventDetailItem.endDate, this.eventDetailItem.endTime);
+  var endDifference = this.todayDateTime.getTime() - endEventTime.getTime();
+  var endInMinutes = Math.round(endDifference / 60000);
+
+  var timezoneshort = this.timezoneCal.timeZoneAbbreviated();
+
+  this.eStart = this.datepipe.transform(this.eventDetailItem.startDate, 'longDate') + ', ' + this.datepipe.transform(startEventTime, 'HH:mm') + ' (' + timezoneshort + ')';
+
+  this.eEnd = this.datepipe.transform(this.eventDetailItem.endDate, 'longDate') + ', ' + this.datepipe.transform(endEventTime, 'HH:mm') + ' (' + timezoneshort + ')';
   }
 
   update_old(identifier, versionKey) {
@@ -141,7 +161,7 @@ export class CoverEventDetailComponent implements OnInit {
         let hours   = Math.floor(sec / 3600);
         let minutes = Math.floor((sec - (hours * 3600)) / 60);
         let seconds = sec - (hours * 3600) - (minutes * 60)
-        item.durations = hours+':'+ minutes +':'+seconds;
+        item.durations = hours+'HH'+':'+minutes + 'MM' +':'+seconds+'SS';
       }
     });
   }

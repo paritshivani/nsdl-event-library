@@ -4,7 +4,7 @@
 
     <br>
     <div class="row text-center">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <br />
             <div class="row text-center">
                 <div class="col-md-4">
@@ -75,19 +75,16 @@
                 </div>
             </ng-template>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <!-- Card -->
-            <div class="sb-label sb-label-table sb-label-primary-100">{{cardDateDisplys}}</div>
-            <div class="masonry-grid " style="height: 875px;overflow-y: scroll;">
+            
+            <div class="sb-label sb-label-table sb-label-primary-100"><h2>{{cardDateDisplys}}</h2></div>
+            <!-- <div class="masonry-grid " style="height: 875px;overflow-y: scroll;">
                 <div class="masonry-item ml-5"
                     *ngFor="let event of list | paginate: { itemsPerPage: paginateLimit, currentPage: p }">
-                    <!-- <div class="sb-card" (click)="onEventWrapper(event?.identifier);navToEventDetail(event)" tabindex="0"> -->
                     <div class="sb-card"  tabindex="0">
                         <div class="sb-card-body">
                             <div class="sb-card-metas">
-                                <!-- <div class="sb-card-image mr-16">
-                                    <img src="./assets/images/eventcover.jpg">
-                                </div> -->
                                 <div *ngIf="event?.appIcon" class="sb-card-image mr-16">
                                     <img src="{{event?.appIcon}}">
                                 </div>
@@ -116,9 +113,6 @@
                             <h4 *ngIf="event?.name" class="sb-card-title">
                                 {{event?.name}}
                             </h4>
-                            <!-- <div *ngIf="event?.status" class="sb-card-org ellipsis ">
-        {{event?.status}} 
-      </div> -->
                             <div class="sb-label-status sb-label-status-success ml-auto mr-15 p-10 mt-8">
                                 <span class="sb-label-status-indicator sb-label-status-indicator-success"></span>
                                 {{event?.eventType}}
@@ -126,7 +120,24 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+            <div class="card-container  mr-4 mt-4" style="height: 875px;overflow-y: scroll;">
+            <div class="sb-grid dynamic-section-card">
+                <div *ngFor="let event of list | paginate: { itemsPerPage: paginateLimit, currentPage: p };let i = index; ">
+                <!-- <div *ngFor="let content of list | paginate: { itemsPerPage: paginateLimit, currentPage: p };let i = index; "> -->
+                    <!-- <ng-container *ngIf="layoutConfig"> -->
+                        <sb-event-card
+                            [indexToDisplay]="i"
+                            [layoutConfig]="layoutConfig"
+                            (cardClick)="playContent(event)"
+                            [content]="event"
+                            [cardImg]="event?.appIcon || 'assets/images/eventcover.png'">
+                        </sb-event-card>
+                        <br>
+                    <!-- </ng-container> -->
+                </div>
             </div>
+        </div>
         </div>
     </div>
 </div>

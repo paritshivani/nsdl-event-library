@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
-  Input
+  Input,EventEmitter, Output
 } from '@angular/core';
 //import {EventListService} from '../../../projects/event-library/src/lib/events/services/event-list/event-list.service';
 import { DatePipe } from '@angular/common';
@@ -76,6 +76,8 @@ export class EventCalenderComponent implements OnInit {
   @Input() paginateLimit: number = 12;
   p: any;
   view: CalendarView = CalendarView.Month;
+  @Input() layoutConfig;
+  @Output() eventDetailData = new EventEmitter();
 
 
   CalendarView = CalendarView;
@@ -120,7 +122,7 @@ export class EventCalenderComponent implements OnInit {
     this.userId = this.eventConfig.id;
     // var d = new Date(todayDate);
     // this.cardDateDisplys = d.toLocaleString('default', { month: 'short' }) + " " + d.getDate() + " " + d.getFullYear();
-
+    //console.log("layoutConfig layoutConfig ::",this.layoutConfig);
     var date = new Date();
     var todayDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + (date.getDate())).slice(-2);
     console.log("Date Is todayDate :: ", todayDate);
@@ -136,6 +138,14 @@ export class EventCalenderComponent implements OnInit {
     this.eventListService.getEventList(this.Filterdata, this.query).subscribe((data) => {
       if (data.responseCode == "OK") {
         this.list = data.result.Event;
+        this.list.forEach((item, index) => {
+          // if (item.eventType != 'Offline')
+          {
+            var array = JSON.parse("[" + item.venue + "]");
+            // console.log('array- ', array, 'Index = ', index);
+            this.list[index].venue = array[0].name;
+          }
+        });
         this.tempV='resolve';
         console.log("LIST DAtA :: ", this.list , this.tempV);
       }
@@ -194,6 +204,15 @@ export class EventCalenderComponent implements OnInit {
     this.eventListService.getEventList(this.Filterdata, this.query).subscribe((data) => {
       if (data.responseCode == "OK") {
         this.list = data.result.Event;
+
+        this.list.forEach((item, index) => {
+          // if (item.eventType != 'Offline')
+          {
+            var array = JSON.parse("[" + item.venue + "]");
+            // console.log('array- ', array, 'Index = ', index);
+            this.list[index].venue = array[0].name;
+          }
+        });
         console.log("LIST DAtA :: ", this.list);
       }
     }, (err) => {
@@ -251,5 +270,7 @@ export class EventCalenderComponent implements OnInit {
     
   }
   
-
+  playContent(content){
+    this.eventDetailData.emit(content);
+  }
 }
