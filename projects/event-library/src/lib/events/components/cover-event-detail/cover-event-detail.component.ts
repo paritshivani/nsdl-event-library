@@ -67,7 +67,6 @@ export class CoverEventDetailComponent implements OnInit {
 
     // this.dataService.get({url : 'https://jsonplaceholder.typicode.com/todos/1'}).subscribe(response => 
     //   {
-    //     console.log({response});
     //   });
 
     // setTimeout(() => {
@@ -91,7 +90,6 @@ export class CoverEventDetailComponent implements OnInit {
 
     //   this.eventService.getBatches(filters).subscribe((res) => {
     //     this.batchId = res.result.response.content[0].identifier;
-    //     console.log("Batch Id -", this.batchId);
     //   });
     this.key=this.eventDetailItem.onlineProviderData.hasOwnProperty("recordings");
   }

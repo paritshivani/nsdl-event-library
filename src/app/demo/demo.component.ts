@@ -93,7 +93,6 @@ export class DemoComponent implements OnInit {
     this.showFilters();
     this.showMyEventListPage();
     this.showCalenderEvent();
-    // console.log('@TODO this.eventListCount ::', this.eventListCount);
   }
 
      /* For get List of events
@@ -115,11 +114,6 @@ export class DemoComponent implements OnInit {
             this.eventList[index].venue = array[0].name;
         });
 
-
-
-
-        // console.log('@TODO this.data ::', data);
-
         this.isLoading = false;
       })
   }
@@ -133,7 +127,6 @@ export class DemoComponent implements OnInit {
       this.eventListService.getMyEventList(this.userId).subscribe((data:any)=>{
 
         let  eventsList=  data.result.courses;
-        // console.log('eventsList - ', eventsList);
         Array.prototype.forEach.call(data.result.courses, child => {
           eventIds.push(child.courseId);
         });
@@ -157,7 +150,6 @@ export class DemoComponent implements OnInit {
                 });
 
                 this.myEventsCount = data.result.count;
-                // console.log('My Events this.myEvents : ', data.result);
               }
             }, (err) => {
               this.isLoading=false;
@@ -167,8 +159,6 @@ export class DemoComponent implements OnInit {
         else
         {
             this.myEvents = [];
-            // console.log('My Events typeof : ', typeof this.myEvents);
-            // console.log('My Events length : ', this.myEvents.length);
         }
       });
   }
@@ -182,8 +172,6 @@ export class DemoComponent implements OnInit {
         identifier: event.identifier
       }
     });
-
-    // console.log('Demo Component - ', event.identifier);
   }
 
 
@@ -225,7 +213,6 @@ export class DemoComponent implements OnInit {
       this.formFieldProperties = data.result['form'].data.fields;
       this.isLoading = false;
 
-      // console.log('EventCreate = ',data.result['form'].data.fields);
     })
   }
 
@@ -256,12 +243,7 @@ export class DemoComponent implements OnInit {
     };
 
     this.eventListService.getEventList(this.Filterdata).subscribe((data: any) => {
-      //       this.date=new Date();
-      //  let latest_date =this.datepipe.transform(this.date, 'yyyy-MM-dd');
-      // console.log("data = ");
       this.eventCalender = data.result.Event;
-
-      // console.log(this.eventCalender)
       this.events = this.eventCalender.map(obj => ({
 
         start: new Date(obj.startDate),
@@ -278,9 +260,6 @@ export class DemoComponent implements OnInit {
         identifier: obj.identifier,
 
       }));
-
-      // console.log("after =>", this.events);
-
     })
   }
 
@@ -449,7 +428,6 @@ export class DemoComponent implements OnInit {
           // if (item.eventType != 'Offline')
           {
             var array = JSON.parse("[" + item.venue + "]");
-            // console.log('array- ', array, 'Index = ', index);
             this.eventList[index].venue = array[0].name;
           }
         });
@@ -480,7 +458,5 @@ export class DemoComponent implements OnInit {
   }
 
   navToUserAttendanceDetail(event){
-    console.log('event ===== ', event);
-
   }
 }

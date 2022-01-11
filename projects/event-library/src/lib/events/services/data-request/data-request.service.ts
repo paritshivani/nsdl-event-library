@@ -86,9 +86,6 @@ export class DataService {
       headers: requestParam.header ? requestParam.header : this.getHeader(),
       params: requestParam.param
     };
-
-    // console.log("this is get method",requestParam, "------httpOptions-------", httpOptions)
-
     return this.http.get(requestParam.url, httpOptions).pipe(
       mergeMap((data: any) => {
 

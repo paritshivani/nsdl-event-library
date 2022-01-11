@@ -16,11 +16,7 @@ export class LibEventComponent implements OnInit {
   constructor(private libEventService: LibEventService) { }
 
   ngOnInit(): void {
-    // console.log('Component libEventConfig :: ', this.libEventConfig);
     this.libEventService.initialize(this.libEventConfig);
-    // this.eventUserData = _.get(this.libEventConfig, 'context.identifier');
-
-    // console.log(' LIB EVENT this.eventUserData ::', this.eventUserData);
   }
 
 

@@ -27,8 +27,7 @@ export class UserDetailedAttendanceComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.userEnrollEventDetails){
-    console.log("userEnrollEventDetails",this.userEnrollEventDetails);
-        this.finalUserEnrollEventDetails =  this.userEnrollEventDetails.joinedLeftHistory;
+         this.finalUserEnrollEventDetails =  this.userEnrollEventDetails.joinedLeftHistory;
       }
   }
   getEnrollDataCsv(){

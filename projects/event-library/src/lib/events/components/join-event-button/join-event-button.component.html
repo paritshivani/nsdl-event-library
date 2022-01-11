@@ -1,20 +1,3 @@
-<!-- <div class="d-flex mt-20">
-    <div class="wl-30"></div>
-    
-    <div  class="w-50 d-flex  join-btn my-12">
-            <button 
-                *ngIf="isUserAbleToJoin && isEnrolled && eventDetailItem?.eventType != 'Offline'" 
-                type="button " 
-                class="sb-custom-btn sb-btn sb-btn-secondary w-50 sb-btn-normal mr-12 ml-auto" 
-                (click)="checkEventProvider() ">
-                    {{'join' }}
-            </button>
-        <button type="button" *ngIf="!isEnrolled" class="sb-btn w-50 sb-btn-primary  sb-btn-normal" (click)="enrollToEvent('enroll');">{{'enroll' }}</button>
-        <button type="button" *ngIf="isEnrolled && canUnenroll" class="w-50 sb-btn sb-btn-primary  sb-btn-normal" (click)="enrollToEvent('unenroll');">{{'unenroll' }}</button>
-
-    </div>
-</div> -->
-
 
 <div class="d-flex mt-20">
     <div class="wl-30"></div>    
@@ -61,3 +44,20 @@
         <button type="button" class="sb-btn w-50 sb-btn-error  sb-btn-normal" (click)="enrollToEvent('enroll');">{{'Register Now' }}</button>
     </div>
 </div>
+<sui-modal *ngIf="muteUserPopUp" [mustScroll]="true" [isClosable]="true" [transitionDuration]="0" [size]="'small'"
+  class="sb-modal " appBodyScroll (dismissed)="muteUserPopUp = !muteUserPopUp" #modal>
+  <!-- <div class="sb-modal-header">
+    Modal Heading
+  </div> -->
+  <div class="sb-modal-content">
+   Do you want to mute all users when they join?
+  </div>
+  <div class="sb-modal-actions">
+    <button class="sb-btn sb-btn-normal sb-btn-primary" (click)="letModaratorJoinBBB('true')">
+      Yes
+    </button>
+    <button class="sb-btn sb-btn-normal sb-btn-outline-primary" (click)="letModaratorJoinBBB('false')">
+      No
+    </button>
+  </div>
+</sui-modal>

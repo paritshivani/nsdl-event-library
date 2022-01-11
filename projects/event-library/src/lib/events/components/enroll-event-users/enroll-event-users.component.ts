@@ -45,8 +45,8 @@ export class EnrollEventUsersComponent implements OnInit {
       newArray.UserId = item.userId;
       newArray.UserName = item.fullName;
       newArray.Email = item.email;
-      newArray.JoinTime = item.firstJoined;
-      newArray.LeaveTime = item.lastLeft;
+      newArray.JoinTime = item.joinedDateTime;
+      newArray.LeaveTime = item.leftDateTime;
       newArray.Duration = item.duration;
       newArray.EnrollmentDate = this.eventService.convertDate(item.enrolledDate);
 
@@ -71,7 +71,6 @@ export class EnrollEventUsersComponent implements OnInit {
   }
 
   navToUserAttendanceDetail(event) {
-    console.log("navToUserAttendanceDetail=====", event);
     this.detailedReport.emit (event);
   }
 }

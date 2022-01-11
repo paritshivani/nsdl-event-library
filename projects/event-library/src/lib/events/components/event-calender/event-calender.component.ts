@@ -122,10 +122,8 @@ export class EventCalenderComponent implements OnInit {
     this.userId = this.eventConfig.id;
     // var d = new Date(todayDate);
     // this.cardDateDisplys = d.toLocaleString('default', { month: 'short' }) + " " + d.getDate() + " " + d.getFullYear();
-    //console.log("layoutConfig layoutConfig ::",this.layoutConfig);
     var date = new Date();
     var todayDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + (date.getDate())).slice(-2);
-    console.log("Date Is todayDate :: ", todayDate);
     this.dates = {
       "min": todayDate      
     }
@@ -142,13 +140,11 @@ export class EventCalenderComponent implements OnInit {
           // if (item.eventType != 'Offline')
           {
             var array = JSON.parse("[" + item.venue + "]");
-            // console.log('array- ', array, 'Index = ', index);
             this.list[index].venue = array[0].name;
           }
         });
         this.tempV='resolve';
-        console.log("LIST DAtA :: ", this.list , this.tempV);
-      }
+        }
     }, (err) => {
     });
   }
@@ -176,10 +172,7 @@ export class EventCalenderComponent implements OnInit {
   // }
 
   dayClicked(date) {
-    console.log("Date Is :: ", date);
-    var todayDate = date.date.getFullYear() + '-' + ('0' + (date.date.getMonth() + 1)).slice(-2) + '-' + ('0' + (date.date.getDate())).slice(-2);
-    console.log("Date Is todayDate :: ", todayDate);
-    
+    var todayDate = date.date.getFullYear() + '-' + ('0' + (date.date.getMonth() + 1)).slice(-2) + '-' + ('0' + (date.date.getDate())).slice(-2); 
     var d = new Date(todayDate);
     //var idList : Array<String>;
     var idList: any = [];
@@ -188,7 +181,6 @@ export class EventCalenderComponent implements OnInit {
       a=date.events[k].identifier;
       
       idList.push(a);
-      console.log(idList);
     }
   
     this.cardDateDisplys = d.toLocaleString('default', { month: 'short' }) + " " + d.getDate() + " " + d.getFullYear();
@@ -209,11 +201,9 @@ export class EventCalenderComponent implements OnInit {
           // if (item.eventType != 'Offline')
           {
             var array = JSON.parse("[" + item.venue + "]");
-            // console.log('array- ', array, 'Index = ', index);
             this.list[index].venue = array[0].name;
           }
         });
-        console.log("LIST DAtA :: ", this.list);
       }
     }, (err) => {
     });
@@ -253,14 +243,10 @@ export class EventCalenderComponent implements OnInit {
 
 
   navToEventDetail(res) {
-    // console.log("navToEventDetail", res);
-   
+
     var obj=res;
     this.eventDetaildata ={ }
 
-    // console.log("navdetail",obj.identifier)
-  
-    
     this.router.navigate(['/event-post'], {
       queryParams: {
         identifier:obj.identifier

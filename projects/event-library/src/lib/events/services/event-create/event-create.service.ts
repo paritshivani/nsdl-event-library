@@ -68,11 +68,6 @@ export class EventCreateService {
     };
 
     return this.dataService.post(option);
-    
-    // .subscribe((data)=>{
-      
-    //   console.log({data});
-    // });
 
   }
 

@@ -39,7 +39,6 @@ export class EventDetailComponent implements OnInit {
     // Get the url (query) params
     this.route.queryParams.subscribe((params) => {
       this.queryParams = params;
-      console.log(this.queryParams);
     });
 
     // Subsribe to the event detail service and get single event data
@@ -47,7 +46,6 @@ export class EventDetailComponent implements OnInit {
         .subscribe((data: any) => {
           this.eventItem = data.result.event;
           this.isLoading = false;
-          console.log('Event Detail Player - ', this.eventItem);
         },(err: any) => {
           console.log('err = ', err);
         });
@@ -57,7 +55,7 @@ export class EventDetailComponent implements OnInit {
     this.location.back();
   }
   navToEventDetail($event)
-  { console.log("In src/event detail");
+  {
     this.router.navigate(['/play/event-detail'], {
       queryParams: {
         identifier: $event.identifier

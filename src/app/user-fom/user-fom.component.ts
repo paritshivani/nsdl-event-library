@@ -32,8 +32,7 @@ export class UserFomComponent implements OnInit {
   showEventCreatePage() {
     this.eventCreateService.getEventFormConfig().subscribe((data: any) => {
       this.formFieldProperties = data.result['form'].data.fields;
-      console.log(data.result['form'].data.fields);
-    })
+     })
   }
   
   cancel(){
@@ -46,7 +45,6 @@ export class UserFomComponent implements OnInit {
       this.eventItem = data.result.event;
     this.isDetail = true;
 
-      console.log(this.eventItem);
     },
       (err: any) => {
         console.log('err = ', err);
