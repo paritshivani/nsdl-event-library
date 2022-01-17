@@ -41,6 +41,8 @@ export class JoinEventComponent implements OnInit {
   registrationStarted:boolean=false;
   registrationStartDate:any;
   eventEnded:any
+  muteUserPopUp: boolean = false;
+  // muteUser: boolean = true;
   constructor(
     private eventService: EventService,
     private timezoneCal: TimezoneCal,
@@ -61,9 +63,6 @@ export class JoinEventComponent implements OnInit {
         let eventStartDate: Date = new Date(this.eventDetailItem.startDate);
         let timeInMilisec: number = eventStartDate.getTime() - currentDate.getTime();
         let daysBetweenDates: number = Math.ceil(timeInMilisec / (1000 * 60 * 60 * 24));
-        // console.log(this.eventDetailItem.registrationStartDate);
-        // console.log((this.eventDetailItem.));
-         console.log("daysDebtween...",daysBetweenDates);
         if(daysBetweenDates == 2){
           this.isStartDate2 = true;
         } else if(daysBetweenDates == 1)
@@ -144,7 +143,6 @@ export class JoinEventComponent implements OnInit {
     // {
     //   this.registrationStarted = false;
     // }
-    console.log("EM=",endInMinutes);
     this.isUserAbleToJoin = (startInMinutes <= 1 && endInMinutes < 0) ? true : false;
     this.eventEnded = (endInMinutes > 0) ? true : false;
     this.toShowCounter = (startInMinutes <= 0 && endInMinutes < 0) ? false : true;
@@ -191,7 +189,6 @@ export class JoinEventComponent implements OnInit {
                 this.failedEnrollMentMsg = 'Unable to enroll/de-enroll to this event.';
                 
                 this.sbToastService.showIziToastMsg(this.failedEnrollMentMsg, 'error');
-                console.log(this.warningMessage);
                 this.isEnrolled = false; 
               }
               else
@@ -212,15 +209,10 @@ export class JoinEventComponent implements OnInit {
                       this.isEnrolled = false;
                     } 
                   }
-                   
-                  // console.log('res ::', res);
-                });
 
-                // console.log('this.isEnrolled =', this.isEnrolled)
+                });
               }
           }
-
-          // console.log('Batch Details - ', res);
       });
       
     }
@@ -230,7 +222,6 @@ export class JoinEventComponent implements OnInit {
    */
     checkEventProvider()
     {
-      // console.log("hereeeee",this.eventDetailItem.onlineProviderData);
     if (this.eventDetailItem.onlineProviderData['meetingLink'])
      {
         // this.openProviderLink(this.eventDetailItem.onlineProviderData);
@@ -240,12 +231,7 @@ export class JoinEventComponent implements OnInit {
     {
         if (this.userData == this.eventDetailItem.owner)
         {
-          // return moderatorMeetingLink
-          this.eventService.getBBBURlModerator(this.eventDetailItem.identifier,this.fullName,this.userData).subscribe((data) => {
-            this.openProviderLink(data.result.event.moderatorMeetingLink);
-          },(err: any) => {
-            this.sbToastService.showIziToastMsg(err.error.params.errmsg, 'error');
-          });
+          this.muteUserPopUp = true;
         }
         else
         {
@@ -259,6 +245,26 @@ export class JoinEventComponent implements OnInit {
         
       }
     }
+
+    letModaratorJoinBBB(muted){
+      console.log("letModaratorJoinBBB ====",muted  )
+      this.muteUserPopUp = !this.muteUserPopUp
+      // if(muted === 'true'){
+        this.eventService.getBBBURlModerator(this.eventDetailItem.identifier,this.fullName,this.userData,muted).subscribe((data) => {
+         console.log( data );
+          this.openProviderLink(data.result.event.moderatorMeetingLink);
+        },(err: any) => {
+          this.sbToastService.showIziToastMsg(err.error.params.errmsg, 'error');
+        });
+      // }else(muted === 'false')
+      // {
+      //   this.eventService.getBBBURlModerator(this.eventDetailItem.identifier,this.fullName,this.userData,false).subscribe((data) => {
+      //     this.openProviderLink(data.result.event.moderatorMeetingLink);
+      //   },(err: any) => {
+      //     this.sbToastService.showIziToastMsg(err.error.params.errmsg, 'error');
+      //   });
+      // }
+    }
   /**
    * For join attain event
    * 
@@ -271,6 +277,5 @@ export class JoinEventComponent implements OnInit {
   myTriggerFunction() {
     this.isDisabled= false;
     this.toShowCounter= false;
-    console.log('triggered!');
 }
 }

@@ -17,6 +17,32 @@
                     <i *ngIf="!isFilterShow" class="caret down icon"></i>
                 </div>
             </div>
+<!-- ======= -->
+            <!-- <div class="three wide column pt-5">
+                <div class="twelve wide column">
+                  <div class="field">
+                    <div class="content dropdown-content">
+                     <span class="ShowFilterSubTitle">sort by:&nbsp;</span>
+                      <div class="ui inline dropdown search-dropdown content-filter-sort" id="sortByDropDown">
+                        <sui-select class="inline" (selectedOptionChange)= "applySorting($event)" [(ngModel)]="sortByOption" [options]="sortingOptions"
+                        valueField="field"
+                    labelField="name"  #selectSort>
+                          <sui-select-option *ngFor="let option of selectSort.filteredOptions" [value]="option" >
+                          </sui-select-option>
+                          <sui-select-option [value]="ascending" > 
+                        </sui-select-option>
+                        <sui-select-option [value]="descending" > 
+                        </sui-select-option>
+                        </sui-select>
+                      </div>
+                      <i *ngIf="sortByOption && sortByOption.length > 0" [ngClass]=" sortIcon === false ? 'sort content ascending icon' : 'sort content descending icon' "
+                        class="link" tabindex="0" (click)="applySorting(sortByOption)">
+                      </i>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+     <!-- ======= -->
         </div>
         <div class="horizontal-view" *ngIf="newLayout == 'horizontal-view'">
             <div class="library-filter search-container pt-16" *ngIf="isFilterShow">
@@ -58,7 +84,7 @@
         <div class="sbt-filter-switcher"><i class="sliders horizontal icon"></i></div>
         <div class="sbt-filter-text">Filters</div>
     </div>
-    <div class="sbt-filter-switcher-container cursor-pointer computer only" (click)="isOpen = !isOpen">
+    <div class="sbt-filter-switcher-container cursor-pointer computer only">
         <div class="sbt-filter-switcher"><i class="sliders horizontal icon"></i></div>
         <div class="sbt-filter-text">Filters</div>
     </div>

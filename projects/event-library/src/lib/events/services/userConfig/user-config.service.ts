@@ -13,7 +13,6 @@ export class UserConfigService {
     {
   }
   getConfigUrl() {
-    // console.log("this.eventLibraryService.apiUrlConfig",this.eventLibraryService.apiUrlConfig);
     return this.eventLibraryService.apiUrlConfig;
   }
 

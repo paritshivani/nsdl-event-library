@@ -16,13 +16,14 @@ export class EnrollEventUsersComponent implements OnInit {
   @Input() redirection: any = 'event';
   @Input() eventDetailItem: any;
   @Output() detailedReport = new EventEmitter<any>();
-  
+  isMenu : any;
   p: any;
   showDownloadCodeBtn: boolean = true;
   arrayEnrollUsers: any = [];
   eventId: any;
   userId: any;
-
+  modifiedEventDetailItem: any;
+  isMenu: any;
   constructor(
     public datepipe: DatePipe, 
     // public translate: TranslateService,
@@ -33,20 +34,23 @@ export class EnrollEventUsersComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.eventDetailItem){
-      this.eventId = this.eventDetailItem.identifier;
+    //  this.modifiedEventDetailItem= this.eventService.getEventStatus(this.eventDetailItem);
+    this.eventService.getEventStatus(this.eventDetailItem);
+    this.eventId = this.eventDetailItem.identifier;
+      console.log("modifiedEventDetailItem",this.eventDetailItem);
+
     }
-   
+       
   }
 
   getEnrollDataCsv(){
    
     this.enrollEventDetails.forEach(item => {
       var newArray: any = [];
-      newArray.UserId = item.userId;
       newArray.UserName = item.fullName;
       newArray.Email = item.email;
-      newArray.JoinTime = item.firstJoined;
-      newArray.LeaveTime = item.lastLeft;
+      newArray.JoinTime = item.joinedDateTime;
+      newArray.LeaveTime = item.leftDateTime;
       newArray.Duration = item.duration;
       newArray.EnrollmentDate = this.eventService.convertDate(item.enrolledDate);
 
@@ -71,7 +75,6 @@ export class EnrollEventUsersComponent implements OnInit {
   }
 
   navToUserAttendanceDetail(event) {
-    console.log("navToUserAttendanceDetail=====", event);
     this.detailedReport.emit (event);
   }
 }

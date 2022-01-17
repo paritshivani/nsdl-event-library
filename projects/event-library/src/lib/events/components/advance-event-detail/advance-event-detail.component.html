@@ -108,7 +108,7 @@
         <!-- <div class="d-flex sb-bg-color-gray-0 w-100 mt-20"> -->
         <div class="sb-g sb-g--gap24 py-16">
             <!-- <div class="detail w-60 pl-10 ml-30 b-bl mt-20"> -->
-            <div class="sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-8 sb-g-col-xxxl-12 relative9 sb-bg-color-gray-0 pr-20">
+            <div class="sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-8 sb-g-col-xxxl-12 relative9 sb-bg-color-gray-0 pr-20 training-relevant">
                 <div class="description">
                     <span *ngIf="eventDetailItem?.description">
                         <h3><b>Description</b></h3>
@@ -128,7 +128,7 @@
 
             </div>
             <!-- <div class="detail w-40 pl-10 ml-30 b-bl mt-20 ml-20"> -->
-            <div class="sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-4 sb-g-col-xxxl-4 sb-bg-color-gray-0 pl-20 pr-20">
+            <div class="sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-4 sb-g-col-xxxl-4 sb-bg-color-gray-0 pl-20 pr-20 training-relevant">
                 <div *ngIf="this.eventConfig.id">
                     <div>
                         <h3><b>Speakers</b></h3>
@@ -164,7 +164,7 @@
         <!-- <div class="d-flex sb-bg-color-gray-0 w-100 mt-20"> -->
         <div class="sb-g sb-g--gap24 py-16">
             <!-- <div class="detail w-60 pl-10 ml-30 b-bl mt-20"> -->
-            <div class="sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-8 sb-g-col-xxxl-12 relative9 sb-bg-color-gray-0 pr-20">
+            <div class="sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-8 sb-g-col-xxxl-12 relative9 sb-bg-color-gray-0 pr-20 training-relevant">
                 <div class="mt-30" *ngIf="similarEventList">
                     <span><h3><b>Similar Events</b></h3></span>
                     <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)">
@@ -217,7 +217,7 @@
                 </div>
             </div>
             <!-- <div class="detail w-40 pl-10 ml-30 b-bl mt-20 ml-20"> -->
-            <div class="sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-4 sb-g-col-xxxl-4">
+            <div class="sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-4 sb-g-col-xxxl-4 training-relevant">
                 <div class="" *ngIf="this.attendanceList">
                     <sui-accordion class="fluid sb-accordion sb-new-theme-accordion sb-bg-color-gray-0 pr-20 pl-20">
                         <sui-accordion-panel [isOpen]="false" [attr.aria-expanded]="isOpen" (click)="isOpen = !isOpen">

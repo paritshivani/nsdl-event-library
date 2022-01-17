@@ -30,8 +30,16 @@
         </div>
     </div>
 </div> -->
+<!-- <sb-event-filter
+(filterChangeEvent)="getFilteredData($event)"
+*ngIf="filterConfig"
+[filterLayout]="false"
+[isOpen]="true"
+[filterConfig]="filterConfig">
+</sb-event-filter> -->
 <div *ngIf="tab == 'list'"  class="sbt-fluid-content-bg sbt-home-search-component">
     <div class="sb-g sbt-container sbt-page-content">
+       
         <div class="sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-3 sb-g-col-xxxl-4">
             <sb-event-filter
                 (filterChangeEvent)="getFilteredData($event)"
@@ -41,6 +49,7 @@
                 [filterConfig]="filterConfig">
             </sb-event-filter>
         </div>
+       
         <div class="sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-9 sb-g-col-xxxl-12">
             <div class="sbt-page-content-area">
                 <div class="content-grid relative9">
@@ -133,12 +142,18 @@
     </sb-event-filter>
     <lib-event-calender
         *ngIf="events"
-        [events]='events'>
+        [events]='events'
+        [todayCalenderEvent]='todaysCalenderEvent'
+        [todayDates]='todaysDate'
+        [layoutConfig]="true"
+        (eventDetailData)="navToEventDetail($event)"
+        [tempFlags]='tempFlag'>
     </lib-event-calender>
     <br /><br /><br />
 </div>
 <div *ngIf="tab == 'user-detail'">
-<lib-user-detailed-attendance *ngIf ="userEnrollEventDetails"
+   
+<lib-user-detailed-attendance *ngIf ="userEnrollEventDetails && eventItem"
  [userEnrollEventDetails] ="userEnrollEventDetails"
  [paginateLimit]= "paginateLimit"
 [redirection]="event"

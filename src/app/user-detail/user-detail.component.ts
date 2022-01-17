@@ -30,7 +30,6 @@ export class UserDetailComponent implements OnInit {
  async showEventDetailPage() {
     await this.eventDetailService.getEvent('do_1132472335546777601366').subscribe((data: any) => {
       this.eventItem = data.result.event;
-      console.log(this.eventItem);
     },
       (err: any) => {
         console.log('err = ', err);

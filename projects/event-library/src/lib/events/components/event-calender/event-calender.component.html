@@ -4,7 +4,7 @@
 
     <br>
     <div class="row text-center">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <br />
             <div class="row text-center">
                 <div class="col-md-4">
@@ -47,7 +47,8 @@
                 <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
                     [refresh]="refresh" (dayClicked)="dayClicked($event.day)"
                     (eventClicked)="handleEvent('Clicked', $event.event)"
-                    (eventTimesChanged)="eventTimesChanged($event)" [cellTemplate]="customCellTemplate">
+                    (eventTimesChanged)="eventTimesChanged($event)" [cellTemplate]="customCellTemplate"
+                    (beforeViewRender)="beforeMonthViewRender($event)">
                 </mwl-calendar-month-view>
                 <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
                     [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
@@ -66,66 +67,39 @@
                     <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
                     <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
                 </div>
-                <!-- {{day.events | json}} -->
-                <!-- <tr *ngFor="let user of enrollEventDetails | paginate: { itemsPerPage: paginateLimit, currentPage: p } let i = index "> -->
-                <!-- sb-label sb-label-table sb-label-gray-0 -->
+
                 <div *ngFor="let evt of day.events | slice:0:3 " style="margin: 5px">
                     <div class="border-left border-success" style="font-size: 10px;">
                         {{ evt.title }}</div>
                 </div>
             </ng-template>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <!-- Card -->
-            <div class="sb-label sb-label-table sb-label-primary-100">{{cardDateDisplys}}</div>
-            <div class="masonry-grid " style="height: 875px;overflow-y: scroll;">
-                <div class="masonry-item ml-5"
-                    *ngFor="let event of list | paginate: { itemsPerPage: paginateLimit, currentPage: p }">
-                    <!-- <div class="sb-card" (click)="onEventWrapper(event?.identifier);navToEventDetail(event)" tabindex="0"> -->
-                    <div class="sb-card"  tabindex="0">
-                        <div class="sb-card-body">
-                            <div class="sb-card-metas">
-                                <!-- <div class="sb-card-image mr-16">
-                                    <img src="./assets/images/eventcover.jpg">
-                                </div> -->
-                                <div *ngIf="event?.appIcon" class="sb-card-image mr-16">
-                                    <img src="{{event?.appIcon}}">
-                                </div>
-                                <div *ngIf="!event?.appIcon" class="sb-card-image mr-16">
-                                    <img src="./assets/images/eventcover.jpg">
-                                </div>
-                                <div class="sb-card-meta course">
-                                    <div *ngIf="event?.audience" class="sb-card-meta-item left ellipsis mt-4"
-                                        style="text-align: left;">
-                                        {{'audience' }}: {{event?.audience}}
-                                    </div>
-                                    <div *ngIf="event?.onlineProvider" class="sb-card-meta-item left ellipsis "
-                                        style="text-align: left;">
-                                        {{'eventtype' }}:{{event?.onlineProvider}}
-                                    </div>
-                                    <div *ngIf="event?.status" class="sb-card-meta-item left ellipsis "
-                                        style="text-align: left;">
-                                        {{'Status' }}: {{event?.status}}
-                                    </div>
-                                    <div *ngIf="event?.startDate" class="sb-card-meta-item left ellipsis "
-                                        style="text-align: left;">
-                                        {{'startdate' }}: {{event?.startDate}}
-                                    </div>
-                                </div>
-                            </div>
-                            <h4 *ngIf="event?.name" class="sb-card-title">
-                                {{event?.name}}
-                            </h4>
-                            <!-- <div *ngIf="event?.status" class="sb-card-org ellipsis ">
-        {{event?.status}} 
-      </div> -->
-                            <div class="sb-label-status sb-label-status-success ml-auto mr-15 p-10 mt-8">
-                                <span class="sb-label-status-indicator sb-label-status-indicator-success"></span>
-                                {{event?.eventType}}
-                            </div>
+            <br>
+            <div class="sb-label sb-label-table sb-label-primary-100" id="cardDate">
+                <h2>{{cardDateDisplys}}</h2>
+            </div>
+            <div style="height: 875px;overflow-y: scroll;">
+                <div class="card-container  mr-4 mt-3">
+                    <div *ngIf="!tempFlags" class="sb-grid dynamic-section-card" >
+                        <div *ngFor="let event of todayCalenderEvent ;let i = index; ">
+                            <sb-event-card [indexToDisplay]="i" [layoutConfig]="layoutConfig"
+                                (cardClick)="playContent(event)" [content]="event"
+                                [cardImg]="event?.appIcon || 'assets/images/eventcover.png'">
+                            </sb-event-card>
+                            <br>
+                            <!-- </ng-container> -->
                         </div>
                     </div>
-                </div>
+                    <br>
+                    <div *ngIf="tempFlags && !tempCardDataEmptyMsg" class="sb-label-warning-0">
+                        Search is applied please check calendar on your left
+                    </div>
+                    <br>
+                    <div *ngIf="tempCardDataEmptyMsg" class="sb-label-warning-0">
+                        No event data found
+                    </div>
             </div>
         </div>
     </div>

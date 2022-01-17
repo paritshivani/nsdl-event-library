@@ -18,7 +18,7 @@ export class UserDetailedAttendanceComponent implements OnInit {
   p: any;
   showDownloadCodeBtn: boolean = true;
   arrayEnrollUsers: any = [];
-
+  isMenu: any;
   constructor(
     public datepipe: DatePipe,
     private router: Router,
@@ -28,18 +28,16 @@ export class UserDetailedAttendanceComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.userEnrollEventDetails){
-    console.log("userEnrollEventDetails",this.userEnrollEventDetails);
-        this.finalUserEnrollEventDetails =  this.userEnrollEventDetails.joinedLeftHistory;
+         this.finalUserEnrollEventDetails =  this.userEnrollEventDetails.joinedLeftHistory;
       }
   }
   getEnrollDataCsv(){
     this.userEnrollEventDetails.joinedLeftHistory.forEach(item => {
       var newArray: any = [];
-      newArray.UserId = this.userEnrollEventDetails.userId;
+      newArray.EventName = this.eventDetailItem.name;
+      newArray.EventType = this.eventDetailItem.eventType;
       newArray.UserName = this.userEnrollEventDetails.fullName;
       newArray.Email = this.userEnrollEventDetails.email;
-      newArray.ContentId = this.userEnrollEventDetails.contentId;
-      newArray.BatchId = this.userEnrollEventDetails.batchId;
       newArray.Provider = this.userEnrollEventDetails.provider;
       newArray.JoinTime = item.joinedDateTime;
       newArray.LeaveTime = item.leftDateTime;

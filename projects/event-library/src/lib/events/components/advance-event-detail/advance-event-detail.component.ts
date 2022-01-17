@@ -50,7 +50,6 @@ export class AdvanceEventDetailComponent implements OnInit {
     this.eventConfig = _.get(this.libEventService.eventConfig, 'context.user');
     this.userId = this.eventConfig.id;
     this.userName = this.eventConfig.firstName + " " + this.eventConfig.lastName;
-    console.log(this.eventConfig);
     this.similarEvents(this.eventDetailItem);
     this.getSpeakersList(this.userId);
     this.getAttendeeList(this.eventDetailItem.identifier);
@@ -112,7 +111,6 @@ export class AdvanceEventDetailComponent implements OnInit {
   }
 
   navToEventDetail(res){
-    // console.log("res",res.identifier);
     this.eventDetailData.emit(res);
 
     // this.router.navigate(['/play/event-detail'], {
@@ -153,7 +151,6 @@ export class AdvanceEventDetailComponent implements OnInit {
       {
         this.eventService.getAttendanceList(eventId,res.result.response.content[0]['batchId']).subscribe((data) => {
          this.attendanceList = data.result.content;
-         console.log("attendanceList-",this.attendanceList);
         //  this.getEnrollEventUsersData(this.attendanceList);
        });
       }

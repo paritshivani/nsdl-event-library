@@ -8,14 +8,43 @@
         </button>
     </span>
 </div>
+<ng-container *ngIf="eventDetailItem">
+    <div  *ngIf="eventDetailItem?.name" class="sb--sb--card__moreinfo sb__ellipsis">
+      <h4 class="sb--card__title sb__ellipsis sb__ellipsis--two mr-5 ml-10 text-left flex-basis-1" title="{{eventDetailItem?.name}}"><bdi>{{eventDetailItem?.name}}</bdi></h4>
+      <!-- <a *ngIf="isMenu" role="button" aria-label="View more actions menu" class="menu" tabindex="0"></a> -->
+    </div>
+    <div  *ngIf="eventDetailItem?.showDate" class="sb--sb--card__moreinfo sb__ellipsis"
+      title="{{eventDetailItem?.showDate}}: {{eventDetailItem?.showDate}}">
+      <span><i class="fa fa-calendar mr-5 ml-10"></i></span>
+      <span title="{{eventDetailItem?.showDate}}">{{eventDetailItem?.showDate}}</span>
+    </div>
 
-<h2 class="fs-1.3">{{eventDetailItem?.name}}</h2>
+    <div class="sb--card__tags">
+        <span class="sb--card__badge" *ngIf="eventDetailItem?.badgeAssertions">
+          <img [src]="eventDetailItem?.badgeAssertions[0]?.badgeClassImage" alt="" title="" />
+        </span>
+        <!-- <span class="sb--card__type" *ngIf="eventDetailItem?.eventDetailItemType">{{eventDetailItem?.eventDetailItemType}}</span> -->
+        <span class="sb--card__type mr-5 ml-10" *ngIf="eventDetailItem?.eventType == 'Online'">Virtual Event</span>
+        <span class="sb--card__type mr-5 ml-10" *ngIf="eventDetailItem?.eventType == 'Offline'">Classroom Event</span>
+        <span class="sb--card__type mr-5 ml-10" *ngIf="eventDetailItem?.eventType == 'OnlineAndOffline'">Virtual & Classroom Event</span>
+    </div>
+
+    <div  *ngIf="eventDetailItem?.venue && eventDetailItem?.eventType == 'Offline' || eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb--sb--card__moreinfo sb__ellipsis"
+      title="{{eventDetailItem?.venue}}: {{eventDetailItem?.venue}}">
+      <span><i class="fa fa-map-marker mr-5 ml-10"></i></span>
+      <span title="{{eventDetailItem?.venue}}">{{eventDetailItem?.venue}}</span>
+    </div>
+    <div *ngIf="eventDetailItem?.venue && eventDetailItem?.eventType == 'Online' || eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb--sb--card__moreinfo sb__ellipsis"
+      title="{{eventDetailItem?.onlineProvider}}: {{eventDetailItem?.onlineProvider}}">
+      <span><i class="fa fa-microphone mr-5 ml-10"></i></span>
+      <span title="{{eventDetailItem?.onlineProvider}}">{{eventDetailItem?.onlineProvider}}</span>
+    </div>
+  </ng-container>
 
 <div class="table-responsive" *ngIf="enrollEventDetails?.length > 0">
      <table class="sb-table sb-table-sortable sb-table-blue-strip">
         <thead>
             <tr class="sb-table-head">
-                <th class="w-10">User Id</th>
                 <th class="w-10">User Name</th>
                 <th class="w-10">Email</th>
                 <th class="w-10">Join Time</th>
@@ -28,13 +57,18 @@
         <tbody>
             <tr *ngFor="let user of enrollEventDetails | paginate: { itemsPerPage: paginateLimit, currentPage: p } let i = index ">
                 <!-- <td>{{i + 1}}</td> -->
-                <td class="white-space-inherit">{{user?.userId}}</td>
-                <td class="white-space-inherit">{{user?.fullName}}</td>
-                <td class="white-space-inherit">{{user?.email}}</td>
-                <td class="white-space-inherit">{{user?.joinedDateTime}}</td>
-                <td class="white-space-inherit">{{user?.leftDateTime}}</td>
-                <td class="white-space-inherit" (click)="navToUserAttendanceDetail(user)">{{user?.duration}}</td>
-                <td class="white-space-inherit">{{user.enrolledDate | date: 'dd-MM-yyyy'}}</td>
+                <td *ngIf="user?.fullName" class="white-space-inherit">{{user?.fullName}}</td>
+                <td *ngIf="!user?.fullName" class="white-space-inherit">-</td>
+                <td *ngIf="user?.email" class="white-space-inherit">{{user?.email}}</td>
+                <td *ngIf="!user?.email" class="white-space-inherit">-</td>
+                <td *ngIf="user?.joinedDateTime" class="white-space-inherit">{{user?.joinedDateTime}}</td>
+                <td *ngIf="!user?.joinedDateTime" class="white-space-inherit">-</td>
+                <td *ngIf="user?.leftDateTime" class="white-space-inherit">{{user?.leftDateTime}}</td>
+                <td *ngIf="!user?.leftDateTime" class="white-space-inherit">-</td>
+                <td *ngIf="user?.duration" class="white-space-inherit" ><a class="ui label mt-8 mr-8" (click)="navToUserAttendanceDetail(user)">{{user?.duration}}</a></td>
+                <td *ngIf="!user?.duration" class="white-space-inherit">-</td>
+                <td *ngIf="user?.enrolledDate" class="white-space-inherit">{{user.enrolledDate | date: 'dd-MM-yyyy'}}</td>
+                <td *ngIf="!user?.enrolledDate" class="white-space-inherit"> - </td>
                 <td class="white-space-inherit ml-auto mr-15 p-10 mt-8">
                     <span class="sb-label-status sb-label-status-success" *ngIf="user?.status == '2'">
                             <span class="sb-label-status-indicator sb-label-status-indicator-success">
@@ -47,6 +81,7 @@
                             Absent
                     </span>
                 </td>
+                <!-- <td *ngIf="!user?.status" class="white-space-inherit">-</td> -->
             </tr>
         </tbody>
     </table>

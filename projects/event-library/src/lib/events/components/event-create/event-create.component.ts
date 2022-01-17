@@ -466,7 +466,7 @@ export class EventCreateComponent implements OnInit {
       this.formValues['onlineProviderData'] = (this.formValues['onlineProviderData'] != null) ? ({ "meetingLink": this.formValues['onlineProviderData'] }) : {};
       this.formValues['venue'] = { "name": this.formValues['venue'] };
       this.formValues['owner'] = this.userId;
-      this.formValues['createdFor'] = this.eventConfig.orgIds;
+      this.formValues['createdFor'] = this.eventConfig. organisationIds;
       // this.formValues['onlineProviderData'] = {};
       this.formValues['appIcon'] = this.appIcon;
       delete  this.formValues['recurring'];

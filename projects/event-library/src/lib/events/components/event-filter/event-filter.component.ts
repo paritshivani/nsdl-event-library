@@ -100,6 +100,9 @@ export class EventFilterComponent implements OnInit, OnChanges {
     this.filterChangeEvent.emit($event);
   }
 
+  applySorting($event){
+    
+  }
   private checkForWindowSize() {
     if (window.innerWidth <= 992) {
      this.isOpen = false;

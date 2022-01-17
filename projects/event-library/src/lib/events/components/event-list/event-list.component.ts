@@ -50,7 +50,6 @@ export class EventListComponent implements OnInit {
   ngOnInit(){}
 
   ngOnChanges() {
-    // console.log('list - ', this.list);
    // Get all events
     if (this.list)
     {

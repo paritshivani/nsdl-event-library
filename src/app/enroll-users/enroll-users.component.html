@@ -6,7 +6,7 @@
     <a type="button" class=" ripple w-20 ml-16" (click)="Openview('enrollUsersList')">Enrolled users list</a>
     <hr />
 </div>
-
-<sb-enroll-event-users [eventDetailItem]="eventItem" [enrollEventDetails]="eventUserEnrollData"></sb-enroll-event-users>
+<!-- {{eventItem | json}} -->
+<sb-enroll-event-users *ngIf="eventItem" [eventDetailItem]="eventItem" [enrollEventDetails]="eventUserEnrollData"></sb-enroll-event-users>
 <!-- <sb-enroll-event-users [enrollEventDetails]="enrollUsers" [enrollUserList]="enrollUsers"></sb-enroll-event-users> -->
 

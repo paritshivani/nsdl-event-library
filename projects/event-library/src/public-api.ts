@@ -22,6 +22,7 @@ export * from './lib/events/components/join-event-button/join-event-button.compo
 export * from './lib/events/components/enroll-event-users/enroll-event-users.component';
 export * from './lib/events/components/event-calender/event-calender.component';
 export * from './lib/events/components/lib-event/lib-event.component';
+export * from './lib/events/components/user-detailed-attendance/user-detailed-attendance.component';
 
 //Services
 export * from './lib/events/services/event-detail/event-detail.service';

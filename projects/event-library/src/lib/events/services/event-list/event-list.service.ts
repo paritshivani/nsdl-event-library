@@ -15,15 +15,18 @@ export class EventListService {
     /**
    * For get event list
    */
-     getEventList(filterValue,query?:any)
+     getEventList(filterValue,query?:any,sort_by?:any)
      {
+        if (sort_by == undefined) {
+          sort_by = {
+            "startDate": "desc"
+          };
+        }
         const requestBody = {
           "request": {
             "filters":filterValue,
             "query":query,
-            "sort_by": {
-              "startDate": "desc"
-            }
+            "sort_by": sort_by,
             }
 
           }

@@ -21,3 +21,14 @@
     display:'';
 }
 
+.sb-label-status {
+    width: 13.25rem;
+    position: relative;
+    padding: 0.3125rem;
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    z-index: 2;
+}
