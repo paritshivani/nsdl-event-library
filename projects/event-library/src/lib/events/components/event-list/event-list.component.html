@@ -3,7 +3,7 @@
     <div class="sb-pageSection" *ngIf="showCarousalLists">
         <div class="sb-pageSection-header" *ngIf="showCarousalLists">
             <!--Section Title-->
-            <h4 *ngIf="myEvents !== undefined" class="sb-pageSection-title sb-pageSection-sentenceCase m-0 mr-16"><span class="mr-8">My Events</span>
+            <h4 *ngIf="myEvents !== undefined && myEventsCount" class="sb-pageSection-title sb-pageSection-sentenceCase m-0 mr-16"><span class="mr-8">My Events</span>
                 <!--Count-->
                 <span *ngIf="myEvents !== undefined && myEventsCount" class="sb-pageSection-count sb-label sb-label-xs sb-label-error">
                     {{myEventsCount}}
@@ -15,7 +15,7 @@
             <button
                 class="sb-btn sb-btn-xs sb-btn-secondary ml-auto"
                 type="button"
-                *ngIf="viewAllButton && myEvents"
+                *ngIf="viewAllButton && myEventsCount"
                 (click)="openMyEventList()"
                 tabindex="0">
                 View all
