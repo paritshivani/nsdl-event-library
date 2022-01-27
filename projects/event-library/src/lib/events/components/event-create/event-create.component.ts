@@ -255,22 +255,23 @@ export class EventCreateComponent implements OnInit {
    * For setting Visibility Dependent Fields 
    */
   setVisibilityDependentFields(value) {
-    switch (value) {
-      case 'Parent':
-        this.formFieldProperties[9].editable = true;
-        this.formFieldProperties[8].editable = false;
-        break;
+    // Currrently in no use
+    // switch (value) {
+    //   case 'Parent':
+    //     this.formFieldProperties[9].editable = true;
+    //     this.formFieldProperties[8].editable = false;
+    //     break;
 
-      case 'Private':
-        this.formFieldProperties[9].editable = false;
-        this.formFieldProperties[8].editable = true;
-        break;
+    //   case 'Private':
+    //     this.formFieldProperties[9].editable = false;
+    //     this.formFieldProperties[8].editable = true;
+    //     break;
 
-      default:
-        this.formFieldProperties[9].editable = false;
-        this.formFieldProperties[8].editable = false;
-        break;
-    }
+    //   default:
+    //     this.formFieldProperties[9].editable = false;
+    //     this.formFieldProperties[8].editable = false;
+    //     break;
+    // }
   }
 
   output(event) {
