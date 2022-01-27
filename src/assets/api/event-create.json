@@ -34,7 +34,6 @@
                         "index": 1,
                         "validations": [{
                                 "type": "pattern",
-                                "value": "^[a-zA-Z0-9 &]*$",
                                 "message": "Invalid Input"
                             },
                             {
