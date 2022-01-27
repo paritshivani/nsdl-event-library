@@ -32,14 +32,19 @@
                             "class": "sb-g-col-lg-1 required"
                         },
                         "index": 1,
-                        "validations": [{
+                        "validations": [
+                            {
+                                "type": "maxLength",
+                                "value": 50,
+                                "message": "Input is Exceeded"
+                            },
+                            {
                                 "type": "pattern",
                                 "value": "^[a-zA-Z0-9 &]*$",
                                 "message": "Invalid Input"
                             },
                             {
                                 "type": "required",
-                                "value": "80",
                                 "message": "Enter Event Name"
                             }
                         ]
@@ -102,7 +107,13 @@
                             "type": "regex",
                             "value": "^[a-zA-Z0-9 &]*$",
                             "message": "Invalid Input"
-                        }]
+                        },
+                        {
+                            "type": "maxLength",
+                            "value": 50,
+                            "message": "Input is Exceeded"
+                        }
+                    ]
                     },
                     {
                         "code": "code",
