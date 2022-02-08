@@ -255,7 +255,7 @@ export class EventCreateComponent implements OnInit {
    * For setting Visibility Dependent Fields 
    */
   setVisibilityDependentFields(value) {
-    switch (value) {
+     switch (value) {
       case 'Parent':
         this.formFieldProperties[9].editable = true;
         this.formFieldProperties[8].editable = false;
@@ -421,7 +421,6 @@ export class EventCreateComponent implements OnInit {
   postData(canPublish) {
     this.isSubmitted = true;
     this.canPublish = canPublish;
-    
     if (this.formValues == undefined) {
       this.sbToastService.showIziToastMsg("Please enter event name", 'warning');
     }
@@ -430,6 +429,9 @@ export class EventCreateComponent implements OnInit {
     }
     else if (this.formValues.code == undefined) {
       this.sbToastService.showIziToastMsg("Please enter code", 'warning');
+    }
+    else if (this.formValues.eventType == undefined) {
+      this.sbToastService.showIziToastMsg("Please select event type", 'warning');
     }
     // else if ((this.formValues.startDate == undefined || this.formValues.startTime == undefined || !this.timeValidation(this.formValues.startDate, this.formValues.startTime)) && this.isNew) {
     //   this.sbToastService.showIziToastMsg("Please enter valid event start date and time", 'warning');
@@ -454,6 +456,10 @@ export class EventCreateComponent implements OnInit {
     }
     else if (!this.dateValidation(this.formValues.registrationEndDate + " 00:00:00", this.formValues.endDate)) {
       this.sbToastService.showIziToastMsg("Registration end date should be less than event end date", 'warning');
+    }
+    else if (this.formValues.onlineProvider != "BigBlueButton" && this.formValues.onlineProviderData == undefined)
+    {
+      this.sbToastService.showIziToastMsg("Please enter online provider's link", 'warning');
     }
     else {
       this.formValues = Object.assign(this.formValues)

@@ -108,7 +108,7 @@
           [canUnenroll]="true"></sb-join-event-button>
                     <div class="d-flex">
                     <div *ngIf="isOwner">
-                        <button type="button" class="sb-btn sb-btn-sm sb-btn-link sb-btn-link-primary pl-0" (click)="dashboard();"><i class="fad fa-file-chart-line"></i>View Dashboard</button>
+                        <button type="button" class="sb-btn sb-btn-sm sb-btn-link sb-btn-link-primary pl-0 mt-10" (click)="dashboard();"><i class="fad fa-file-chart-line"></i>View Dashboard</button>
                     </div>
                     <div class="d-flex mt-10" *ngIf="isEnrolled || isOwner">
                         <button *ngIf="this.key && this.eventDetailItem.onlineProviderData['recordings'].length > 1" type="button" class="sb-btn sb-btn-sm sb-btn-link sb-btn-link-primary pl-0" (click)="openRecordingDetailModal();"><i class="play circle icon"></i>Play recordings</button>
@@ -141,8 +141,8 @@
             <tbody *ngFor="let data of RecordingUrls;index as i">
               <tr>
                 <td><a href="{{data.recordingUrl}}" target="_blank" suiPopup popupText="{{this.eventDetailItem.name}}" popupPlacement="top">{{this.eventDetailItem.name}}</a></td>
-                <td>{{data.startTime | date:'medium'}}</td>
-                <td>{{data.endTime | date:'medium'}}</td>
+                <td>{{data.eventStartDateTime}}</td>
+                <td>{{data.eventEndDateTime}}</td>
                 <td>{{data.durations}}</td>
               </tr>
             </tbody>

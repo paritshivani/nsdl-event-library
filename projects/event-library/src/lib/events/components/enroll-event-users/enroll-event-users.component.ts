@@ -3,6 +3,7 @@ import { DatePipe, Location } from '@angular/common'
 import { CsvDownloadService } from '../../services/download/csv-download.service';
 import { EventService } from '../../services/event/event.service';
 import { Router } from '@angular/router';
+import { TimezoneCal } from '../../services/timezone/timezone.service';
 
 @Component({
   selector: 'sb-enroll-event-users',
@@ -25,8 +26,9 @@ export class EnrollEventUsersComponent implements OnInit {
   userId: any;
   modifiedEventDetailItem: any;
   constructor(
-    public datepipe: DatePipe, 
+    public datepipe: DatePipe,
     // public translate: TranslateService,
+    private timezoneCal: TimezoneCal,
     private router: Router,
     private csvDownloadService: CsvDownloadService,
     private eventService: EventService, 
@@ -43,13 +45,16 @@ export class EnrollEventUsersComponent implements OnInit {
   }
 
   getEnrollDataCsv(){
-   
+  var timezoneshort = this.timezoneCal.timeZoneAbbreviated();
+   this.arrayEnrollUsers = [];    
     this.enrollEventDetails.forEach(item => {
       var newArray: any = [];
       newArray.UserName = item.fullName?item.fullName:'-';
       newArray.Email = item.email?item.email:'-';
-      newArray.JoinTime = item.joinedDateTime? item.joinedDateTime:'-';
-      newArray.LeaveTime = item.leftDateTime?item.leftDateTime:'-';
+      // newArray.JoinTime = item.joinedDateTime? item.joinedDateTime:'-';
+      // newArray.LeaveTime = item.leftDateTime?item.leftDateTime:'-';
+      newArray.JoinTime = item.joinedDateTime? this.datepipe.transform(item.joinedDateTime, 'longDate') + ', ' + this.datepipe.transform(item.joinedDateTime, 'HH:mm') + '(' + timezoneshort + ')':'-';
+      newArray.LeaveTime = item.leftDateTime? this.datepipe.transform(item.leftDateTime, 'HH:mm') + '(' + timezoneshort + ')':'-';
       newArray.Duration = item.duration?item.duration:'-';
       newArray.EnrollmentDate = this.eventService.convertDate(item.enrolledDate);
 

@@ -114,7 +114,6 @@ export class CoverEventDetailComponent implements OnInit {
   var timezoneshort = this.timezoneCal.timeZoneAbbreviated();
 
   this.eStart = this.datepipe.transform(this.eventDetailItem.startDate, 'longDate') + ', ' + this.datepipe.transform(startEventTime, 'HH:mm') + ' (' + timezoneshort + ')';
-
   this.eEnd = this.datepipe.transform(this.eventDetailItem.endDate, 'longDate') + ', ' + this.datepipe.transform(endEventTime, 'HH:mm') + ' (' + timezoneshort + ')';
   }
 
@@ -164,6 +163,10 @@ export class CoverEventDetailComponent implements OnInit {
         let seconds = sec - (hours * 3600) - (minutes * 60)
         item.durations = hours+'HH'+':'+minutes + 'MM' +':'+seconds+'SS';
       }
+      var timezoneshort = this.timezoneCal.timeZoneAbbreviated();
+      item.eventStartDateTime = this.datepipe.transform(item.startTime, 'longDate') + ', ' + this.datepipe.transform(item.startTime, 'HH:mm') + '(' + timezoneshort + ')';
+  
+      item.eventEndDateTime = this.datepipe.transform(item.endTime, 'longDate') + ', ' + this.datepipe.transform(item.endTime, 'HH:mm') + ' (' + timezoneshort + ')';
     });
   }
 

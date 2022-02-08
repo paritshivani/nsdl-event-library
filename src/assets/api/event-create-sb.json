@@ -1,0 +1,561 @@
+{
+    "id": "api.form.read",
+    "params": {
+        "resmsgid": "21e6f3da-8a7c-44cc-a6c0-4703dcc60927",
+        "msgid": "cfe90415-9aff-439f-b580-170b9189db85",
+        "status": "successful"
+    },
+    "responseCode": "OK",
+    "result": {
+        "form": {
+            "type": "content",
+            "subtype": "event",
+            "action": "create",
+            "component": "*",
+            "framework": "tn_k-12_5",
+            "data": {
+                "templateName": "defaultTemplate",
+                "action": "create",
+                "fields":
+                [
+                    {
+                        "code": "name",
+                        "type": "input",
+                        "templateOptions": {
+                          "labelHtml": {
+                            "contents": "<span>$0&nbsp;<span class=\"required-asterisk\">*</span></span>",
+                            "values": {
+                              "$0": "Event title"
+                            }
+                          },
+                          "hidden": false,
+                          "placeHolder": "Enter event title",
+                          "multiple": false
+                        },
+                        "validations":
+                        [
+                          {
+                            "type": "required",
+                            "value": "80",
+                            "message": "Enter Event Name"
+                          }
+                        ]
+                    },
+                    {
+                        "code": "description",
+                        "type": "input",
+                        "templateOptions": {
+                          "labelHtml": {
+                            "contents": "<span>$0&nbsp;</span>",
+                            "values": {
+                              "$0": "Description"
+                            }
+                          },
+                          "hidden": false,
+                          "placeHolder": "Enter detail description for event",
+                          "multiple": false
+                        },
+                        "validations":
+                        [
+                          {
+                            "type": "required",
+                            "value": "80",
+                            "message": "Enter Event Name"
+                          }
+                        ]
+                    },
+                    {
+                        "code": "venue",
+                        "type": "input",
+                        "templateOptions": {
+                          "labelHtml": {
+                            "contents": "<span>$0&nbsp;</span>",
+                            "values": {
+                              "$0": "Venue"
+                            }
+                          },
+                          "hidden": false,
+                          "placeHolder": "Enter venue of event",
+                          "multiple": false
+                        },
+                        "validations":
+                        [
+                          {
+                            "value": "80"
+                          }
+                        ]
+                    },
+                    {
+                        "code": "code",
+                        "type": "input",
+                        "templateOptions": {
+                          "labelHtml": {
+                            "contents": "<span>$0&nbsp;<span class=\"required-asterisk\">*</span></span>",
+                            "values": {
+                              "$0": "Event code"
+                            }
+                          },
+                          "hidden": false,
+                          "placeHolder": "Enter event code",
+                          "multiple": false
+                        },
+                        "validations":
+                        [
+                          {
+                            "value": "80"
+                          }
+                        ]
+                    },
+                    {
+                        "code": "eventType",
+                        "type": "select",
+                        "default": "",
+                        "templateOptions": {
+                            "placeHolder":"Select Event Type",
+                            "label":"Event Type",
+                            "multiple": false,
+                            "hidden": false,
+                            "options": [
+                                {
+                                    "value":"Online",
+                                    "label":"Virtual Event"
+                                },
+                                {
+                                    "value":"Offline",
+                                    "label":"Classroom Event"
+                                },
+                                {
+                                    "value":"OnlineAndOffline",
+                                    "label":"Virtual & Classroom Event"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "code": "onlineProvider",
+                        "type": "select",
+                        "default": "",
+                        "templateOptions": {
+                            "placeHolder":"E.g Zoom",
+                            "label":"Online Provider",
+                            "multiple": false,
+                            "hidden": false,
+                            "options": [
+                                {
+                                    "value":"Zoom",
+                                    "label":"Zoom"
+                                },
+                                {
+                                    "value":"GoToMeeting",
+                                    "label":"GoToMeeting"
+                                },
+                                {
+                                    "value":"Jitsi",
+                                    "label":"Jitsi"
+                                },
+                                {
+                                    "value":"BigBlueButton",
+                                    "label":"BigBlueButton"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "code": "onlineProviderData",
+                        "type": "input",
+                        "templateOptions": {
+                          "labelHtml": {
+                            "contents": "<span>$0&nbsp;</span>",
+                            "values": {
+                              "$0": "Online Provider Data"
+                            }
+                          },
+                          "hidden": false,
+                          "placeHolder": "https://meetingLink",
+                          "multiple": false
+                        },
+                        "validations":
+                        [
+                          {
+                            "value": "80"
+                          }
+                        ]
+                    },
+                    {
+                        "code": "visibility",
+                        "type": "nested_select",
+                        "default": "",
+                        "templateOptions": {
+                            "placeHolder":"Select Visibility",
+                            "label":"Visibility",
+                            "multiple": true,
+                            "hidden": false,
+                            "options": [
+                                {
+                                    "value":"Default",
+                                    "label":"Default"
+                                },
+                                {
+                                    "value":"Parent",
+                                    "label":"Parent"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                      "code": "audience",
+                      "type": "select",
+                      "default": "",
+                      "templateOptions": {
+                          "placeHolder":"Select audience",
+                          "label":"Audience",
+                          "multiple": true,
+                          "hidden": false,
+                          "options": [
+                              {
+                                  "value":"Administrator",
+                                  "label":"Administrator"
+                              },
+                              {
+                                  "value":"Student",
+                                  "label":"Student"
+                              },
+                              {
+                                "value":"Teacher",
+                                "label":"Teacher"
+                            }
+                          ]
+                      }
+                    },
+                    {
+                      "code": "Language",
+                      "type": "select",
+                      "default": "",
+                      "templateOptions": {
+                          "placeHolder":"Select Language",
+                          "label":"Language",
+                          "multiple": true,
+                          "hidden": false,
+                          "options": [
+                              {
+                                  "value":"English",
+                                  "label":"English"
+                              },
+                              {
+                                  "value":"Hindi",
+                                  "label":"Hindi"
+                              },
+                              {
+                                "value":"Assamese",
+                                "label":"Assamese"
+                              },
+                              {
+                                "value":"Bengali",
+                                "label":"Bengali"
+                              },
+                              {
+                                "value":"Gujarati",
+                                "label":"Gujarati"
+                              },
+                              {
+                                "value":"Kannada",
+                                "label":"Kannada"
+                              },
+                              {
+                                "value":"Malayalam",
+                                "label":"Malayalam"
+                              },
+                              {
+                                "value":"Marathi",
+                                "label":"Marathi"
+                              },
+                              {
+                                "value":"Nepali",
+                                "label":"Nepali"
+                              },
+                              {
+                                "value":"Odia",
+                                "label":"Odia"
+                              },
+                              {
+                                "value":"Punjabi",
+                                "label":"Punjabi"
+                              },
+                              {
+                                "value":"Tamil",
+                                "label":"Tamil"
+                              },
+                              {
+                                "value":"Telugu",
+                                "label":"Telugu"
+                              },
+                              {
+                                "value":"Urdu",
+                                "label":"Urdu"
+                              },
+                              {
+                                "value":"Sanskrit",
+                                "label":"Sanskrit"
+                              },
+                              {
+                                "value":"Maithili",
+                                "label":"Maithili"
+                              },
+                              {
+                                "value":"Munda",
+                                "label":"Munda"
+                              },
+                              {
+                                "value":"Santali",
+                                "label":"Santali"
+                              },
+                              {
+                                "value":"Juang",
+                                "label":"Juang"
+                              },
+                              {
+                                "value":"Ho",
+                                "label":"Ho"
+                              }
+                          ]
+                      }
+                    },
+                    {
+                      "code": "source",
+                      "type": "input",
+                      "templateOptions": {
+                        "labelHtml": {
+                          "contents": "<span>$0&nbsp;</span>",
+                          "values": {
+                            "$0": "Source"
+                          }
+                        },
+                        "hidden": false,
+                        "placeHolder": "Enter Source for event",
+                        "multiple": false
+                      },
+                      "validations":
+                      [
+                      ]
+                    },
+                    {
+                      "code": "keywords",
+                      "type": "input",
+                      "templateOptions": {
+                        "labelHtml": {
+                          "contents": "<span>$0&nbsp;</span>",
+                          "values": {
+                            "$0": "Keywords"
+                          }
+                        },
+                        "hidden": false,
+                        "placeHolder": "Enter keywords",
+                        "multiple": false
+                      },
+                      "validations":
+                      [
+                      ]
+                    },
+                    {
+                      "code": "board",
+                      "type": "select",
+                      "default": "",
+                      "templateOptions": {
+                          "placeHolder":"Education Board (Like MP Board, NCERT, etc)",
+                          "label":"Board",
+                          "multiple": false,
+                          "hidden": false,
+                          "options": [
+                              {
+                                  "value":"CBSE/NCERT",
+                                  "label":"CBSE/NCERT"
+                              },
+                              {
+                                  "value":"State (Arunachal Pradesh)",
+                                  "label":"State (Arunachal Pradesh)"
+                              },
+                              {
+                                "value":"State (Andhra Pradesh)",
+                                "label":"State (Andhra Pradesh)"
+                              },
+                              {
+                                "value":"State (Assam)",
+                                "label":"State (Assam)"
+                              },
+                              {
+                                "value":"State (Bihar)",
+                                "label":"State (Bihar)"
+                              },
+                              {
+                                "value":"State (Chandigarh)",
+                                "label":"State (Chandigarh)"
+                              },
+                              {
+                                "value":"State (Chhattisgarh)",
+                                "label":"State (Chhattisgarh)"
+                              },
+                              {
+                                "value":"State (Delhi)",
+                                "label":"State (Delhi)"
+                              },
+                              {
+                                "value":"State (Goa)",
+                                "label":"State (Goa)"
+                              },
+                              {
+                                "value":"State (Gujarat)",
+                                "label":"State (Gujarat)"
+                              },
+                              {
+                                "value":"State (Haryana)",
+                                "label":"State (Haryana)"
+                              },
+                              {
+                                "value":"State (Himachal Pradesh)",
+                                "label":"State (Himachal Pradesh)"
+                              },
+                              {
+                                "value":"State (Jammu And Kashmir)",
+                                "label":"State (Jammu And Kashmir)"
+                              },
+                              {
+                                "value":"State (Karnataka)",
+                                "label":"State (Karnataka)"
+                              },
+                              {
+                                "value":"State (Maharashtra)",
+                                "label":"State (Maharashtra)"
+                              },
+                              {
+                                "value":"State (Rajasthan)",
+                                "label":"State (Rajasthan)"
+                              },
+                              {
+                                "value":"State (Sikkim)",
+                                "label":"State (Sikkim)"
+                              },
+                              {
+                                "value":"State (Tamil Nadu)",
+                                "label":"State (Tamil Nadu)"
+                              },
+                              {
+                                "value":"State (Uttar Pradesh)",
+                                "label":"State (Uttar Pradesh)"
+                              },
+                              {
+                                "value":"UT (Andaman and Nicobar Islands)",
+                                "label":"UT (Andaman and Nicobar Islands)"
+                              }
+                          ]
+                      }
+                    },
+                    {
+                      "code": "class",
+                      "type": "select",
+                      "default": "",
+                      "templateOptions": {
+                          "placeHolder":"Select Class",
+                          "label":"Class",
+                          "multiple": false,
+                          "hidden": false,
+                          "options": [
+                              {
+                                  "value":"Class 1",
+                                  "label":"Class 1"
+                              },
+                              {
+                                  "value":"Class 2",
+                                  "label":"Class 2"
+                              },
+                              {
+                                  "value":"Class 3",
+                                  "label":"Class 3"
+                              }
+                          ]
+                      }
+                    },
+                    {
+                      "code": "medium",
+                      "type": "select",
+                      "default": "",
+                      "templateOptions": {
+                          "placeHolder":"Select Medium",
+                          "label":"Class",
+                          "multiple": false,
+                          "hidden": false,
+                          "options": [
+                              {
+                                  "value":"English",
+                                  "label":"English"
+                              },
+                              {
+                                  "value":"Hindi",
+                                  "label":"Hindi"
+                              },
+                              {
+                                  "value":"Tamil",
+                                  "label":"Tamil"
+                              }
+                          ]
+                      }
+                    },
+                    {
+                      "code": "class",
+                      "type": "select",
+                      "default": "",
+                      "templateOptions": {
+                          "placeHolder":"Select Class",
+                          "label":"Class",
+                          "multiple": false,
+                          "hidden": false,
+                          "options": [
+                              {
+                                  "value":"Class 1",
+                                  "label":"Class 1"
+                              },
+                              {
+                                  "value":"Class 2",
+                                  "label":"Class 2"
+                              },
+                              {
+                                  "value":"Class 3",
+                                  "label":"Class 3"
+                              }
+                          ]
+                      }
+                    },
+                    {
+                      "code": "subject",
+                      "type": "select",
+                      "default": "",
+                      "templateOptions": {
+                          "placeHolder":"Select Subject",
+                          "label":"Class",
+                          "multiple": false,
+                          "hidden": false,
+                          "options": [
+                              {
+                                  "value":"English",
+                                  "label":"English"
+                              },
+                              {
+                                  "value":"Maths",
+                                  "label":"Maths"
+                              },
+                              {
+                                  "value":"Science",
+                                  "label":"Science"
+                              }
+                          ]
+                      }
+                    }
+                ]
+            },
+            "created_on": "2020-11-12T07:02:44.056Z",
+            "last_modified_on": "2020-11-12T07:02:59.202Z",
+            "rootOrgId": "01269878797503692810"
+        }
+    },
+    "ts": "2021-02-17T05:33:12.609Z",
+    "ver": "1.0"
+}

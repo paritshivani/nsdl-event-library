@@ -442,9 +442,10 @@ export class DemoComponent implements OnInit {
                 break;
 
               case "Upcoming":
-                
+                var timeTemp :any = dTime.toLocaleTimeString() + "+05:30";
                 //if (tempFilterData > dateTime ) {
-                  if( tempEventList[k].startDate >= this.todayDate && tempEventList[k].startTime > timeTemp){
+//                  if( tempEventList[k].startDate >= this.todayDate && tempEventList[k].startTime > timeTemp){
+                  if( tempEventList[k].startDate >= this.todayDate && tempEventList[k].startDate+"-"+tempEventList[k].startTime > this.todayDate+"-"+timeTemp){
                     tempEventListData.push(tempEventList[k]);
                   }
                   //  tempEventListData.push(tempEventList[k]);
@@ -465,7 +466,13 @@ export class DemoComponent implements OnInit {
         }
 
         //this.eventList = data.result.Event;
-        this.eventListCount = tempEventListData.length;
+        console.log(" this.query :: ",this.query);
+        if(this.query != ""){
+          this.eventListCount = tempEventListData.length;
+        } else {
+          this.eventListCount = data.result.count;
+        }
+        
         this.eventList = tempEventListData;
 
         this.eventList.forEach((item, index) => {
