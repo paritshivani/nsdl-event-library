@@ -69,7 +69,7 @@ export class UserDetailedAttendanceComponent implements OnInit {
   }
   getEnrollDataCsv(){
     var timezoneshort = this.timezoneCal.timeZoneAbbreviated();
-
+    this.arrayEnrollUsers = []
     this.userEnrollEventDetails.joinedLeftHistory.forEach(item => {
       var newArray: any = [];
       newArray.EventName = this.eventDetailItem.name?this.eventDetailItem.name:'-';

@@ -74,8 +74,8 @@ export class EnrollEventUsersComponent implements OnInit {
   }
 
   getEnrollDataCsv(){
-    var timezoneshort = this.timezoneCal.timeZoneAbbreviated();
-    this.arrayEnrollUsers = [];    
+  var timezoneshort = this.timezoneCal.timeZoneAbbreviated();
+   this.arrayEnrollUsers = [];    
     this.enrollEventDetails.forEach(item => {
       var newArray: any = [];
       newArray.UserName = item.fullName?item.fullName:'-';
