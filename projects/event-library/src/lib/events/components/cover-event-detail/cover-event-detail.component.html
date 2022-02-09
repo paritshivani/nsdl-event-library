@@ -108,7 +108,7 @@
           [canUnenroll]="true"></sb-join-event-button>
                     <div class="d-flex">
                     <div *ngIf="isOwner">
-                        <button type="button" class="sb-btn sb-btn-sm sb-btn-link sb-btn-link-primary pl-0" (click)="dashboard();"><i class="fad fa-file-chart-line"></i>View Dashboard</button>
+                        <button type="button" class="sb-btn sb-btn-sm sb-btn-link sb-btn-link-primary pl-0 mt-10" (click)="dashboard();"><i class="fad fa-file-chart-line"></i>View Dashboard</button>
                     </div>
                     <div class="d-flex mt-10" *ngIf="isEnrolled || isOwner">
                         <button *ngIf="this.key && this.eventDetailItem.onlineProviderData['recordings'].length > 1" type="button" class="sb-btn sb-btn-sm sb-btn-link sb-btn-link-primary pl-0" (click)="openRecordingDetailModal();"><i class="play circle icon"></i>Play recordings</button>

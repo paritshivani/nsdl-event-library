@@ -53,7 +53,7 @@
   </sb-cover-event-detail>
   </ng-container> -->
 
-<div class="table-responsive" *ngIf="enrollEventDetails?.length > 0">
+<div class="table-responsive" *ngIf="arrayEnrollUsersData?.length > 0">
      <table class="sb-table sb-table-sortable sb-table-blue-strip">
         <thead>
             <tr class="sb-table-head">
@@ -67,7 +67,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let user of enrollEventDetails | paginate: { itemsPerPage: paginateLimit, currentPage: p } let i = index ">
+            <tr *ngFor="let user of arrayEnrollUsersData | paginate: { itemsPerPage: paginateLimit, currentPage: p } let i = index ">
                 <!-- <td>{{i + 1}}</td> -->
                 <td *ngIf="user?.fullName" class="white-space-inherit">{{user?.fullName}}</td>
                 <td *ngIf="!user?.fullName" class="white-space-inherit">-</td>

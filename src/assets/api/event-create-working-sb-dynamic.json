@@ -1,33 +1,33 @@
 {
     "id": "api.form.read",
     "params": {
-      "resmsgid": "536713a5-e233-461c-9142-4de71ad021dc",
-      "msgid": "3b598709-5aed-4d0d-ada1-0808de59f0db",
-      "status": "successful"
+        "resmsgid": "536713a5-e233-461c-9142-4de71ad021dc",
+        "msgid": "3b598709-5aed-4d0d-ada1-0808de59f0db",
+        "status": "successful"
     },
     "responseCode": "OK",
     "result": {
-      "form": {
-        "type": "content",
-        "subtype": "*",
-        "action": "create",
-        "component": "*",
-        "framework": "*",
-        "data": {
-          "templateName": "defaultTemplate",
-          "action": "create",
-          "properties" : [
-              {
-                "name" : "First Section",
-                "fields" : [
+        "form": {
+            "type": "content",
+            "subtype": "*",
+            "action": "create",
+            "component": "*",
+            "framework": "*",
+            "data": {
+                "templateName": "defaultTemplate",
+                "action": "create",
+                "properties" :[
+                    {
+                        "names":"First Section",
+                "fields": [
                     {
                         "code": "name",
                         "dataType": "text",
                         "name": "Name",
-                        "label": "Event Title",
-                        "description": "Enter event title",
+                        "label": "Event Name",
+                        "description": "Event Name",
                         "editable": true,
-                        "placeholder": "Enter event title",
+                        "placeholder": "Event Name",
                         "inputType": "text",
                         "required": true,
                         "displayProperty": "Editable",
@@ -38,96 +38,17 @@
                         "index": 1,
                         "validations": [
                             {
-                                "type": "required",
-                                "message": "Enter event title"
-                            },
-                            {
-                                "type": "maxLength",
-                                "value": 50,
-                                "message": "Input is Exceeded"
-                            }
-                        ]
-                    },
-                    {
-                        "code": "description",
-                        "dataType": "text",
-                        "name": "Description",
-                        "label": "Description",
-                        "description": "Event Description",
-                        "editable": true,
-                        "placeholder": "Enter detail description for event",
-                        "inputType": "textarea",
-                        "required": true,
-                        "displayProperty": "Editable",
-                        "visible": true,
-                        "renderingHints": {
-                            "semanticColumnWidth": "twelve"
-                        },
-                        "index": 3,
-                        "validations": [
-                            {
-                                "type": "regex",
+                                "type": "pattern",
                                 "value": "^[a-zA-Z0-9 &]*$",
-                                "message": "Invalid Input"
-                            },
-                            {
-                                "type": "maxLength",
-                                "value": 300,
-                                "message": "Input is Exceeded"
-                            }
-                        ]
-                    },
-                    {
-                        "code": "code",
-                        "dataType": "text",
-                        "name": "Code",
-                        "label": "Event code",
-                        "description": "Enter unique event code",
-                        "editable": true,
-                        "placeholder": "Code",
-                        "inputType": "text",
-                        "required": true,
-                        "displayProperty": "Editable",
-                        "visible": true,
-                        "renderingHints": {
-                            "class": "sb-g-col-lg-1 required"
-                        },
-                        "index": 5,
-                        "validations": [
-                            {
-                                "type": "regex",
-                                "value": "^[a-zA-Z0-9]*$",
                                 "message": "Invalid Input"
                             },
                             {
                                 "type": "required",
                                 "value": "80",
-                                "message": "Enter Code"
+                                "message": "Enter Event Name"
                             }
                         ]
                     },
-                    {
-                        "code": "keywords",
-                        "visible": true,
-                        "editable": true,
-                        "dataType": "list",
-                        "name": "Keywords",
-                        "description": "Keywords for the content",
-                        "inputType": "keywords",
-                        "label": "keywords",
-                        "renderingHints": {
-                            "class": "sb-g-col-lg-1"
-                        },
-                        "class": "sb-g-col-lg-1",
-                        "placeholder": "Input text & PRESS enter",
-                        "required": false,
-                        "index": 14
-                    }
-                ]
-              },
-              {
-                "name" : "Second Section",
-                "fields" : [ 
                     {
                         "code": "eventType",
                         "dataType": "text",
@@ -168,6 +89,30 @@
                         "index": 2
                     },
                     {
+                        "code": "description",
+                        "dataType": "text",
+                        "name": "Description",
+                        "label": "Description",
+                        "description": "Event Description",
+                        "editable": true,
+                        "placeholder": "Description",
+                        "inputType": "textarea",
+                        "required": true,
+                        "displayProperty": "Editable",
+                        "visible": true,
+                        "renderingHints": {
+                            "semanticColumnWidth": "twelve"
+                        },
+                        "index": 3,
+                        "validations": [
+                            {
+                                "type": "regex",
+                                "value": "^[a-zA-Z0-9 &]*$",
+                                "message": "Invalid Input"
+                            }
+                        ]
+                    },
+                    {
                         "code": "venue",
                         "dataType": "text",
                         "name": "Venue",
@@ -188,11 +133,35 @@
                                 "type": "regex",
                                 "value": "^[a-zA-Z0-9 &]*$",
                                 "message": "Invalid Input"
+                            }
+                        ]
+                    },
+                    {
+                        "code": "code",
+                        "dataType": "text",
+                        "name": "Code",
+                        "label": "Code",
+                        "description": "Code",
+                        "editable": true,
+                        "placeholder": "Code",
+                        "inputType": "text",
+                        "required": true,
+                        "displayProperty": "Editable",
+                        "visible": true,
+                        "renderingHints": {
+                            "class": "sb-g-col-lg-1 required"
+                        },
+                        "index": 5,
+                        "validations": [
+                            {
+                                "type": "regex",
+                                "value": "^[a-zA-Z0-9]*$",
+                                "message": "Invalid Input"
                             },
                             {
-                                "type": "maxLength",
-                                "value": 15,
-                                "message": "Input is Exceeded"
+                                "type": "required",
+                                "value": "80",
+                                "message": "Enter Code"
                             }
                         ]
                     },
@@ -249,34 +218,6 @@
                                 "message": "Invalid Input"
                             }
                         ]
-                    }                 
-                ]
-              },
-              {
-                  "name":"Third Section",
-                  "fields" :[
-                    {
-                        "code": "category",
-                        "dataType": "text",
-                        "name": "Category",
-                        "label": "Category",
-                        "description": "Category",
-                        "editable": true,
-                        "placeholder": "Category",
-                        "inputType": "nestedselect",
-                        "default": "",
-                        "required": false,
-                        "displayProperty": "Editable",
-                        "visible": true,
-                        "range": [
-                            "Event",
-                            "Private Event",
-                            "Uncategories"
-                        ],
-                        "renderingHints": {
-                            "semanticColumnWidth": "six"
-                        },
-                        "index": 20
                     },
                     {
                         "code": "visibility",
@@ -299,20 +240,15 @@
                             "semanticColumnWidth": "six"
                         },
                         "index": 8
-                    }
-                  ]
-              },
-              {
-                "name" : "Fourth Section",
-                "fields" : [ 
+                    },
                     {
                         "code": "audience",
                         "dataType": "text",
                         "name": "Audience",
-                        "label": "Audience Type",
+                        "label": "Audience",
                         "description": "Audience",
                         "editable": true,
-                        "placeholder": "Select audience type",
+                        "placeholder": "Select Audience",
                         "inputType": "nestedselect",
                         "default": "",
                         "required": false,
@@ -332,10 +268,10 @@
                         "code": "language",
                         "dataType": "text",
                         "name": "Language",
-                        "label": "Language of the audience",
+                        "label": "Language",
                         "description": "Language",
                         "editable": true,
-                        "placeholder": "Select language",
+                        "placeholder": "Select Language",
                         "inputType": "nestedselect",
                         "default": "",
                         "required": false,
@@ -393,13 +329,30 @@
                         ]
                     },
                     {
+                        "code": "keywords",
+                        "visible": true,
+                        "editable": true,
+                        "dataType": "list",
+                        "name": "Keywords",
+                        "description": "Keywords for the content",
+                        "inputType": "keywords",
+                        "label": "keywords",
+                        "renderingHints": {
+                            "class": "sb-g-col-lg-1"
+                        },
+                        "class": "sb-g-col-lg-1",
+                        "placeholder": "Input text & PRESS enter",
+                        "required": false,
+                        "index": 14
+                    },
+                    {
                         "code": "board",
                         "dataType": "text",
                         "name": "Board",
-                        "label": "Board of the audience",
+                        "label": "Board",
                         "description": "Board",
                         "editable": true,
-                        "placeholder": "Select education board (Like MP Board, NCERT, etc)",
+                        "placeholder": "Education Board (Like MP Board, NCERT, etc)",
                         "inputType": "select",
                         "default": "",
                         "required": false,
@@ -436,10 +389,10 @@
                         "code": "gradeLevel",
                         "dataType": "text",
                         "name": "Grade",
-                        "label": "Grade of the audience",
+                        "label": "Grade",
                         "description": "Grade",
                         "editable": true,
-                        "placeholder": "Select grade",
+                        "placeholder": "Grade",
                         "inputType": "select",
                         "default": "",
                         "required": false,
@@ -459,10 +412,10 @@
                         "code": "medium",
                         "dataType": "text",
                         "name": "Medium",
-                        "label": "Medium of the audience",
+                        "label": "Medium",
                         "description": "Medium",
                         "editable": true,
-                        "placeholder": "Select medium",
+                        "placeholder": "Medium",
                         "inputType": "select",
                         "default": "",
                         "required": false,
@@ -482,10 +435,10 @@
                         "code": "subject",
                         "dataType": "text",
                         "name": "Subject",
-                        "label": "Subject of the audience ",
+                        "label": "Subject",
                         "description": "Subject",
                         "editable": true,
-                        "placeholder": "Select subject",
+                        "placeholder": "Subject",
                         "inputType": "select",
                         "default": "",
                         "required": false,
@@ -500,12 +453,30 @@
                             "semanticColumnWidth": "six"
                         },
                         "index": 18
-                    }                
-                ]
-              },
-              {
-                "name" : "Fifth Section",
-                "fields" : [
+                    },
+                    {
+                        "code": "category",
+                        "dataType": "text",
+                        "name": "Category",
+                        "label": "Category",
+                        "description": "Category",
+                        "editable": true,
+                        "placeholder": "Category",
+                        "inputType": "nestedselect",
+                        "default": "",
+                        "required": false,
+                        "displayProperty": "Editable",
+                        "visible": true,
+                        "range": [
+                            "Event",
+                            "Private Event",
+                            "Uncategories"
+                        ],
+                        "renderingHints": {
+                            "semanticColumnWidth": "six"
+                        },
+                        "index": 20
+                    },
                     {
                         "code": "startDate",
                         "visible": true,
@@ -515,7 +486,7 @@
                         "name": "start date",
                         "description": "start date",
                         "inputType": "date",
-                        "label": "Start Date",
+                        "label": "Start Date and Time (IST)",
                         "placeholder": "start date",
                         "required": true,
                         "validations": [
@@ -534,7 +505,7 @@
                         "name": "start time",
                         "description": "start time",
                         "inputType": "time",
-                        "label": "Start time(IST)",
+                        "label": "start time",
                         "placeholder": "start time",
                         "required": true,
                         "validations": [
@@ -556,7 +527,7 @@
                         "name": "end date",
                         "description": "end date",
                         "inputType": "date",
-                        "label": "End Date",
+                        "label": "End Date and Time (IST)",
                         "placeholder": "end date",
                         "required": true,
                         "validations": [
@@ -587,7 +558,7 @@
                         "name": "end time",
                         "description": "end time",
                         "inputType": "time",
-                        "label": "End time(IST)",
+                        "label": "end time",
                         "placeholder": "end time",
                         "required": true,
                         "validations": [
@@ -606,7 +577,7 @@
                         "name": "Registration Start Date",
                         "description": "Registration Start Date",
                         "inputType": "date",
-                        "label": "Registration Start Date",
+                        "label": "Registration Start Date (IST)",
                         "placeholder": "Registration Start Date",
                         "required": true,
                         "validations": [
@@ -628,7 +599,7 @@
                         "name": "Registration End Date",
                         "description": "Registration End Date",
                         "inputType": "date",
-                        "label": "Registration End Date",
+                        "label": "Registration End Date (IST)",
                         "placeholder": "Registration End Date",
                         "required": true,
                         "validations": [
@@ -637,16 +608,51 @@
                                 "message": "Registration End Date is required"
                             }
                         ]
-                    }                 
+                    }
+                ]
+            },
+            {
+                "name": "Second Section",
+                "fields": [
+                  {
+                    "code": "primaryCategory",
+                    "dataType": "text",
+                    "description": "Type",
+                    "editable": false,
+                    "renderingHints": {},
+                    "inputType": "select",
+                    "label": "Category",
+                    "name": "Type",
+                    "placeholder": "",
+                    "required": true,
+                    "visible": true,
+                    "validations": []
+                  },
+                  {
+                    "code": "additionalCategories",
+                    "dataType": "list",
+                    "depends": [
+                      "primaryCategory"
+                    ],
+                    "description": "Additonal Category of the Content",
+                    "editable": true,
+                    "inputType": "nestedselect",
+                    "label": "Additional Category",
+                    "name": "Additional Category",
+                    "placeholder": "Select Additional Category",
+                    "renderingHints": {},
+                    "required": false,
+                    "visible": true
+                  }
                 ]
               }
-          ]
-        },
-        "created_on": "2021-10-08T09:24:57.254Z",
-        "last_modified_on": "2022-01-04T10:27:41.978Z",
-        "rootOrgId": "*"
-      }
+        ]
+            },
+            "created_on": "2021-10-08T09:24:57.254Z",
+            "last_modified_on": "2022-01-04T10:27:41.978Z",
+            "rootOrgId": "*"
+        }
     },
     "ts": "2022-01-14T06:30:23.334Z",
     "ver": "1.0"
-  }
+}

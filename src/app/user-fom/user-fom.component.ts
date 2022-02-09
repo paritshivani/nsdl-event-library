@@ -31,7 +31,7 @@ export class UserFomComponent implements OnInit {
 
   showEventCreatePage() {
     this.eventCreateService.getEventFormConfig().subscribe((data: any) => {
-      this.formFieldProperties = data.result['form'].data.fields;
+      this.formFieldProperties = data.result['form'].data.properties;
      })
   }
   

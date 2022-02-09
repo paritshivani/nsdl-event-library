@@ -1,6 +1,6 @@
 <div class="p-40 event-form">
-
     <h1 class="mt-20 mb-20">Create Event</h1>
+    <lib-collection-icon *ngIf="showAppIcon && ImageConfig" [appIcon]="appIcon" [appIconConfig]="appIconConfig" (iconEmitter)="appIconDataHandler($event)" [libEventServicesData]=ImageConfig></lib-collection-icon>
     <ng-container *ngIf="isNew;then New; else Edit">
     </ng-container>
     <ng-template #New>
@@ -12,6 +12,17 @@
                 (statusChanges)="onStatusChanges($event)"
                 (valueChanges)="valueChanges($event)">
              </sb-event-dynamic-form>
+             <!-- <sb-form
+                class="label-1"
+                [config]="formFieldProperties"
+                (initialize)="output($event)"
+                (statusChanges)="onStatusChanges($event)"
+                (valueChanges)="valueChanges($event)">
+             </sb-form> -->
+
+             <!-- <sb-form [config]="formFieldProperties" (initialize)="output($event)"
+             (statusChanges)="onStatusChanges($event)"
+             (valueChanges)="valueChanges($event)"></sb-form> -->
         </div>
     </ng-template>
     <ng-template #Edit>
@@ -23,8 +34,6 @@
             </sb-event-dynamic-form>
         </div>
     </ng-template>
-    <lib-collection-icon *ngIf="showAppIcon && ImageConfig" [appIcon]="appIcon" [appIconConfig]="appIconConfig" (iconEmitter)="appIconDataHandler($event)" [libEventServicesData]=ImageConfig></lib-collection-icon>
-
     <div class="d-flex my-24 flex-jc-flex-end">
         <button type="button" class="sb-btn sb-btn-outline-primary sb-btn-md ripple" (click)="cancel();">Cancel</button>
          <!-- //@TODO - Added [ngClass] in below btton-->
