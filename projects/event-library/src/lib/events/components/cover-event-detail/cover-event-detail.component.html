@@ -37,39 +37,39 @@
     <div class="">
         <!-- <div class="d-flex sb-bg-color-gray-0 w-100 mt-40"> -->
         <!-- <div class="sb-g sb-g--gap24 sb-bg-color-gray-0 training-relevant"> -->
-        <div class="sb-g sb-g--gap24 training-relevant sb-bg-color-white p-15">    
+        <div class="sb-g sb-g--gap24 sb-bg-color-white p-15 sb-bg-secondary">    
             <!-- <div *ngIf="eventDetailItem?.appIcon" class="ml-30 w-30 coverImg"> -->
-            <div *ngIf="eventDetailItem?.appIcon" class="coverImg mr-20 sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-3 sb-g-col-xxxl-4 pr-20 relative9">
+            <div *ngIf="eventDetailItem?.appIcon" class="coverImg mr-20 sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-1 sb-g-col-xxxl-4 pr-20 relative9">
                 <!-- <div _ngcontent-yhb-c64="" class="sb--card__type">Virtual Event</div> -->
                 <span *ngIf="eventDetailItem?.eventType == 'Online'" class="sb--card__type ">{{'Virtual Event'}}</span>
                 <span *ngIf="eventDetailItem?.eventType == 'Offline'" class="sb--card__type ">{{'Classroom Event'}}</span>
                 <span *ngIf="eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb--card__type ">{{'Hybrid Event'}}</span>
-                <img src="{{eventDetailItem?.appIcon}}" width="300" height="300">
+                <img src="{{eventDetailItem?.appIcon}}" width="100" height="100">
             </div>
             <!-- <div *ngIf="!eventDetailItem?.appIcon" class="ml-30 w-30 coverImg"> -->
-            <div *ngIf="!eventDetailItem?.appIcon" class="coverImg mr-20 sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-3 sb-g-col-xxxl-4 pr-20 relative9">
+            <div *ngIf="!eventDetailItem?.appIcon" class="coverImg mr-20 sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-1 sb-g-col-xxxl-4 pr-20 relative9">
                 <span *ngIf="eventDetailItem?.eventType == 'Online'" class="sb--card__type">{{'Virtual Event'}}</span>
                 <span *ngIf="eventDetailItem?.eventType == 'Offline'" class="sb--card__type">{{'Classroom Event'}}</span>
                 <span *ngIf="eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb--card__type">{{'Hybrid Event'}}</span>
-                <img src="./assets/images/eventcover.png"  width="300" height="300">
+                <img src="./assets/images/eventcover.png"  width="100" height="100">
             </div>
             <!-- <div class="ml-20 w-60"> -->
             <div class="sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-9 sb-g-col-xxxl-12 relative9 pl-30">
                 <div class="d-flex">
-                <b><h1 *ngIf="!isTruncate" class="fs-1.3"> {{eventDetailItem?.name | slice:0:36}}
+                <b><h1 *ngIf="!isTruncate" class="fs-1-143 font-weight-bold sb-color-primary"> {{eventDetailItem?.name | slice:0:36}}
                     <h6><a class="SeeMore sb-btn-link-primary" *ngIf="eventDetailItem?.name.length > 36"
-                        (click)="truncateData(true)" style="color: blue">
+                        (click)="truncateData(true)" class="sb-color-primary">
                             {{'See More'}}
                     </a></h6>
                 </h1></b>
                 <b><h1 *ngIf="isTruncate">{{eventDetailItem?.name}}
-                    <h6><a class="SeeMore sb-btn-link-primary" (click)="truncateData(false)" style="color: blue">
+                    <h6><a class="SeeMore sb-btn-link-primary" (click)="truncateData(false)" class="sb-color-primary">
                         {{'See Less'}}
                     </a></h6>
                 </h1></b>
                 &nbsp;&nbsp;
                 </div>
-                <div class="mt-12" *ngIf="this.eventConfig.organisations[0].orgName">
+                <div *ngIf="this.eventConfig.organisations[0].orgName">
                     <b>{{this.eventConfig.organisations[0].orgName}}</b>
                 </div>
                 <!-- <div class="mt-12">
@@ -82,7 +82,7 @@
 
                     <i *ngIf="eventDetailItem?.subject" class="fa fa fa-book fs-1"></i> <span class="fs-0-92"> &nbsp;{{eventDetailItem?.subject}}</span>&nbsp;&nbsp;&nbsp;
                 </div> -->
-                <div class="mt-12 d-flex-wrap">
+                <div class="mt-12 d-flex-wrap sb-color-primary">
                     <i *ngIf="eventDetailItem?.gradeLevel" class="fa fa fa-star fs-1"></i> <span *ngIf="eventDetailItem?.gradeLevel" class="fs-0-92"> &nbsp; {{eventDetailItem?.gradeLevel}}</span>
 
                     <i *ngIf="eventDetailItem?.board" class="fa fa fa-graduation-cap fs-1 pl-10"></i>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="mt-12" *ngIf="eStart">
                     <div>
-                        <i class="fa fa-calendar fs-1"></i> <span class="fs-0-92"> &nbsp; {{eStart}} - {{eEnd}}</span>
+                        <i class="fa fa-calendar fs-1 sb-color-primary"></i> <span class="fs-0-92"> &nbsp; {{eStart}} - {{eEnd}}</span>
                     </div>
                     &nbsp;
                     <!-- <div  *ngIf="eventDetailItem['venue']['name']">
@@ -106,21 +106,25 @@
                     <div *ngIf="isDetalPage">
                     <sb-join-event-button  *ngIf="eventDetailItem" [eventDetailItem]="eventDetailItem"
           [canUnenroll]="true"></sb-join-event-button>
-                    <div class="d-flex" *ngIf="eventDetailItem?.eventType != 'Offline'">
-                    <div *ngIf="isOwner">
-                        <button type="button" class="sb-btn sb-btn-sm sb-btn-link sb-btn-link-primary pl-0 mt-10" (click)="dashboard();"><i class="fad fa-file-chart-line"></i>View Dashboard</button>
-                    </div>
-                    <div class="d-flex mt-10" *ngIf="isEnrolled || isOwner">
-                        <button *ngIf="this.key && this.eventDetailItem.onlineProviderData['recordings'].length > 1" type="button" class="sb-btn sb-btn-sm sb-btn-link sb-btn-link-primary pl-0" (click)="openRecordingDetailModal();"><i class="play circle icon"></i>Play recordings</button>
-                        <button type="button" *ngIf="this.key && this.key && this.eventDetailItem.onlineProviderData['recordings'].length == 1" class="sb-btn sb-btn-sm sb-btn-link sb-btn-link-primary pl-0"><a href="{{this.eventDetailItem.onlineProviderData['recordings']['0']['recordingUrl']}}" target='_blank'><i class="play circle icon"></i>Play recording</a></button>
-                        <div *ngIf="!key" class="d-flex mt-10"><i class="play circle icon"></i><b>Recording not available</b>
-                        </div>
-                    </div>
+                    
                     </div>
                 </div>
+                </div>
+                <div class="sb-g-col-lg-2 sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-xxxl-12">
+                    <div *ngIf="eventDetailItem?.eventType != 'Offline'">
+                        <div *ngIf="isOwner" class="mr-10">
+                            <button type="button" class="sb-btn sb-btn-secondary sb-btn-normal fs-0-785 mt-10" (click)="dashboard();"><i class="fad fa-file-chart-line"></i>View Dashboard</button>
+                        </div>
+                        <div class="d-flex mt-10" *ngIf="isEnrolled || isOwner">
+                            <button *ngIf="this.key && this.eventDetailItem.onlineProviderData['recordings'].length > 1" type="button" class="sb-btn sb-btn-sm sb-btn-link sb-btn-link-primary pl-0" (click)="openRecordingDetailModal();"><i class="play circle icon"></i>Play recordings</button>
+                            <button type="button" *ngIf="this.key && this.key && this.eventDetailItem.onlineProviderData['recordings'].length == 1" class="sb-btn sb-btn-sm sb-btn-link sb-btn-link-primary pl-0"><a href="{{this.eventDetailItem.onlineProviderData['recordings']['0']['recordingUrl']}}" target='_blank'><i class="play circle icon"></i>Play recording</a></button>
+                            <div *ngIf="!key" class="d-flex mt-10 sb-color-primary"><i class="play circle icon"></i><b>Recording not available</b>
+                            </div>
+                        </div>
                 </div>
             </div>
-        </div>
+            </div>
+            
     </div>
     <sui-modal *ngIf="openRecordingModal && this.eventDetailItem.onlineProviderData['recordings'].length > 1" [mustScroll]="true" [isClosable]="true" [transitionDuration]="0" [size]="'large'"
         class="sb-modal container" appBodyScroll infiniteScroll [infiniteScrollDistance]="2"

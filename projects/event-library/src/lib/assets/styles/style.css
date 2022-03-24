@@ -7,6 +7,6 @@ body .slick-prev,
 body .slick-next {
     height: 45px;
     width: 40px;
-    background: grey !important;
+    background: none !important;
     z-index: 100;
 }
