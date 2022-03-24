@@ -13,7 +13,7 @@
         <!-- card mobile view details -->
         <div class="sb--card__info">
             <div class="sb--card__meta1">
-              <h4 class="sb--card__title sb__ellipsis sb__ellipsis--two text-left flex-basis-1" title="{{content?.name}}"><bdi>{{content?.name}}</bdi></h4>
+              <h4 class="sb--card__title sb__ellipsis sb__ellipsis--two text-left flex-basis-1" title="{{content?.name}}"><bdi class="fs-1">{{content?.name}}</bdi></h4>
               <a *ngIf="isMenu" role="button" aria-label="View more actions menu" class="menu" (click)="onMenuClick($event);$event.stopPropagation()" tabindex="0"></a>
             </div>
 
@@ -22,7 +22,7 @@
             <span *ngIf="content?.subject?.length && content?.gradeLevel?.length" class="dot-divider"></span>
             <span class="data_2 ellipsis" title="{{content?.gradeLevel}}">{{content?.gradeLevel}}</span>
           </div> -->
-          <div class="sb--card__meta1 text-left" *ngIf="content?.subject || content?.gradeLevel">
+          <div class="sb--card__meta1 text-left fs-0-785" *ngIf="content?.subject || content?.gradeLevel">
             <span class="data_1 ellipsis" title="{{content?.subject}}">{{content?.subject}}</span>
             <span *ngIf="content?.subject && content?.gradeLevel" class="dot-divider"></span>
             <span class="data_2 ellipsis" title="{{content?.gradeLevel}}">{{content?.gradeLevel}}</span>
@@ -31,7 +31,7 @@
 
       </div>
 
-      <div class="sb--card__metadetails">
+      <div class="sb--card__metadetails fs-0-785">
         <ng-container *ngIf="content?.showDate">
           <div class="sb--card__details sb__ellipsis"
             title="{{content?.showDate}}: {{content?.showDate}}">

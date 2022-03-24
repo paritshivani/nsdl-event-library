@@ -54,7 +54,7 @@
                 <img src="./assets/images/eventcover.png"  width="100" height="100">
             </div>
             <!-- <div class="ml-20 w-60"> -->
-            <div class="sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-9 sb-g-col-xxxl-12 relative9 pl-30">
+            <div class="sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-9 sb-g-col-xxxl-12 relative9">
                 <div class="d-flex">
                 <b><h1 *ngIf="!isTruncate" class="fs-1-143 font-weight-bold sb-color-primary"> {{eventDetailItem?.name | slice:0:36}}
                     <h6><a class="SeeMore sb-btn-link-primary" *ngIf="eventDetailItem?.name.length > 36"
@@ -101,7 +101,7 @@
                         <i class="fa fa-map-marker fs-1" aria-hidden="true"></i><span class="fs-0-92"> &nbsp; {{this.eventDetailItem['venue']['name']}}</span>
                     </div> -->
                     <div  *ngIf="eventDetailItem['venue']['name']">
-                        <i class="fa fa-map-marker fs-1" aria-hidden="true"></i><span class="fs-0-92"> &nbsp; {{this.eventDetailItem['venue']['name']}}</span>
+                        <i class="fa fa-map-marker fs-1 sb-color-primary" aria-hidden="true"></i><span class="fs-0-92"> &nbsp; {{this.eventDetailItem['venue']['name']}}</span>
                     </div>
                     <div *ngIf="isDetalPage">
                     <sb-join-event-button  *ngIf="eventDetailItem" [eventDetailItem]="eventDetailItem"
