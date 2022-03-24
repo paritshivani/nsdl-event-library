@@ -3,9 +3,9 @@
     <div class="sb-pageSection" *ngIf="showCarousalLists">
         <div class="sb-pageSection-header" *ngIf="showCarousalLists">
             <!--Section Title-->
-            <h4 *ngIf="myEvents !== undefined && myEventsCount" class="sb-pageSection-title sb-pageSection-sentenceCase m-0 mr-16"><span class="mr-8">My Events</span>
+            <h4 *ngIf="myEvents !== undefined && myEventsCount" class="sb-pageSection-title sb-pageSection-sentenceCase pt-30 mr-16"><span class="mr-8">My Events</span>
                 <!--Count-->
-                <span *ngIf="myEvents !== undefined && myEventsCount" class="sb-pageSection-count sb-label sb-label-xs sb-label-error">
+                <span *ngIf="myEvents !== undefined && myEventsCount" class="sb-pageSection-count sb-label sb-label-sm fs-0-75sb-label-error">
                     {{myEventsCount}}
                 </span>
                 <!--/Count-->
@@ -13,7 +13,7 @@
             <!--/Section Title-->
              <!--View all button-->
             <button
-                class="sb-btn sb-btn-xs sb-btn-secondary ml-auto"
+                class="sb-btn sb-btn-sm fs-0-785 sb-btn-secondary ml-auto"
                 type="button"
                 *ngIf="viewAllButton && myEventsCount"
                 (click)="openMyEventList()"
@@ -50,7 +50,7 @@
     <div class="sb-pageSection" *ngIf="showMyEvents">
         <div class="sb-pageSection-header" *ngIf="showMyEvents">
             <!--Section Title-->
-            <h4 *ngIf="myEvents && myEventsCount" class="sb-pageSection-title sb-pageSection-sentenceCase m-0 mr-16"><span class="mr-8">My Events</span>
+            <h4 *ngIf="myEvents && myEventsCount" class="sb-pageSection-title sb-pageSection-sentenceCase pt-30 mr-16"><span class="mr-8">My Events</span>
                 <!--Count-->
                 <span class="sb-pageSection-count sb-label sb-label-xs sb-label-error">
                     {{myEventsCount}}
@@ -85,7 +85,7 @@
     <div class="sb-pageSection" *ngIf="showCarousalLists">
         <div class="sb-pageSection-header" *ngIf="list">
             <!--Section Title-->
-            <h4 *ngIf="list && eventListCount" class="sb-pageSection-title sb-pageSection-sentenceCase m-0 mr-16"><span class="mr-8">All Events</span>
+            <h4 *ngIf="list && eventListCount" class="sb-pageSection-title sb-pageSection-sentenceCase pt-30 mr-16"><span class="mr-8">All Events</span>
                 <!--Count-->
                 <span class="sb-pageSection-count sb-label sb-label-xs sb-label-error">
                     {{eventListCount}}
