@@ -67,7 +67,7 @@
             </button>
         </div>
         <div class="sb-grid dynamic-section-card">
-            <div *ngFor="let event of myEvents | paginate: { itemsPerPage: paginateLimit, currentPage: p };let i = index; ">
+            <div *ngFor="let event of myEvents | paginate: { itemsPerPage: paginateLimit, currentPage: pageNumber };let i = index; ">
                 <!-- <ng-container *ngIf="layoutConfig"> -->
                     <sb-event-card
                         [indexToDisplay]="i"
@@ -79,8 +79,13 @@
                 <!-- </ng-container> -->
             </div>
         </div>
-        <pagination-controls (pageChange)="p = $event"  *ngIf="list" class="pull-right"></pagination-controls>
+        <pagination-controls
+            (pageChange)="pageNumber = $event"
+            (pageBoundsCorrection)="onPageBoundsCorrection($event)"
+            *ngIf="list" class="pull-right">
+        </pagination-controls>
     </div>
+
     <!-- All Event -->
     <div class="sb-pageSection" *ngIf="showCarousalLists">
         <div class="sb-pageSection-header" *ngIf="list">
@@ -102,7 +107,8 @@
             </button>
         </div>
         <div class="sb-grid dynamic-section-card">
-            <div *ngFor="let content of list | paginate: { itemsPerPage: paginateLimit, currentPage: p };let i = index; ">
+
+            <div *ngFor="let content of list | paginate: { itemsPerPage: paginateLimit, currentPage: pageNumber };let i = index; ">
                 <!-- <ng-container *ngIf="layoutConfig"> -->
                     <sb-event-card
                         [indexToDisplay]="i"
@@ -114,6 +120,9 @@
                 <!-- </ng-container> -->
             </div>
         </div>
-        <pagination-controls (pageChange)="p = $event"  *ngIf="list" class="pull-right"></pagination-controls>
+        <pagination-controls
+            (pageChange)="pageNumber = $event"
+            (pageBoundsCorrection)="onPageBoundsCorrection($event)"
+            *ngIf="list" class="pull-right"></pagination-controls>
     </div>
 </div>
