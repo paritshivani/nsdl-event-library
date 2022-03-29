@@ -25,7 +25,6 @@ export class EventListComponent implements OnInit {
   @Input() eventListCount: any;
   @Input() myEventsCount: any;
 
-
   @Output() eventDetailData = new EventEmitter();
   @Output() redirectToDetail = new EventEmitter();
 
@@ -33,7 +32,7 @@ export class EventListComponent implements OnInit {
   todayDate: any;
   todayTime: any;
   isUserAbleToJoin: boolean = false;
-  p: any;
+  pageNumber: number = 1;;
   public showCarousalLists = true;
   public showMyEvents = false;
   public myEventsLists = false;
@@ -69,6 +68,10 @@ export class EventListComponent implements OnInit {
   playContent(content){
     this.eventDetailData.emit(content);
   }
+
+  onPageBoundsCorrection(number: number) {
+    this.pageNumber = number;
+}
 
 
   /*onEventWrapper(identifier) {
@@ -112,7 +115,7 @@ export class EventListComponent implements OnInit {
   getEventStatus(eventList) {
      eventList.forEach(async event => {
        this.eventService.getEventStatus(event);
-     });   
+     });
   }
 
   /*onEventWrapper(identifier) {
