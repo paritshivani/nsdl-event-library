@@ -266,6 +266,7 @@ export class EventCreateComponent implements OnInit {
     this.formFieldProperties[1].fields[1].default=""; //venue
     this.formFieldProperties[1].fields[2].default= null; //online provider
     this.formFieldProperties[1].fields[3].default=""; //online provider data(link)
+    this.formFieldProperties[1].fields[3].placeholder = "https://meetingLink";
   }
 
   /**
@@ -448,9 +449,11 @@ export class EventCreateComponent implements OnInit {
       case 'Zoom':
       case 'Jitsi':
         this.formFieldProperties[1].fields[3].editable = true;
+        this.formFieldProperties[1].fields[3].placeholder = "https://meetingLink";
         break;
       default:
         this.formFieldProperties[1].fields[3].editable = true;
+        this.formFieldProperties[1].fields[3].placeholder = "https://meetingLink";
         break;
     }
   }
@@ -459,13 +462,10 @@ export class EventCreateComponent implements OnInit {
    * For values change on form after change in checkbox, dropdown fields
    */
   onValueChangeUpdateFieldBehaviour() {
-    const formFieldPropertiesConst = this.formFieldProperties;
-    delete this.formFieldProperties;
-    delete this.formFieldData;
-    setTimeout(() => {
-      this.formFieldProperties = formFieldPropertiesConst;
-      this.formFieldData = formFieldPropertiesConst;
-    }, 50);
+    this.formFieldProperties = JSON.parse(JSON.stringify(this.formFieldProperties)) ;
+    if(this.formFieldData){
+      this.formFieldData = JSON.parse(JSON.stringify(this.formFieldData));
+    }
   }
 
   /**
