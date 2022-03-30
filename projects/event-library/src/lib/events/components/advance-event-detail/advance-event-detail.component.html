@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="mt-30 my-16 training-relevant" *ngIf="similarEventList.length>=1">
-                    <span><h3><b>Similar Events</b></h3></span>
+                    <span><h3 class="fs-1"><b>Similar Events</b></h3></span>
                     <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)">
                         <div ngxSlickItem class="slide masonry-item mr-16" *ngFor="let event of similarEventList;let i = index;" >
                             <sb-event-card
