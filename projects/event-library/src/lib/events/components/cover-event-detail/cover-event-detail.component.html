@@ -39,24 +39,24 @@
         <!-- <div class="sb-g sb-g--gap24 sb-bg-color-gray-0 training-relevant"> -->
         <div class="sb-g sb-g--gap24 sb-bg-color-white p-15 sb-bg-secondary">    
             <!-- <div *ngIf="eventDetailItem?.appIcon" class="ml-30 w-30 coverImg"> -->
-            <div *ngIf="eventDetailItem?.appIcon" class="coverImg mr-20 sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-1 sb-g-col-xxxl-4 pr-20 relative9">
+            <div *ngIf="eventDetailItem?.appIcon" class="coverImg mr-10 sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-1 sb-g-col-xxxl-4 relative9">
                 <!-- <div _ngcontent-yhb-c64="" class="sb--card__type">Virtual Event</div> -->
                 <span *ngIf="eventDetailItem?.eventType == 'Online'" class="sb--card__type ">{{'Virtual Event'}}</span>
                 <span *ngIf="eventDetailItem?.eventType == 'Offline'" class="sb--card__type ">{{'Classroom Event'}}</span>
                 <span *ngIf="eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb--card__type ">{{'Hybrid Event'}}</span>
-                <img src="{{eventDetailItem?.appIcon}}" width="100" height="100">
+                <img src="{{eventDetailItem?.appIcon}}">
             </div>
             <!-- <div *ngIf="!eventDetailItem?.appIcon" class="ml-30 w-30 coverImg"> -->
-            <div *ngIf="!eventDetailItem?.appIcon" class="coverImg mr-20 sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-1 sb-g-col-xxxl-4 pr-20 relative9">
+            <div *ngIf="!eventDetailItem?.appIcon" class="coverImg mr-10 sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-1 sb-g-col-xxxl-4 relative9">
                 <span *ngIf="eventDetailItem?.eventType == 'Online'" class="sb--card__type">{{'Virtual Event'}}</span>
                 <span *ngIf="eventDetailItem?.eventType == 'Offline'" class="sb--card__type">{{'Classroom Event'}}</span>
                 <span *ngIf="eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb--card__type">{{'Hybrid Event'}}</span>
-                <img src="./assets/images/eventcover.png"  width="100" height="100">
+                <img src="./assets/images/eventcover.png">
             </div>
             <!-- <div class="ml-20 w-60"> -->
             <div class="sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-9 sb-g-col-xxxl-12 relative9">
                 <div class="d-flex">
-                <b><h1 *ngIf="!isTruncate" class="fs-1-143 font-weight-bold sb-color-primary"> {{eventDetailItem?.name | slice:0:36}}
+                <b><h1 *ngIf="!isTruncate" class="fs-1 font-weight-bold sb-color-primary"> {{eventDetailItem?.name | slice:0:36}}
                     <h6><a class="SeeMore sb-btn-link-primary" *ngIf="eventDetailItem?.name.length > 36"
                         (click)="truncateData(true)" class="sb-color-primary">
                             {{'See More'}}
@@ -82,26 +82,26 @@
 
                     <i *ngIf="eventDetailItem?.subject" class="fa fa fa-book fs-1"></i> <span class="fs-0-92"> &nbsp;{{eventDetailItem?.subject}}</span>&nbsp;&nbsp;&nbsp;
                 </div> -->
-                <div class="mt-12 d-flex-wrap sb-color-primary">
-                    <i *ngIf="eventDetailItem?.gradeLevel" class="fa fa fa-star fs-1"></i> <span *ngIf="eventDetailItem?.gradeLevel" class="fs-0-92"> &nbsp; {{eventDetailItem?.gradeLevel}}</span>
+                <div class="mt-12 d-flex-wrap sb-color-gray-400 fnormal">
+                    <i *ngIf="eventDetailItem?.gradeLevel" class="fa fa fa-star fs-1"></i> <span *ngIf="eventDetailItem?.gradeLevel" class="pr-10"> &nbsp; {{eventDetailItem?.gradeLevel}}</span>
 
-                    <i *ngIf="eventDetailItem?.board" class="fa fa fa-graduation-cap fs-1 pl-10"></i>
-                    <span *ngIf="eventDetailItem?.board" class="fs-0-92"> &nbsp; {{eventDetailItem?.board}}</span>
+                    <i *ngIf="eventDetailItem?.board" class="fa fa fa-graduation-cap fs-1"></i>
+                    <span *ngIf="eventDetailItem?.board" class="pr-10"> &nbsp; {{eventDetailItem?.board}}</span>
 
-                    <i *ngIf="eventDetailItem?.medium" class="fa fa fa-globe fs-1 pl-10"></i> <span *ngIf="eventDetailItem?.medium" class="fs-0-92"> &nbsp; {{eventDetailItem?.medium}}</span>
+                    <i *ngIf="eventDetailItem?.medium" class="fa fa fa-globe fs-1"></i> <span *ngIf="eventDetailItem?.medium" class="pr-10"> &nbsp; {{eventDetailItem?.medium}}</span>
 
-                    <i *ngIf="eventDetailItem?.subject" class="fa fa fa-book fs-1 pl-10"></i> <span class="fs-0-92"> &nbsp;{{eventDetailItem?.subject}}</span>
+                    <i *ngIf="eventDetailItem?.subject" class="fa fa fa-book fs-1"></i> <span> &nbsp;{{eventDetailItem?.subject}}</span>
                 </div>
                 <div class="mt-12" *ngIf="eStart">
                     <div>
-                        <i class="fa fa-calendar fs-1 sb-color-primary"></i> <span class="fs-0-92"> &nbsp; {{eStart}} - {{eEnd}}</span>
+                        <i class="fa fa-calendar"></i> <span> &nbsp; {{eStart}} - {{eEnd}}</span>
                     </div>
                     &nbsp;
                     <!-- <div  *ngIf="eventDetailItem['venue']['name']">
                         <i class="fa fa-map-marker fs-1" aria-hidden="true"></i><span class="fs-0-92"> &nbsp; {{this.eventDetailItem['venue']['name']}}</span>
                     </div> -->
                     <div  *ngIf="eventDetailItem['venue']['name']">
-                        <i class="fa fa-map-marker fs-1 sb-color-primary" aria-hidden="true"></i><span class="fs-0-92"> &nbsp; {{this.eventDetailItem['venue']['name']}}</span>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i><span> &nbsp; {{this.eventDetailItem['venue']['name']}}</span>
                     </div>
                     <div *ngIf="isDetalPage">
                     <sb-join-event-button  *ngIf="eventDetailItem" [eventDetailItem]="eventDetailItem"
@@ -110,10 +110,10 @@
                     </div>
                 </div>
                 </div>
-                <div class="sb-g-col-lg-2 sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-xxxl-12">
+                <div class="sb-g-col-lg-2 sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-xxxl-12 z-index-9">
                     <div *ngIf="eventDetailItem?.eventType != 'Offline'">
                         <div *ngIf="isOwner" class="mr-10">
-                            <button type="button" class="sb-btn sb-btn-secondary sb-btn-normal fs-0-785 mt-10" (click)="dashboard();"><i class="fad fa-file-chart-line"></i>View Dashboard</button>
+                            <button type="button" class="sb-color-primary btn-link fs-0-925 mt-10" (click)="dashboard();"><i class="fad fa-file-chart-line"></i>View Dashboard</button>
                         </div>
                         <div class="d-flex mt-10" *ngIf="isEnrolled || isOwner">
                             <button *ngIf="this.key && this.eventDetailItem.onlineProviderData['recordings'].length > 1" type="button" class="sb-btn sb-btn-sm sb-btn-link sb-btn-link-primary pl-0" (click)="openRecordingDetailModal();"><i class="play circle icon"></i>Play recordings</button>
