@@ -1,4 +1,4 @@
-<div class="d-flex flex-jc-flex-end">
+<div class="d-flex flex-jc-space-between mb-20">
     <!-- <button (click)="goBack()" class="sb-btn sb-btn-normal sb-btn-gray ripple my-16" style="margin-right: 13px;">
         Back
     </button> -->
@@ -7,44 +7,46 @@
       [eventDetailItem]="eventDetailItem"  >
     </sb-cover-event-detail>
     </ng-container>
+    <ng-container *ngIf="eventDetailItem && !showCard">
+      <div>
+      <div  *ngIf="eventDetailItem?.name" class="sb--sb--card__moreinfo sb__ellipsis">
+        <h4 class="sb--card__title sb__ellipsis sb__ellipsis--two mr-5 ml-10 text-left flex-basis-1 fs-1 font-weight-bold sb-color-primary" title="{{eventDetailItem?.name}}"><bdi>{{eventDetailItem?.name}}</bdi></h4>
+        <!-- <a *ngIf="isMenu" role="button" aria-label="View more actions menu" class="menu" tabindex="0"></a> -->
+      </div>
+      <div  *ngIf="eventDetailItem?.showDate" class="sb--sb--card__moreinfo sb__ellipsis sb-color-gray-400 fnormal mb-10"
+        title="{{eventDetailItem?.showDate}}: {{eventDetailItem?.showDate}}">
+        <span><i class="fa fa-calendar mr-5 ml-10"></i></span>
+        <span title="{{eventDetailItem?.showDate}}">{{eventDetailItem?.showDate}}</span>
+      </div>
+        <div class="sb--card__tags sb-color-gray-400 fnormal">
+            <span class="sb--card__badge" *ngIf="eventDetailItem?.badgeAssertions">
+              <img [src]="eventDetailItem?.badgeAssertions[0]?.badgeClassImage" alt="" title="" />
+            </span>
+            <!-- <span class="sb--card__type" *ngIf="eventDetailItem?.eventDetailItemType">{{eventDetailItem?.eventDetailItemType}}</span> -->
+            <span class="sb--card__type mr-5 ml-10 mb-10 d-block" *ngIf="eventDetailItem?.eventType == 'Online'">Virtual Event</span>
+            <span class="sb--card__type mr-5 ml-10 mb-10 d-block" *ngIf="eventDetailItem?.eventType == 'Offline'">Classroom Event</span>
+            <span class="sb--card__type mr-5 ml-10 mb-10 d-block" *ngIf="eventDetailItem?.eventType == 'OnlineAndOffline'">Hybrid Event</span>
+        </div>
+  
+        <div  *ngIf="this.eventDetailItem['venue']['name'] && eventDetailItem?.eventType == 'Offline' || eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb--sb--card__moreinfo sb__ellipsis sb-color-gray-400 fnormal mb-10"
+          title="this.eventDetailItem['venue']['name']: this.eventDetailItem['venue']['name']">
+          <span><i class="fa fa-map-marker mr-5 ml-10"></i></span>
+          <span title="this.eventDetailItem['venue']['name']">{{ this.eventDetailItem['venue']['name'] }}</span>
+        </div>
+        <div *ngIf="eventDetailItem?.venue && eventDetailItem?.eventType == 'Online' || eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb--sb--card__moreinfo sb__ellipsis sb-color-gray-400 fnormal mb-10"
+          title="{{eventDetailItem?.onlineProvider}}: {{eventDetailItem?.onlineProvider}}">
+          <span><i class="fa fa-microphone mr-5 ml-10"></i></span>
+          <span title="{{eventDetailItem?.onlineProvider}}">{{eventDetailItem?.onlineProvider}}</span>
+        </div>
+      </div>
+    </ng-container>
     <span *ngIf="showDownloadCodeBtn && arrayEnrollUsersData?.length > 0" >
         <button class="sb-btn sb-btn-normal sb-btn-secondary sb-btn-download my-16" (click)=getEnrollDataCsv();>
             Download CSV
         </button>
     </span>
 </div>
-<ng-container *ngIf="eventDetailItem && !showCard">
-    <div  *ngIf="eventDetailItem?.name" class="sb--sb--card__moreinfo sb__ellipsis">
-      <h4 class="sb--card__title sb__ellipsis sb__ellipsis--two mr-5 ml-10 text-left flex-basis-1" title="{{eventDetailItem?.name}}"><bdi>{{eventDetailItem?.name}}</bdi></h4>
-      <!-- <a *ngIf="isMenu" role="button" aria-label="View more actions menu" class="menu" tabindex="0"></a> -->
-    </div>
-    <div  *ngIf="eventDetailItem?.showDate" class="sb--sb--card__moreinfo sb__ellipsis"
-      title="{{eventDetailItem?.showDate}}: {{eventDetailItem?.showDate}}">
-      <span><i class="fa fa-calendar mr-5 ml-10"></i></span>
-      <span title="{{eventDetailItem?.showDate}}">{{eventDetailItem?.showDate}}</span>
-    </div>
 
-    <div class="sb--card__tags">
-        <span class="sb--card__badge" *ngIf="eventDetailItem?.badgeAssertions">
-          <img [src]="eventDetailItem?.badgeAssertions[0]?.badgeClassImage" alt="" title="" />
-        </span>
-        <!-- <span class="sb--card__type" *ngIf="eventDetailItem?.eventDetailItemType">{{eventDetailItem?.eventDetailItemType}}</span> -->
-        <span class="sb--card__type mr-5 ml-10" *ngIf="eventDetailItem?.eventType == 'Online'">Virtual Event</span>
-        <span class="sb--card__type mr-5 ml-10" *ngIf="eventDetailItem?.eventType == 'Offline'">Classroom Event</span>
-        <span class="sb--card__type mr-5 ml-10" *ngIf="eventDetailItem?.eventType == 'OnlineAndOffline'">Hybrid Event</span>
-    </div>
-
-    <div  *ngIf="this.eventDetailItem['venue']['name'] && eventDetailItem?.eventType == 'Offline' || eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb--sb--card__moreinfo sb__ellipsis"
-      title="this.eventDetailItem['venue']['name']: this.eventDetailItem['venue']['name']">
-      <span><i class="fa fa-map-marker mr-5 ml-10"></i></span>
-      <span title="this.eventDetailItem['venue']['name']">{{ this.eventDetailItem['venue']['name'] }}</span>
-    </div>
-    <div *ngIf="eventDetailItem?.venue && eventDetailItem?.eventType == 'Online' || eventDetailItem?.eventType == 'OnlineAndOffline'" class="sb--sb--card__moreinfo sb__ellipsis"
-      title="{{eventDetailItem?.onlineProvider}}: {{eventDetailItem?.onlineProvider}}">
-      <span><i class="fa fa-microphone mr-5 ml-10"></i></span>
-      <span title="{{eventDetailItem?.onlineProvider}}">{{eventDetailItem?.onlineProvider}}</span>
-    </div>
-  </ng-container>
   <!-- <ng-container *ngIf="eventDetailItem">
     <sb-cover-event-detail
     [eventDetailItem]="eventDetailItem"

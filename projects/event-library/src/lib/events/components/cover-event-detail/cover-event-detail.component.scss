@@ -42,4 +42,19 @@
     margin-top: 56px;
     background: var(--cc-sbcard-type-bg);
     color: white;
+    font-size: .6875rem;
+}
+
+h1{
+    line-height: 2;
+    margin-bottom: 5px;
+}
+
+.btn-link{
+    font-weight: 600;
+    background: none;
+    border: none;
+}
+.z-index-9{
+    z-index: 9 !important;
 }

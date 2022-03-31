@@ -1,22 +1,22 @@
 
-<div class="d-flex mt-20">
+<div class="mt-20">
     <div class="wl-30"></div>    
     <!-- <div  class="w-50 d-flex  join-btn my-12"> -->
-    <div  class="d-flex join-btn">
+    <div  class="d-flex join-btn align-items-center">
       <!-- <button type="button" class="sb-btn w-30 sb-btn-primary  sb-btn-normal ml-8" (click)="navtoedit();">{{'Edit'}}</button> -->
         <button 
             *ngIf="isUserAbleToJoin && isEnrolled && eventDetailItem?.eventType != 'Offline'" 
             type="button"
             [ngClass]="{'sb-btn-secondary': !toShowCounter, 'sb-btn-outline-disabled': toShowCounter}"
-            class="sb-custom-btn sb-btn w-30 sb-btn-normal mr-10"
+            class="sb-custom-btn sb-btn w-10 sb-btn-normal mr-10"
             id="join" 
             (click)="checkEventProvider() "> {{ "Join" }}
         </button>
-        <div *ngIf="!isEnrolled && canRegister && registrationStarted && !this.eventEnded" class="d-flex w-100 ">
-        <button type="button" *ngIf="!isEnrolled && canRegister && registrationStarted" class="sb-btn w-30 sb-btn-primary  sb-btn-normal ml-8" (click)="enrollToEvent('enroll');">{{'Enroll' }}</button>
+        <div *ngIf="!isEnrolled && canRegister && registrationStarted && !this.eventEnded" class="d-flex w-100 align-items-center">
+        <button type="button" *ngIf="!isEnrolled && canRegister && registrationStarted" class="sb-btn w-10 sb-btn-primary  sb-btn-normal ml-8" (click)="enrollToEvent('enroll');">{{'Enroll' }}</button>
         <b class="ml-20 w-100">Enroll till {{this.eventRegistrationEndDate | date:'fullDate'}}</b>
         </div>
-        <div *ngIf="!isEnrolled && canRegister &&  !registrationStarted" class="d-flex w-100 ">
+        <div *ngIf="!isEnrolled && canRegister &&  !registrationStarted" class="d-flex w-100 align-items-center">
             *Enrollment will start from &nbsp; <b>{{this.registrationStartDate | date:'fullDate'}}</b>
         </div>
         <!-- <button type="button" *ngIf="this.eventEnded" class="w-50 sb-btn sb-btn-error  sb-btn-normal pl-15">{{'Event Expired'}}</button> -->
@@ -26,10 +26,10 @@
         [disabled]="true">Starts in 2 days</button> -->
         <!-- <button type="button" *ngIf="isEnrolled && isStartDate1 && !isStartDate2" class="sb-btn w-50 sb-btn-primary  sb-btn-normal mr-20"  [ngClass]="{'sb-btn-secondary': !isDisabled, 'sb-btn-outline-disabled': isDisabled}"
         [disabled]="true">Starts in 1 day</button> -->
-        <button type="button" *ngIf="isEnrolled && isStartDate2 && !isStartDate1" class="sb-btn sb-btn-disabled sb-btn-normal">Starts in 2 days</button>
-        <button type="button" *ngIf="isEnrolled && isStartDate1 && !isStartDate2" class="sb-btn sb-btn-disabled sb-btn-normal">Starts in 1 day</button>
-        <button type="button" *ngIf="isEnrolled && canUnenroll && canRegister && !this.eventEnded && isCreatorAbleToUnenroll" class="sb-btn sb-btn-primary  sb-btn-normal ml-10" (click)="enrollToEvent('unenroll');">{{'Unenroll' }}</button>
-        <h5 _ngcontent-klo-c19="" *ngIf="isEnrolled && !this.eventEnded && !isCreatorAbleToUnenroll" class="textbook__title sb-color-tertiary font-weight-bold mb-0 pl-0" tabindex="0">{{'Unenrollment for creator is restricted'}}</h5>
+        <button type="button" *ngIf="isEnrolled && isStartDate2 && !isStartDate1" class="sb-btn sb-btn-disabled sb-btn-normal mr-15">Starts in 2 days</button>
+        <button type="button" *ngIf="isEnrolled && isStartDate1 && !isStartDate2" class="sb-btn sb-btn-disabled sb-btn-normal mr-15">Starts in 1 day</button>
+        <button type="button" *ngIf="isEnrolled && canUnenroll && canRegister && !this.eventEnded && isCreatorAbleToUnenroll" class="sb-btn sb-btn-primary  sb-btn-normal mx-10" (click)="enrollToEvent('unenroll');">{{'Unenroll' }}</button>
+        <h5 _ngcontent-klo-c19="" *ngIf="isEnrolled && !this.eventEnded && !isCreatorAbleToUnenroll" class="textbook__title sb-color-tertiary font-weight-bold mb-0 pl-0 pr-2" tabindex="0">{{'Unenrollment for creator is restricted'}}</h5>
         &nbsp;
 
         <!-- <button type="button" *ngIf="!isEnrolled && !canRegister && !this.eventEnded" class="w-50 sb-btn sb-btn-error  sb-btn-normal pl-20">{{'Registration Closed'}}</button> -->
@@ -48,7 +48,7 @@
     </div>
 </div>
 <sui-modal *ngIf="muteUserPopUp" [mustScroll]="true" [isClosable]="true" [transitionDuration]="0" [size]="'small'"
-  class="sb-modal " appBodyScroll (dismissed)="muteUserPopUp = !muteUserPopUp" #modal>
+  class="sb-modal modal-height-sm" appBodyScroll (dismissed)="muteUserPopUp = !muteUserPopUp" #modal>
   <!-- <div class="sb-modal-header">
     Modal Heading
   </div> -->

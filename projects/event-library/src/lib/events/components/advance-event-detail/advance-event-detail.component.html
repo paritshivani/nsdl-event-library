@@ -112,8 +112,8 @@
             <div class="sb-course-details__training sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-9 sb-g-col-xxxl-12">
                 <div *ngIf="eventDetailItem?.description" class="description training-relevant sb-bg-color-white p-15">
                     <span *ngIf="eventDetailItem?.description">
-                        <h3 class="fs-1"><b>Description</b></h3>
-                        <p class= "relative9" *ngIf="!isTruncate"> {{eventDetailItem?.description | slice:0:800}}
+                        <h3 class="fsmall mb-8 font-weight-bold">Description</h3>
+                        <p class= "relative9 sb-color-gray-400 fnormal" *ngIf="!isTruncate"> {{eventDetailItem?.description | slice:0:800}}
                             <a class="SeeMore sb-btn-link-primary" *ngIf="eventDetailItem?.description.length > 800"
                                 (click)="truncateData(true)" style="color: blue">
                                     {{'... See More'}}

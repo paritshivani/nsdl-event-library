@@ -1,5 +1,5 @@
 .slick-slider {
-    width: 88%;
+    width: 97%;
     margin: auto;
   }
 
@@ -9,4 +9,38 @@ body .slick-next {
     width: 40px;
     background: none !important;
     z-index: 100;
+}
+
+.slick-next:before,
+.slick-prev:before {
+  color: #024f9d !important;
+}
+.coverImg img{
+    width: 180px;
+    max-width:100%;
+}
+.modal-height-sm .modal{
+  height: 11rem !important;
+}
+.ngx-pagination{
+  margin-top: 32px;
+  background: var(--sb-pagination-item-bg);
+  border: 0.0625rem solid var(--rc-dedede);
+}
+.ngx-pagination li {
+  display: inline-block !important;
+  padding: 0.5rem 1rem !important;
+  line-height: .875rem;
+  color: var(--sb-pagination-item);
+  cursor: pointer;
+  border-right: 0.0625rem solid var(--rc-dedede);
+  margin-bottom: 0 !important;
+}
+.ngx-pagination .current{
+  background: var(--primary-250);
+  padding: 10px 22px !important;
+}
+
+.ngx-pagination li.ellipsis{
+  overflow: inherit;
 }
